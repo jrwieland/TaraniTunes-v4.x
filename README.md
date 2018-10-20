@@ -15,7 +15,7 @@ Compatible with FrSky’s [Taranis Q X7](https://www.frsky-rc.com/product/tarani
 You need at least [OpenTX](http://www.open-tx.org) 2.2.
 
 * Taranis Q X7  
-  ![Taranis Q X7](Screenshots/TaraniTunesQX7.png)
+  ![Taranis QX7](Screenshots/TaraniTunesQX7.PNG)  
 * Taranis X9D  
   ![Taranis X9D](Screenshots/TaraniTunesX9D.PNG)
 
@@ -23,15 +23,12 @@ You need at least [OpenTX](http://www.open-tx.org) 2.2.
 
 A full working version for you to try on companion is available from my dropbox.  It uses your existing radio notifications as the sample music  [Download SD Card files](https://www.dropbox.com/sh/ojqjugozk2s4e9e/AADaXwY6DARqot-Jig9Xvx3Pa?dl=0) The Model file contains 1 model showing the use of the program.   
 
-The “[Example](Example)” folder contains an example of the Taranis’ SD card structure. 
-You currently need to have at least 5 songs in each directory for the script to work.  
-
 1. On your computer:
-	1. Edit both `main.lua` and `itunes.lua` to have your desired amount of playlists. Detailed instructions are in the file(s) comments. Place both `main.lua` and `iTunes.lua` in `/SCRIPT/TELEMETRY` on your SD card.  
+	1. Edit both `main.lua` and `itunes.lua` to have your desired amount of playlists. Detailed instructions are in the file(s) comments. Place both files in the `/SCRIPT/TELEMETRY` directory on your SD card.  
 
 	2. Create a folder "lists" under /SOUNDS
 	
-	3. Create seperate folders for each desired plylist on your SD card. The folder names should pertain to the music played.
+	3. Create seperate folders under "lists" for each desired playlist on your SD card. The folder names should pertain to the music played. **Do not add spaces to the directory names**
 Examples >> `/SOUNDS/lists/3dflying`, `/SOUNDS/lists/practice`, `/SOUNDS/lists/hardrock`, `/SOUNDS/lists/competition`
 
 2. Create a "playlist.lua" file in each of those directories.
@@ -42,21 +39,23 @@ Examples >> `/SOUNDS/lists/3dflying`, `/SOUNDS/lists/practice`, `/SOUNDS/lists/h
 		1. `Song name` is the full name, with artist if you want.
 		2. `SONG_FILENAME` must be 6 characters or less. 
 		3. `duration` is your song’s duration in seconds. *EXAMPLE - Your song is 3:45 long you would enter 225. For a 4:52 song enter 292. Simply calculate `minutes × 60 + seconds` to get your song’s duration. Song length can usually be found in the file’s properties.*  
-		Look at “[Example/SOUNDS/lists/3dflying/playlist.lua](Example/SOUNDS/lists/3dflying/playlist.lua)” for an example of formatting.
+ 
+ Look at [playlist.lua](playlist.lua) for an example of the required structure of the file.
 
-	3. Put your corresponding songs `SONG_FILENAME.wav` in `/SOUNDS/en` if your radio is in English (otherwise replace `en` with your language). They must be converted to mono, preferably normalized, and encoded in Microsoft WAV 16-bits signed PCM at a 32 kHz sampling rate, you can use [Audacity](http://www.audacityteam.org) to do that, it works great. Remember the filename must be 6 characters or less or else it will not play.
+3. Put your corresponding songs `SONG_FILENAME.wav` in `/SOUNDS/en` if your radio is in English (otherwise replace `en` with your language). They must be converted to mono, preferably normalized, and encoded in Microsoft WAV 16-bits signed PCM at a 32 kHz sampling rate, you can use [Audacity](http://www.audacityteam.org) to do that, it works great. Remember the filename must be 6 characters or less or else it will not play.
 
-3. On your Taranis (I’m going to explain how I setup my radio):
-	1. Under Telementry “DISPLAY” Choose to display `Script iTunes`  
-	![Display settings](Screenshots/DisplaySettings.png)
-	2. Set “LOGICAL SWITCHES” settings as follows:  
-	![Logical switch settings](Screenshots/LogicalSwitchSettings.PNG) 
-	3. Set “FLIGHT MODES” model’s rudder trims as follows:     
-	![Flight modes settings](Screenshots/FlightModesSettings.png)  
-	In fact, put every rudder trim to “`--`” for every flight mode you use.
-	4. Set “TIMER3” as follows:      
-	![Timer settings](Screenshots/TaraniTunesTimer.PNG)   
-
+4. On your Taranis or (in companion) **This is how I setup my radio:
+	1. Set “TIMER3” as follows:      
+	![Timer settings](Screenshots/timer.PNG)  
+	2. Set active “FLIGHT MODES” model’s rudder trims as follows:     
+	![Flight modes settings](Screenshots/trims.PNG)  
+	In fact, put every rudder trim to “`--`” for every flight mode you use.  
+	3. Set “LOGICAL SWITCHES” settings as follows:  
+	![Logical switch settings](Screenshots/LogicalSwitchSettings.PNG)  
+	**L60 will be automatically installed no need to enter these values**
+	4. Under Telementry “DISPLAY” Choose to display `Script iTunes`  
+	![Display settings](Screenshots/DisplaySettings.PNG)
+	
 There you go! Next section will explain how to use TaraniTunes.
 
 ### Usage
@@ -74,7 +73,7 @@ From the main screen, hold “Page” to access TaraniTunes.
 
 1. To change playlists press “MENU”.
 2. A “Change Playlist Screen” will appear:  
-![Change Playlist](Screenshots/ChangeList.png)     
+![Change Playlist](Screenshots/ChangeList.PNG)     
 3. Using **Rotary Switch S2**, select the playlist you want to play.
 4. Press “ENTER”, your new playlist is loaded and begins playing.
 
