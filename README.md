@@ -1,7 +1,8 @@
 TaraniTunes v2.2 
 ===========
 *Awesome music player for FrSky radios.*  
-*This is a seperate Advanced fork from the Original TaraniTunes developed by [GilDev](https://github.com/GilDev)*
+*This is a seperate Advanced fork from the Original TaraniTunes developed by [GilDev](https://github.com/GilDev)
+It was agreed by GilDev and I that both versions of the script (the original and this advanced version) would be available for users but hosted seperately.*
 
 Key Improvements
 ----------------
