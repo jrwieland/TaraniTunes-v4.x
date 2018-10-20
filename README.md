@@ -47,12 +47,12 @@ Examples >> `/SOUNDS/lists/3dflying`, `/SOUNDS/lists/practice`, `/SOUNDS/lists/h
 4. On your Taranis or (in companion) **This is how I setup my radio:
 	1. Set “TIMER3” as follows:      
 	![Timer settings](Screenshots/timer.PNG)  
-	2. Set active “FLIGHT MODES” model’s rudder trims as follows:     
+	2. Set active “FLIGHT MODES” model rudder trims as follows:     
 	![Flight modes settings](Screenshots/trims.PNG)  
 	In fact, put every rudder trim to “`--`” for every flight mode you use.  
 	3. Set “LOGICAL SWITCHES” settings as follows:  
 	![Logical Switch Settings](Screenshots/LogicalSwitch.PNG)  
-	**L60 will be automatically installed no need to enter these values**
+	**L60 will be automatically installed there is no need to enter these values**
 	4. Under Telementry “DISPLAY” Choose to display `Script iTunes`  
 	![Display settings](Screenshots/DisplaySettings.PNG)
 	
@@ -61,13 +61,15 @@ There you go! Next section will explain how to use TaraniTunes.
 ### Usage
 
 From the main screen, hold “Page” to access TaraniTunes.
-1. Use the rotary encoder (Q X7) or the “+”/“-” (Taranis) buttons to sweep through songs.
+1. Use the rotary encoder (QX7) or the “+”/“-” buttons on the (X9) to sweep through the songs.
 2. Press “Enter” to choose a song to play.
-3. Put the “SB” switch in the middle position to start playing. Put it back in the up position to stop/pause the song.
-4. Put “SB” in the up position to select a random song from your playlist.
-5. You can press throttle trims down and up to play next and previous song respectively.
-6. When the song ends, the next song will automatically play and “Timer3” will be reset.
-7. “Timer3” will also automatically resets if you change songs.
+3. Put the “SB” switch in the middle position to start playing.
+4. Put the "SB" switch in the down position to pause the song. It will continue from where it left off when the switch is returned to the middle "play" position.
+5. Put “SB” in the up position to select a random song from your playlist. It will play when the switch is placed in the middle "play" position.
+6. Press rudder trim right or rudder trim left to play next or previous song respectively.
+7. When the song ends, the next song will automatically play and “Timer3” will be reset.
+8. “Timer3” will also automatically reset if you change songs.
+9.  The screen does not have to be displayed for it to work.  You can have the music playing and use the telementry screen of your choice.  If you move the "`SB`" switch or trims the music will respond accordingly.  The only function that will not work on a different screen is selecting a new playlist (described below).
 
 #### Changing Playlists
 
@@ -78,3 +80,7 @@ From the main screen, hold “Page” to access TaraniTunes.
 4. Press “ENTER”, your new playlist is loaded and begins playing.
 
 Enjoy it as much as I do.
+
+####  Housekeeping Notes  
+If you make changes to your playlist.lua files .... delete the compiled file "`playlist.lauc`" The program will always read the compiled file despite any changes you make to the source file.   By deleting the compiled file, it will automatically compile a new file from the source file.  
+The same goes for any changes to the itunes.lua file.
