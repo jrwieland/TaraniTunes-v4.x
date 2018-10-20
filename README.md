@@ -51,7 +51,7 @@ Examples >> `/SOUNDS/lists/3dflying`, `/SOUNDS/lists/practice`, `/SOUNDS/lists/h
 	![Flight modes settings](Screenshots/trims.PNG)  
 	In fact, put every rudder trim to “`--`” for every flight mode you use.  
 	3. Set “LOGICAL SWITCHES” settings as follows:  
-	![Logical switch settings](Screenshots/LogicalSwitchSettings.PNG)  
+	![Logical Switch Settings](Screenshots/LogicalSwitch.PNG)  
 	**L60 will be automatically installed no need to enter these values**
 	4. Under Telementry “DISPLAY” Choose to display `Script iTunes`  
 	![Display settings](Screenshots/DisplaySettings.PNG)
