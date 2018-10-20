@@ -3,8 +3,8 @@ TaraniTunes v2.2
 *Awesome music player for FrSky radios.*  
 *This is a seperate Advanced fork from the Original TaraniTunes developed by [GilDev](https://github.com/GilDev)*
 
-Key Advances with this version
-------------------------------
+Key Improvements
+----------------
 ** Multiple Playlists (the code contains 8 seperate playlists)  
 ** Playlists are seperated by recognizable names you have chosen (3dflying, Practice, Competition)  
 ** On-screen confimation of the playlist selected (not just a number anymore)  
