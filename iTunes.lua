@@ -1,16 +1,16 @@
---[[ 
+--[[
 TaraniTunes
  Version 2.2
- This Advenced version is based off of the Original TaraniTunes 
+ This Advenced version is based off of the Original TaraniTunes
   http://github.com/GilDev/TaraniTunes
  By GilDev
  http://gildev.tk
-It was agreed by GilDev and I that both versions of the script (the original 
+It was agreed by GilDev and I that both versions of the script (the original
 and this advanced version) would be available for users but hosted seperately.
 
 ----Playlist selector file-------
 Change the wording of your playlist and quantity of the playlists below (starting on line line 52)
-See the README file(s) for setting up the "main.lua" file 
+See the README file(s) for setting up the "main.lua" file
 Also be sure to read about automated playlist creation---]]
 
 local fileToLoad="/SCRIPTS/TELEMETRY/main.lua"
@@ -28,20 +28,20 @@ local function clearTable(t)
     end
   end
   collectgarbage()
-  return t 
+  return t
 end
- 
+
 thisPage.init=function(...)
 	 if active then
     page=dofile(fileToLoad)
     page.init(...)
-  end 
+  end
   return true
-end 
+end
 
 thisPage.background=function(...)
   if active then
-    page.background(...) 
+    page.background(...)
 
 
   end
@@ -49,14 +49,14 @@ thisPage.background=function(...)
 end
 
 thisPage.run=function(...)
---[[Playlists are changed using the S2 Pot values from 1000 to -1000 
-As many times as you want to divide the switch is the limit to the number 
-of playlists available. 
+--[[Playlists are changed using the S2 Pot values from 1000 to -1000
+As many times as you want to divide the switch is the limit to the number
+of playlists available.
 This file has 8 separate playlists --]]   
- 
+
 local set2=getValue("s2")--s2 is the selector for the playlists
   if set2 > 750 then --value of s2 switch position to select this file
-    	set1 = 8 -- number index of the playlist 
+    	set1 = 8 -- number index of the playlist
     	name1 = "       3d Flying" elseif -- selected playlist name
   	set2 > 500 then
     	set1 = 7
@@ -78,14 +78,14 @@ local set2=getValue("s2")--s2 is the selector for the playlists
    		name1 = "    Race Time" else  -- spaces help center the display
    		set1 = 4
    		name1 = "   Out Relaxing"
-  end 
- 
+  end
+
    if active then
     page.run(...)
     active= not (...==EVT_MENU_BREAK)
   else
   	-- Calculate indexes for screen display
-	if LCD_W == 212 then -- if Taranis X9D	
+	if LCD_W == 212 then -- if Taranis X9D
     lcd.clear()
     lcd.drawText( 40, 6, "!! NEW PLAYLIST REQUEST !!", BLINK)
     lcd.drawText( 60, 18, "Select Playlist", 0)
@@ -95,8 +95,8 @@ local set2=getValue("s2")--s2 is the selector for the playlists
     clearTable(page)
         active= (...==EVT_ENTER_BREAK)
     model.setTimer(2,{value=0})--resets song timer to 0 when new playlist is selected
-   
-    thisPage.init() 
+
+    thisPage.init()
     else
     -- Title if Taranis Q X7
     lcd.clear()
@@ -108,8 +108,8 @@ local set2=getValue("s2")--s2 is the selector for the playlists
     clearTable(page)
     active= (...==EVT_ROT_BREAK)
     model.setTimer(2,{value=0})
-    thisPage.init() 
-  
+    thisPage.init()
+
   return not (...==EVT_MENU_BREAK)
 end end end
 

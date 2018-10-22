@@ -3,12 +3,12 @@
 ### Credits
 --------------------
 
-There is already a 3rd party program to make autoplaylist and it is works perfectly 
+There is already a 3rd party program to make auto playlists and it is works perfectly
 Credit has to go to @ridgerunner for mentioning it in his post on RCGroups.com
 
 Here is the post ["Ridgerunr" discusses Mp3tag for creating playlists](https://www.rcgroups.com/forums/showpost.php?p=31361271&postcount=41772)
 
-It took a while to get the syntax exactly right for use in TarniTunes so here are the short directions to get you started.
+It took a while to get the syntax exactly right for use in TaraniTunes so here are the short directions to get you started.
 
 ### English Instructions
 --------------------
@@ -52,5 +52,5 @@ $filename(playlist.lua,utf-8)playlist={$loop(%track%)
 
 It will ask if you want to preview your file. I would recommend checking the file to ensure all of the songs are there and that there are no extra lines beyond the "}" at the end of the file.    
 
-Copy the playlist.lua file to the correct directory that will be referenced by `"TaraniTunes"` 
+Copy the playlist.lua file to the correct directory that will be referenced by `"TaraniTunes"`
 and enjoy your new playlist.
