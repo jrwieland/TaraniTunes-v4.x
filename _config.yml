@@ -1,4 +1,4 @@
 theme: jekyll-theme-slate
-keywords: Music-Player; frsky; taranis; x9d; qx7; radio; music
+<meta name="keywords" content="music-player, frsky, taranis, X9D, QX7, Radio, music">
 plugins:
   - jekyll-seo-tag
