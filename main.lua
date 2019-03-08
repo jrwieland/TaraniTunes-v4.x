@@ -1,6 +1,5 @@
-
  --[[TaraniTunes
- Version 2.2
+ Version 2.2.1
  This Advanced version is based off of the Original TaraniTunes
   http://github.com/GilDev/TaraniTunes
  By GilDev
@@ -22,7 +21,26 @@ and this advanced version) would be available for users but hosted separately.
  you use for your model and set the appropriate "Trims" value to "--"
  (Rudder trims are used in the example).
 
- Here is a sample setup of the logical switches (LS61 thru LS64) you need to setup
+----Additional Functions/Information-----
+Since everything in the OpenTX is user programmable
+You need to enter the switch number to "Pause" the song and you need to enter the switch number for a "Random" Song
+The program works using a single 3 position switch if you try and change it to multiple switches the program will not work properly!
+
+Here are the numbers for the switches
+Replace the value in "pause" and "random"(below)with the appropriate number
+
+SA↑=1, SA-=2, SA↓=3, 
+SB↑=4, SB-=5, SB↓=6, 
+SC↑=7, SC-=8, SC↓=9,
+SD↑=10, SD-=11, SD↓=12, 
+SE↑=13, SE-=14, SE↓=15 
+--]]
+local random =4 --Enter the switch number you will used to "select a random song" SB↑=4 in this example
+
+local pause =6  --[[Enter the switch number you will used to "Pause" the music SB↓=6
+				--Set the trigger for timer3 in your Model Setup to match this switch
+
+Here is a sample setup of the logical switches (LS61 thru LS64) you need to setup based on these inputs
 
   SWITCH  Func  V1	V2
   LS61 	   OR	SB-	SB↓ (**Explanation under this example)
@@ -35,20 +53,7 @@ SB↑ will "Select" a "Random" song and reset timer3 when the switch is returned
 SB- will "Play" the music & timer 3 will advance
 SB↓ will "Pause" the song and Timer3
 
-----Additional Functions/Information-----
-Since everything in the OpenTX is user programmable
-You need to enter the switch number to "Pause" the song.
-This will allow TaraniTunes to assign "Pause" to the right switch
-
-Here are the numbers for the switches
-replace the value in "pause"(below) with the appropriate number
-
-SA↑=1, SA-=2, SA↓=3, SB↑=4, SB-=5, SB↓=6, SC↑=7, SC-=8, SC↓=9,
-SD↑=10, SD-=11, SD↓=12, SE↑=13, SE-=14, SE↓=15, SF↑=16, SF↓=17,
-SG↑=18, SG-=19, SG↓=20, SH↑=21, SH↓=22       --]]
-
-local pause =6  --[[Enter the switch number you will used to "Pause" the music SB↓=6
-				--Set the trigger for timer3 in your Model Setup to match this switch
+Make sure that the Logical Switch values match your selection above
 
 LS60 will list the song length of the currently playing song
 	This is updated automatically; you do not have to enter any values.
@@ -56,10 +61,10 @@ LS60 will list the song length of the currently playing song
 BGMusic|| (pause) will be placed on SF32.
 	This will be automatically inserted based on the information you listed above.
 
-The locations/directory of your playlists starts on line 97 below
-Change the display items starting on line 257 to your individual needs --]]
+The locations/directory of your playlists starts on line 103 below
+Change the display items starting on line 261 to your individual needs
 
--- locals
+-- locals--]]
 local specialFunctionId = 30 -- This special function will be reserved. SF31 and SF32 are also reserved
 local playSongLogicalSwitch   = 61 -- Logical switch that will play the current song
 local nextSongLogicalSwitch   = 62 -- Logical switch that will set the current song to the next one
@@ -139,9 +144,8 @@ end
 
 --background
 local function background()
---	model.setLogicalSwitch(59,{func=3,v1=229,v2=playlist[playingSong][3]})
 	model.setCustomFunction(30,{switch=pause,func = 17})
-	model.setCustomFunction(31,{switch=4,func=3,value=2,active=1})
+	model.setCustomFunction(31,{switch=random,func=3,value=2,active=1})
 	if resetDone then
 		playSong()
 		resetDone = false
