@@ -1,21 +1,19 @@
 --[[ 
  TaraniTunes
  Version 2.2
- This Advenced version is based off of the Original TaraniTunes 
+ This Advanced version is based off of the Original TaraniTunes 
   http://github.com/GilDev/TaraniTunes
  By GilDev
  http://gildev.tk
 It was agreed by GilDev and I that both versions of the script (the original 
-and this advanced version) would be available for users but hosted seperately.
-
---Main Play Music File--
+and this advanced version) would be available for users but hosted separately.
 
 ----Setting up the Transmitter----	
 							
 !!You NEED to use logical switches to manipulate TaraniTunes!!
 
  WARNING: If you use trims for changing songs (and I recommend you do),
- you need to deactivate the "real" trim functions on the trimsswitches you plan 
+ you need to deactivate the "real" trim functions on the trim switches you plan 
  to use for manipulating TaraniTunes. 
  
  To do this, go into "FLIGHT MODES" configuration, go to each flight mode 
@@ -51,12 +49,12 @@ local pause =6  --[[Enter the switch number you will used to "Pause" the music S
 				--Set the trigger for timer3 in your Model Setup to match this switch
            
 LS60 will list the song length of the currently playing song 
-	This is updated automatically, you do not have to enter any values.
+	This is updated automatically; you do not have to enter any values.
 
 BGMusic|| (pause) will be placed on SF32.
 	This will be automatically inserted based on the information you listed above.
 
-The locations/directory of your playlists starts on line 97 below
+The locations/directory of your playlists starts on line 96 below
 Change the display items starting on line 257 to your individual needs --]]
 
 -- locals
@@ -101,8 +99,11 @@ of playlists available.
 This file has 8 separate playlists  --]]   
 
 local set=getValue("s2")  --s2 is the selector for the playlists  **Must match the format in iTunes.lua**
-  if set > 750 then  --value of s2 switch position to select this file **This is the upper limit of the switch **Each additional selection moves towards center
-  		loadScript("/SOUNDS/lists/3dflying/playlist")()--location of the playlist file **Notice the directory should be named somthing that relates to the music "without spaces"
+  if set > 750 then  --[[value of s2 switch position to select this file 
+		**This is the upper limit of the switch, each additional selection moves towards center**
+	        **The directory should be named something that relates to the music without spaces 
+		Examples: Rock-N-Roll, classic, Country, Modern, Rap, etc. --]]
+  		loadScript("/SOUNDS/lists/3dflying/playlist")()--location of the playlist file
   elseif set > 500 then 
  		loadScript("/SOUNDS/lists/competition/playlist")()--all lua files must be named "playlist" do not include the .lua extension
   elseif set > 250 then
