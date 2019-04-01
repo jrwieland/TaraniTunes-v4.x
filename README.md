@@ -7,7 +7,7 @@ It was agreed by GilDev and I that both versions of the script (the original and
 Key Improvements
 ----------------
 ** Multiple Playlists (the code contains 8 separate playlists)  
-** Playlists are separated by recognizable names you have chosen (3dflying, Practice, Competition)  
+** Playlists are separated by recognizable names you have chosen (3dflying, Rock-N-Roll, Competition, Relaxing)  
 ** On-screen confirmation of the playlist selected (not just a number anymore)  
 ** Songs are changed automatically based on their length  
 ** On-Screen Flight Time and Telemetry Information   
