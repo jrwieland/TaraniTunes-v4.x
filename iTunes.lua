@@ -48,42 +48,30 @@ thisPage.background=function(...)
 end
 
 thisPage.run=function(...)
---[[Playlists are changed using the S2 Pot values from 1000 to -1000
-As many times as you want to divide the switch is the limit to the number
-of playlists available.
-This file has 8 separate playlists --]]   
-
-    
-
-
    if active then
     page.run(...)
     active= not (...==EVT_MENU_BREAK)
   else
    local set2=getValue("s2")--s2 is the selector for the playlists  
+--[[Playlists are changed using the S2 Pot values from 1000 to -1000
+As many times as you want to divide the switch is the limit to the number
+of playlists available.
+This file has 8 separate playlists --]]   
   if set2 > 750 then --value of s2 switch position to select this file
-    	set1 = 8 -- number index of the playlist  
-  		loadScript("/SOUNDS/lists/3dflying/playlist")() elseif -- selected playlist name
+    		loadScript("/SOUNDS/lists/3dflying/playlist")() elseif -- selected playlist name
   	set2 > 500 then
-    	set1 = 7 
-  		loadScript("/SOUNDS/lists/competition/playlist")() elseif
+    		loadScript("/SOUNDS/lists/competition/playlist")() elseif
   	set2 > 250 then
-    	set1 = 6
-  		loadScript("/SOUNDS/lists/cruising/playlist")() elseif
+    		loadScript("/SOUNDS/lists/cruising/playlist")() elseif
   	set2 > 0 then
-    	set1 = 5
-  		loadScript("/SOUNDS/lists/demo/playlist")() elseif
+    		loadScript("/SOUNDS/lists/demo/playlist")() elseif
   	set2 > -250 then
-    	set1 = 4
-  		loadScript("/SOUNDS/lists/relaxing/playlist")() elseif
+    		loadScript("/SOUNDS/lists/relaxing/playlist")() elseif
   	set2 > -500 then
-    	set1 = 3
-  		loadScript("/SOUNDS/lists/racing/playlist")() elseif
+    		loadScript("/SOUNDS/lists/racing/playlist")() elseif
   	set2 > -750 then
-   		set1 = 2
-  		loadScript("/SOUNDS/lists/practice/playlist")() else
-   		set1 = 1
-  		loadScript("/SOUNDS/lists/flights/playlist")()
+   		loadScript("/SOUNDS/lists/practice/playlist")() else
+   		loadScript("/SOUNDS/lists/flights/playlist")()
   end
  
   	-- Calculate indexes for screen display
@@ -96,7 +84,6 @@ This file has 8 separate playlists --]]
     clearTable(page)
         active= (...==EVT_ENTER_BREAK)
     model.setTimer(2,{value=0})--resets song timer to 0 when new playlist is selected
-
     thisPage.init()
     else
     -- Title if Taranis Q X7
@@ -109,9 +96,6 @@ This file has 8 separate playlists --]]
     active= (...==EVT_ROT_BREAK)
     model.setTimer(2,{value=0})
     thisPage.init() 
-
   return not (...==EVT_MENU_BREAK)
 end end end
-
-
 return thisPage
