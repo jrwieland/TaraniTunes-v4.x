@@ -1,13 +1,11 @@
  --[[TaraniTunes
- Version 2.2.1
+ Version 2.2.2
  This Advanced version is based off of the Original TaraniTunes
   http://github.com/GilDev/TaraniTunes
  By GilDev
  http://gildev.tk
 It was agreed by GilDev and I that both versions of the script (the original
 and this advanced version) would be available for users but hosted separately.
-
---Main Play Music File--
 
 ----Setting up the Transmitter----
 
@@ -61,9 +59,6 @@ LS60 will list the song length of the currently playing song
 BGMusic|| (pause) will be placed on SF32.
 	This will be automatically inserted based on the information you listed above.
 
-The locations/directory of your playlists starts on line 103 below
-Change the display items starting on line 261 to your individual needs
-
 -- locals--]]
 local specialFunctionId = 30 -- This special function will be reserved. SF31 and SF32 are also reserved
 local playSongLogicalSwitch   = 61 -- Logical switch that will play the current song
@@ -100,29 +95,6 @@ randomSongSwitchPressed = false;
 
 --Initiate
 local function init()
---[[Playlists are changed using the S2 Pot values from 1000 to -1000
-As many times as you want to divide the switch is the limit to the number
-of playlists available.
-This file has 8 separate playlists  --]]
-
-local set=getValue("s2")  --s2 is the selector for the playlists  **Must match the selector in iTunes.lua**
-  if set > 750 then  --value of s2 switch position to select this file **This is the upper limit of the switch **Each additional selection moves towards center
-  		loadScript("/SOUNDS/lists/3dflying/playlist")()--location of the playlist file **Notice the directory should be named somthing that relates to the music "without spaces"
-  elseif set > 500 then
- 		loadScript("/SOUNDS/lists/competition/playlist")()--all lua files must be named "playlist" do not include the .lua extension
-  elseif set > 250 then
-  		loadScript("/SOUNDS/lists/cruising/playlist")()
-  elseif set >= 0 then
-  		loadScript("/SOUNDS/lists/demo/playlist")()
-  elseif set < -750 then   -- this is the lower limit of the switch  **Each additional selection moves towards center
-  		loadScript("/SOUNDS/lists/flights/playlist")()
-  elseif set < -500 then
- 		loadScript("/SOUNDS/lists/practice/playlist")()
-  elseif set < -250 then
-  		loadScript("/SOUNDS/lists/racing/playlist")()
-  else
-  		loadScript("/SOUNDS/lists/relaxing/playlist")()end
-
 	-- Calculate indexes
 	specialFunctionId  = specialFunctionId - 1
 	if LCD_W == 212 then -- if Taranis X9D
@@ -317,7 +289,7 @@ local function run(event)
 		lcd.drawLine(0, 33, LCD_W - 1, 33, DOTTED, FORCE)
 
 		-- Song selector
-			if playlist[selection - 1] then lcd.drawText(6, 35, playlist[selection - 1][1], SMLSIZE) end
+		if playlist[selection - 1] then lcd.drawText(6, 35, playlist[selection - 1][1], SMLSIZE) end
 		if playlist[selection] then lcd.drawText(1, 42, string.char(126) .. playlist[selection][1], SMLSIZE+INVERS) end
 		if playlist[selection + 1] then lcd.drawText(6, 49, playlist[selection + 1][1], SMLSIZE) end
 		if playlist[selection + 2] then lcd.drawText(6, 56, playlist[selection + 2][1], SMLSIZE) end
