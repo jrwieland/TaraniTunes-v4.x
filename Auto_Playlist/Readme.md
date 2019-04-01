@@ -44,13 +44,16 @@ Sort your playlist using tracks this will allow you to edit the track number and
 9. Delete the sample information within the file.
 10. Here is the syntax to type into the file (you can also copy/paste the syntax).
 
-$filename(playlist.lua,utf-8)playlist={$loop(%track%)
-{"%title%","%_filename%",%_length_seconds%},$loopend()
+$filename(playlist.lua,utf-8)'title="New Playlist"'   
+playlist={$loop(%track%)    
+{"%title%","%_filename%",%_length_seconds%},$loopend()   
 }    
 
 ![syntax](screenshot2/syntax.PNG )
 
-It will ask if you want to preview your file. I would recommend checking the file to ensure all of the songs are there and that there are no extra lines beyond the "}" at the end of the file.    
+It will ask if you want to preview your file. Open the file and change "New Playlist" to something that reflects this playlist ("Classic Rock", "Country", "Blues" etc.).   
+
+Check the file to ensure all of the songs are there and that there are no extra lines beyond the "}" at the end of the file.    
 
 Copy the playlist.lua file to the correct directory that will be referenced by `"TaraniTunes"`
 and enjoy your new playlist.
