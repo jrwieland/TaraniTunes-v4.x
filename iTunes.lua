@@ -1,7 +1,7 @@
 --[[
 TaraniTunes
  Version 2.2.2
- This Advenced version is based off of the Original TaraniTunes
+ This Advanced version is based off of the Original TaraniTunes
   http://github.com/GilDev/TaraniTunes
  By GilDev
  http://gildev.tk
@@ -9,7 +9,7 @@ It was agreed by GilDev and I that both versions of the script (the original
 and this advanced version) would be available for users but hosted seperately.
 
 ----Playlist selector file-------
-Change the wording of your playlist and quantity of the playlists below (starting on line line 52)
+Change the wording of your playlist and quantity of the playlists below (starting on line 56)
 See the README file(s) for setting up the "main.lua" file
 Also be sure to read about automated playlist creation---]]
 
