@@ -57,21 +57,21 @@ thisPage.run=function(...)
 As many times as you want to divide the switch is the limit to the number
 of playlists available.
 This file has 8 separate playlists --]]   
-  if set2 > 750 then --value of s2 switch position to select this file
-    		loadScript("/SOUNDS/lists/3dflying/playlist")() elseif -- selected playlist name
-  	set2 > 500 then
-    		loadScript("/SOUNDS/lists/competition/playlist")() elseif
-  	set2 > 250 then
-    		loadScript("/SOUNDS/lists/cruising/playlist")() elseif
-  	set2 > 0 then
-    		loadScript("/SOUNDS/lists/demo/playlist")() elseif
-  	set2 > -250 then
-    		loadScript("/SOUNDS/lists/relaxing/playlist")() elseif
-  	set2 > -500 then
-    		loadScript("/SOUNDS/lists/racing/playlist")() elseif
-  	set2 > -750 then
-   		loadScript("/SOUNDS/lists/practice/playlist")() else
-   		loadScript("/SOUNDS/lists/flights/playlist")()
+   if set2 > 750 then --value of s2 switch position to select this file
+    		loadScript("/SOUNDS/lists/3dflying/playlist")()  -- selected playlist name
+    elseif set2 > 500 then
+    		loadScript("/SOUNDS/lists/competition/playlist")() 
+  	elseif set2 > 250 then
+    		loadScript("/SOUNDS/lists/cruising/playlist")()
+  	elseif set2 > 0 then
+    		loadScript("/SOUNDS/lists/demo/playlist")() 
+  	elseif set2 > -250 then
+    		loadScript("/SOUNDS/lists/relaxing/playlist")()
+  	elseif set2 > -500 then
+    		loadScript("/SOUNDS/lists/racing/playlist")()
+  	elseif set2 > -750 then
+   		loadScript("/SOUNDS/lists/practice/playlist")()
+   	else loadScript("/SOUNDS/lists/flights/playlist")()
   end
  
   	-- Calculate indexes for screen display
