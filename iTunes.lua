@@ -18,11 +18,11 @@ local active = true
 local thisPage={}
 local page={}
 local playlists={
-"/SOUNDS/lists/mrsteele/playlist",
-"/SOUNDS/lists/jb/playlist",
-"/SOUNDS/lists/ummagawd/playlist",
-"/SOUNDS/lists/ledrib/playlist",
-"/SOUNDS/lists/nurk/playlist"
+"/SOUNDS/lists/3dflying/playlist.lua",
+"/SOUNDS/lists/between/playlist.lua",
+"/SOUNDS/lists/cruising/playlist.lua",
+"/SOUNDS/lists/demo/playlist.lua",
+"/SOUNDS/lists/flights/playlist.lua"
 }
 
 function getSelectedPlaylistID()
