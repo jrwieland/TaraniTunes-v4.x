@@ -1,31 +1,41 @@
-TaraniTunes v2.2.2
+TaraniTunes v3.0
 ===========
-*Awesome music player for FrSky radios.*  
+**Awesome music player for FrSky radios.**  
 *This is a separate Advanced fork from the Original TaraniTunes developed by [GilDev](https://github.com/GilDev)
 It was agreed by GilDev and I that both versions of the script (the original and this advanced version) would be available for users but hosted separately.*
 
-Key Improvements
-----------------
-** Multiple Playlists (the code contains 8 separate playlists)  
-** Playlists are separated by recognizable names you have chosen (3dflying, Rock-N-Roll, Competition, Relaxing)  
-** On-screen confirmation of the playlist selected (not just a number anymore)  
-** Songs are changed automatically based on their length  
-** On-Screen Flight Time and Telemetry Information   
+**The majority of the new enhancements are due to the work of [Exean](https://github.com/exean)**
 
-Compatible with FrSky’s [Taranis Q X7](https://www.frsky-rc.com/product/taranis-q-x7-2), [Taranis X9D](https://www.frsky-rc.com/product/taranis-x9d-plus-2) and their variants.
-You need at least [OpenTX](http://www.open-tx.org) 2.2.
+Key Enhancements
+----------------
+** Streamlined screen layout    
+** Easily point the program to the [Multiple Playlists].    
+** The only limit to the number of playlists is SD Card size.    
+** Eliminated the use S2 to select playlist (Pot freed up) allowing future implimentation for X-Lite radios.    
+** Number of songs in the playlist is displayed on the selection screen.    
+** More screen room for telementry items.    
+** Progress Bar for the playing song length.    
+
+Existing Features
+-----------------
+** Playlists are separated by recognizable names you have chosen (3D Flying, Rock-N-Roll, Classic Rock, My Mix, Relaxing).   
+** On-screen confirmation of the playlist selected.    
+** Automatic song advancement.   
+** Compatible with FrSky’s [Taranis Q X7](https://www.frsky-rc.com/product/taranis-q-x7-2), [Taranis X9D](https://www.frsky-rc.com/product/taranis-x9d-plus-2) and their variants running at least [OpenTX](http://www.open-tx.org) 2.2.    
 
 * Taranis Q X7  
   ![Taranis QX7](Screenshots/TaraniTunesQX7.PNG)  
 * Taranis X9D  
   ![Taranis X9D](Screenshots/TaraniTunesX9D.PNG)
-
+* Playlist Selection Menu    
+  ![Selection Menu](Screenshots/Selection.PNG)    
+  
 ### Installation
 
-A full working version for you to try on companion is available from my dropbox.  It uses your existing radio notifications as the sample music  [Download SD Card files](https://www.dropbox.com/sh/ojqjugozk2s4e9e/AADaXwY6DARqot-Jig9Xvx3Pa?dl=0) The Model file contains 1 model showing the use of the program.   
+A full working version for you to try on companion is available from my dropbox.  It uses your existing radio notifications as the sample music.  [Download SD Card files](https://www.dropbox.com/sh/ojqjugozk2s4e9e/AADaXwY6DARqot-Jig9Xvx3Pa?dl=0) The Model file contains 1 preset model so you can test drive the program on Companion or the Firmware Simulator.   
 
 1. On your computer:
-	1. Edit both `main.lua` and `itunes.lua` to have your desired amount of playlists. Detailed instructions are in the file(s) comments. Place both files in the `/SCRIPT/TELEMETRY` directory on your SD card.  
+	1. Edit both `iTunes_player.lua` and `itunes.lua` to have your desired amount of playlists. Detailed instructions are in the file(s) comments. Place both files in the `/SCRIPT/TELEMETRY` directory on your SD card.  
 
 	2. Create a folder "lists" under /SOUNDS
 
@@ -62,26 +72,25 @@ There you go! Next section will explain how to use TaraniTunes.
 ### Usage
 
 From the main screen, hold “Page” to access TaraniTunes.
-1. Use the rotary encoder (QX7) or the “+”/“-” buttons on the (X9) to sweep through the songs.
-2. Press “Enter” to choose a song to play.
-3. Put the “SB” switch in the middle position to start playing.
-4. Put the "SB" switch in the down position to pause the song. It will continue from where it left off when the switch is returned to the middle "play" position.
-5. Put “SB” in the up position to select a random song from your playlist. It will play when the switch is placed in the middle "play" position.
+1. Put the “SB” switch in the middle position to start playing.
+2. Put the "SB" switch in the down position to pause the song. It will continue from where it left off when the switch is returned to the middle "play" position.
+3. Put “SB” in the up position to select a random song from your playlist. It will play when the switch is placed in the middle "play" position.
+4. When the song ends, the next song will automatically play and “Timer3” will be reset.
+5. “Timer3” will also automatically reset if you change songs.
 6. Press rudder trim right or rudder trim left to play next or previous song respectively.
-7. When the song ends, the next song will automatically play and “Timer3” will be reset.
-8. “Timer3” will also automatically reset if you change songs.
-9.  The screen does not have to be displayed for it to work.  You can have the music playing and use the telemetry screen of your choice.  If you move the "`SB`" switch or trims the music will respond accordingly.  The only function that will not work on a different screen is selecting a new playlist (described below).
+7.  The screen does not have to be displayed for it to work.  You can have the music playing and use the telemetry screen of your choice.  
+
+If you move the "`SB`" switch or trims the music will respond accordingly.  The only function that will not work on a different screen is selecting a new playlist (described below).
 
 #### Changing Playlists
 
-1. To change playlists press “MENU”.
+1. To change playlists press “MENU”.   
 2. A “Change Playlist Screen” will appear:  
-![Change Playlist](Screenshots/ChangeList.PNG)     
-3. Using **Rotary Switch S2**, select the playlist you want to play.
-4. Press “ENTER”, your new playlist is loaded and begins playing.
+![Selection Menu](Screenshots/Selection.PNG)     
+3. Using  the **Wheel**, *Q X7* or the **[+/-] Buttons** *X9D* select the playlist you want to play.    
+4. Press “ENTER”, your new playlist is loaded and begins playing.   
 
-Enjoy it as much as I do.
+Enjoy it as much as I do.    
 
 ####  Housekeeping Notes  
-If you make changes to your playlist.lua files .... delete the compiled file "`playlist.lauc`" The program will always read the compiled file despite any changes you make to the source file.   By deleting the compiled file, it will automatically compile a new file from the source file.  
-The same goes for any changes to the itunes.lua file.
+Neither the firmware simulator nor Companion can compile all of the `playlist.lua` scripts to allow you to test drive and tweek it.  This must be done on the radio after you set your directories in the `iTunes.lua` file and have created the playlists. After compiling the playlists you can modify the screen layout in `iTunes_Player.lua` to reflect your personal taste or make futher enhancements
