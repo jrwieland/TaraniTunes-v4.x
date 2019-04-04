@@ -7,7 +7,7 @@
 It was agreed by GilDev and I that both versions of the script (the original
 and this advanced version) would be available for users but hosted separately.
 
-The new way music is loaded is thanks to the work of Tobias Ries aka Exean on Github https://github.com/exean
+The majority of the new enhancements are due to the work of Exean (https://github.com/exean)
 
 --Main Play Music File--
 
