@@ -1,5 +1,4 @@
-title="3D Flying"
-cover="/SOUNDS/lists/3dflying/cover.bmp"
+title="Rock-N-Roll"
 playlist={
 {"Acrobatic Mode","acro",8},
 {"Signal Low","siglow",6},
