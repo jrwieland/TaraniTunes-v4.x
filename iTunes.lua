@@ -1,6 +1,6 @@
 --[[ 
 TaraniTunes
- Version 2.2
+ Version 3.0
  This Advenced version is based off of the Original TaraniTunes 
   http://github.com/GilDev/TaraniTunes
  By GilDev
@@ -8,21 +8,27 @@ TaraniTunes
 It was agreed by GilDev and I that both versions of the script (the original 
 and this advanced version) would be available for users but hosted seperately.
 
+The new way music is loaded is thanks to the work of Tobias Ries aka Exean on Github https://github.com/exean
+
 ----Playlist selector file-------
-Change the wording of your playlist and quantity of the playlists below (starting on line line 52)
-See the README file(s) for setting up the "main.lua" file 
 Also be sure to read about automated playlist creation---]]
 
 local fileToLoad="/SCRIPTS/TELEMETRY/iTunes_player.lua"
 local active = true
 local thisPage={}
 local page={}
+-- Playlist Directories
 local playlists={
-"/SOUNDS/lists/3dflying/playlist.lua",
-"/SOUNDS/lists/between/playlist.lua",
-"/SOUNDS/lists/cruising/playlist.lua",
-"/SOUNDS/lists/demo/playlist.lua",
-"/SOUNDS/lists/flights/playlist.lua"
+	"/SOUNDS/lists/classic/playlist.lua",
+	"/SOUNDS/lists/country/playlist.lua",
+	"/SOUNDS/lists/easy/playlist.lua",
+	"/SOUNDS/lists/funrock/playlist.lua",
+	"/SOUNDS/lists/garage/playlist.lua",
+	"/SOUNDS/lists/hard/playlist.lua",
+	"/SOUNDS/lists/soundtracks/playlist.lua",
+	"/SOUNDS/lists/modern/playlist.lua",
+	"/SOUNDS/lists/rock/playlist.lua",
+	"/SOUNDS/lists/upbeat/playlist.lua",
 }
 
 function getSelectedPlaylistID()
@@ -35,10 +41,10 @@ function getSelectedPlaylistID()
 	end
 	return res;
 end
- 
 
 local playlistID = getSelectedPlaylistID()
-selectedPlaylistFile=playlists[playlistID]
+selectedPlaylistFile=playlists[playlistID] 
+
 
 local function clearTable(t)
   if type(t)=="table" then
@@ -51,7 +57,7 @@ local function clearTable(t)
   end
   collectgarbage()
   return t 
-end
+end 
  
 thisPage.init=function(...)
   if active then
@@ -69,10 +75,7 @@ thisPage.background=function(...)
 end
 
 thisPage.run=function(...)
---[[Playlists are changed using the S2 Pot values from 1000 to -1000 
-As many times as you want to divide the switch is the limit to the number 
-of playlists available. 
-This file has 8 separate playlists --]]    
+
   if active then
     page.run(...)
     active= not (...==EVT_MENU_BREAK)
@@ -95,22 +98,22 @@ This file has 8 separate playlists --]]
 	if plf == nil then 
 		plf = playlists[1];
 	end
+	
     loadScript(plf)() 
-	-- Calculate indexes for screen display
-	if LCD_W == 212 then -- if Taranis X9D	
+
+-- Select Screen
+	if LCD_W==212 then --9DX screen
 		lcd.clear()
-		lcd.drawText(48, 0, "SELECT PLAYLIST", BLINK+MIDSIZE)   
-		lcd.drawText(2, 21,string.char(126).. title,LEFT+MIDSIZE)
-		lcd.drawText(10, 34, #playlist .. " Songs In This Selection",MIDSIZE)
-		lcd.drawText(25, 55,"Select:  [ENTER]")
-    else
-		-- Title if Taranis Q X7
+		lcd.drawText(LCD_W/3, 0, "SELECT PLAYLIST", BLINK,SMLSIZE) 
+		lcd.drawText(LCD_W/2-string.len(title)*4, 20, title, MIDSIZE)
+		lcd.drawText(LCD_W/3+17, 34,"Songs: " .. #playlist,SMLSIZE)
+		lcd.drawText(46, 57,"Scroll: [+/-] SELECT: [ENTER]",SMLSIZE)	
+	else
 		lcd.clear()
-		lcd.drawText( 22, 0, "SELECT PLAYLIST", BLINK,SMLSIZE) 
-		lcd.drawText( 37, 14, title, DBLSIZE)
-		lcd.drawText(37, 34,"Songs: " .. #playlist,SMLSIZE)
-		lcd.drawText(30, 57,"Select: [ENTER]",SMLSIZE)	
-		lcd.drawPixmap(0, 19, cover)
+		lcd.drawText(LCD_W/6, 0, "SELECT PLAYLIST", BLINK,SMLSIZE) 
+		lcd.drawText(LCD_W/2-string.len(title)*4, 20, title, MIDSIZE)
+		lcd.drawText(LCD_W/3+7,32,"Songs: " .. #playlist,SMLSIZE)
+		lcd.drawText(0, 57,"Choose Scroll/Select:[ENTER]",SMLSIZE)	
 	end
 	clearTable(page)
 	if ... == EVT_ROT_BREAK or ... == EVT_ENTER_BREAK then
@@ -123,6 +126,7 @@ This file has 8 separate playlists --]]
 	elseif ... == EVT_PAGE_BREAK then
 		active = true
 	end
+	
 	thisPage.init()
 	return not (...==EVT_MENU_BREAK)
   end   
