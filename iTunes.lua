@@ -1,14 +1,14 @@
 --[[ 
 TaraniTunes
  Version 3.0
- This Advenced version is based off of the Original TaraniTunes 
+ This Advanced version is based off of the Original TaraniTunes 
   http://github.com/GilDev/TaraniTunes
  By GilDev
  http://gildev.tk
 It was agreed by GilDev and I that both versions of the script (the original 
-and this advanced version) would be available for users but hosted seperately.
+and this advanced version) would be available for users but hosted separately.
 
-The new way music is loaded is thanks to the work of Tobias Ries aka Exean on Github https://github.com/exean
+The majority of the new enhancements are due to the work of Exean (https://github.com/exean)
 
 ----Playlist selector file-------
 Also be sure to read about automated playlist creation---]]
