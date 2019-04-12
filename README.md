@@ -8,10 +8,11 @@ It was agreed by GilDev and I that both versions of the script (the original and
 
 Key Enhancements
 ----------------
+** Xlite Radio's now supported
 ** Streamlined screen layout    
 ** Easily point the program to the [Multiple Playlists].    
 ** The only limit to the number of playlists is SD Card size.    
-** Eliminated the use S2 to select playlist (Pot freed up) allowing future implimentation for X-Lite radios.    
+** Eliminated the use S2 to select playlist (Pot freed up).    
 ** Number of songs in the playlist is displayed on the selection screen.    
 ** More screen room for telementry items.    
 ** Progress Bar for the playing song length.    
@@ -23,7 +24,7 @@ Existing Features
 ** Automatic song advancement.   
 ** Compatible with FrSky’s [Taranis Q X7](https://www.frsky-rc.com/product/taranis-q-x7-2), [Taranis X9D](https://www.frsky-rc.com/product/taranis-x9d-plus-2) and their variants running at least [OpenTX](http://www.open-tx.org) 2.2.    
 
-* Taranis Q X7  
+* Taranis Q X7 and Xlite  
   ![Taranis QX7](Screenshots/TaraniTunesQX7.PNG)  
 * Taranis X9D  
   ![Taranis X9D](Screenshots/TaraniTunesX9D.PNG)
@@ -61,6 +62,7 @@ Examples >> `/SOUNDS/lists/3dflying`, `/SOUNDS/lists/practice`, `/SOUNDS/lists/h
 	2. Set active “FLIGHT MODES” model rudder trims as follows:     
 	![Flight modes settings](Screenshots/trims.PNG)  
 	In fact, put every rudder trim to “`--`” for every flight mode you use.  
+	XLITE users Use the Aileron or Elevator trims (Rudder requires the use of the shift button).    
 	3. Set “LOGICAL SWITCHES” settings as follows:  
 	![Logical Switch Settings](Screenshots/LogicalSwitch.PNG)  
 	**L60 will be automatically installed there is no need to enter these values**
@@ -87,7 +89,7 @@ If you move the "`SB`" switch or trims the music will respond accordingly.  The 
 1. To change playlists press “MENU”.   
 2. A “Change Playlist Screen” will appear:  
 ![Selection Menu](Screenshots/Selection.PNG)     
-3. Using  the **Wheel**, *Q X7* or the **[+/-] Buttons** *X9D* select the playlist you want to play.    
+3. Using  the **Wheel**, *Q X7* or the **[+/-] Buttons** *X9D* or the **[Up/Down] Joystick** to select the playlist you want to play.    
 4. Press “ENTER”, your new playlist is loaded and begins playing.   
 
 Enjoy it as much as I do.    
