@@ -8,7 +8,7 @@ It was agreed by GilDev and I that both versions of the script (the original and
 
 Key Enhancements
 ----------------
-** Xlite Radio's now supported
+** Xlite Radio's now supported    
 ** Streamlined screen layout    
 ** Easily point the program to the [Multiple Playlists].    
 ** The only limit to the number of playlists is SD Card size.    
@@ -29,7 +29,7 @@ Existing Features
 * Taranis X9D  
   ![Taranis X9D](Screenshots/TaraniTunesX9D.PNG)
 * Playlist Selection Menu    
-  ![Selection Menu](Screenshots/Selection1.PNG)    
+  ![Selection Menu](Screenshots/Selection.PNG)    
   
 ### Installation
 
