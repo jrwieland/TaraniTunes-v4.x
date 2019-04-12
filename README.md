@@ -29,7 +29,7 @@ Existing Features
 * Taranis X9D  
   ![Taranis X9D](Screenshots/TaraniTunesX9D.PNG)
 * Playlist Selection Menu    
-  ![Selection Menu](Screenshots/Selection.PNG)    
+  ![Selection Menu](Screenshots/Selection1.PNG)    
   
 ### Installation
 
@@ -88,7 +88,7 @@ If you move the "`SB`" switch or trims the music will respond accordingly.  The 
 
 1. To change playlists press “MENU”.   
 2. A “Change Playlist Screen” will appear:  
-![Selection Menu](Screenshots/Selection.PNG)     
+![Selection Menu](Screenshots/Selection1.PNG)     
 3. Using  the **Wheel**, *Q X7* or the **[+/-] Buttons** *X9D* or the **[Up/Down] Joystick** to select the playlist you want to play.    
 4. Press “ENTER”, your new playlist is loaded and begins playing.   
 
