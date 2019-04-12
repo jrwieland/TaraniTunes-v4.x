@@ -22,7 +22,7 @@ Existing Features
 ** Playlists are separated by recognizable names you have chosen (3D Flying, Rock-N-Roll, Classic Rock, My Mix, Relaxing).   
 ** On-screen confirmation of the playlist selected.    
 ** Automatic song advancement.   
-** Compatible with FrSky’s [Taranis Q X7](https://www.frsky-rc.com/product/taranis-q-x7-2), [Taranis X9D](https://www.frsky-rc.com/product/taranis-x9d-plus-2) and their variants running at least [OpenTX](http://www.open-tx.org) 2.2.    
+** Compatible with FrSky’s [Taranis Q X7](https://www.frsky-rc.com/product/taranis-q-x7-2), [Taranis Xlite](https://www.frsky-rc.com/product/taranis-x-lite/), [Taranis X9D](https://www.frsky-rc.com/product/taranis-x9d-plus-2) and their variants running at least [OpenTX](http://www.open-tx.org) 2.2.    
 
 * Taranis Q X7 and Xlite  
   ![Taranis QX7](Screenshots/TaraniTunesQX7.PNG)  
@@ -33,7 +33,7 @@ Existing Features
   
 ### Installation
 
-A full working version for you to try on companion is available from my dropbox.  It uses your existing radio notifications as the sample music.  [Download SD Card files](https://www.dropbox.com/s/v82htipsvhlb8qe/iTunes.zip?dl=0) The Model file contains 1 preset model so you can test drive the program on Companion or the Firmware Simulator.   
+A full working version for you to try on companion is available from my dropbox.  It uses your existing radio notifications as the sample music.  [Download SD Card files](https://www.dropbox.com/s/shfowg897nqdq2m/iTunes.zip?dl=0) The Model file contains 1 preset model so you can test drive the program on Companion or the Firmware Simulator.   
 
 1. On your computer:
 	1. Edit both `iTunes_player.lua` and `itunes.lua` to have your desired amount of playlists. Detailed instructions are in the file(s) comments. Place both files in the `/SCRIPT/TELEMETRY` directory on your SD card.  
