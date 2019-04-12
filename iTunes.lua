@@ -1,14 +1,14 @@
 --[[ 
 TaraniTunes
  Version 3.0
- This Advanced version is based off of the Original TaraniTunes 
+ This Advenced version is based off of the Original TaraniTunes 
   http://github.com/GilDev/TaraniTunes
  By GilDev
  http://gildev.tk
 It was agreed by GilDev and I that both versions of the script (the original 
 and this advanced version) would be available for users but hosted separately.
 
-The majority of the new enhancements are due to the work of Exean (https://github.com/exean)
+The majority of the new enhancements are due to the work of Exean https://github.com/exean
 
 ----Playlist selector file-------
 Also be sure to read about automated playlist creation---]]
@@ -20,13 +20,9 @@ local page={}
 -- Playlist Directories
 local playlists={
 	"/SOUNDS/lists/classic/playlist.lua",
-	"/SOUNDS/lists/country/playlist.lua",
-	"/SOUNDS/lists/easy/playlist.lua",
 	"/SOUNDS/lists/funrock/playlist.lua",
 	"/SOUNDS/lists/garage/playlist.lua",
 	"/SOUNDS/lists/hard/playlist.lua",
-	"/SOUNDS/lists/soundtracks/playlist.lua",
-	"/SOUNDS/lists/modern/playlist.lua",
 	"/SOUNDS/lists/rock/playlist.lua",
 	"/SOUNDS/lists/upbeat/playlist.lua",
 }
@@ -78,16 +74,16 @@ thisPage.run=function(...)
 
   if active then
     page.run(...)
-    active= not (...==EVT_MENU_BREAK)
+    active= not (...==EVT_MENU_BREAK or ...==EVT_RIGHT_BREAK)
   else  
 	-- INPUT HANDLING --
-	if (... == EVT_ROT_RIGHT or ... == EVT_MINUS_FIRST or ... == EVT_MINUS_RPT) then
+	if (... == EVT_ROT_RIGHT or ... == EVT_MINUS_FIRST or ... == EVT_MINUS_RPT or ...== EVT_UP_BREAK) then
 		if playlistID == #playlists then
 			playlistID = 1
 		else
 			playlistID = playlistID + 1
 		end
-	elseif (... == EVT_ROT_LEFT or ... == EVT_PLUS_FIRST or ... == EVT_PLUS_RPT) then
+	elseif (... == EVT_ROT_LEFT or ... == EVT_PLUS_FIRST or ... == EVT_PLUS_RPT or ...== EVT_DOWN_BREAK) then
 		if playlistID == 1 then
 			playlistID = #playlists
 		else
@@ -108,7 +104,13 @@ thisPage.run=function(...)
 		lcd.drawText(LCD_W/2-string.len(title)*4, 20, title, MIDSIZE)
 		lcd.drawText(LCD_W/3+17, 34,"Songs: " .. #playlist,SMLSIZE)
 		lcd.drawText(46, 57,"Scroll: [+/-] SELECT: [ENTER]",SMLSIZE)	
-	else
+	elseif shPresent== 0 then  --Xlite screen
+			lcd.clear()
+		lcd.drawText(LCD_W/6, 0, "SELECT PLAYLIST", BLINK,SMLSIZE) 
+		lcd.drawText(LCD_W/2-string.len(title)*4, 20, title, MIDSIZE)
+		lcd.drawText(LCD_W/3+7,32,"Songs: " .. #playlist,SMLSIZE)
+		lcd.drawText(0, 57,"Choose:[Joystick]/OK [ENTER]",SMLSIZE)
+	else --Q x7 Screen
 		lcd.clear()
 		lcd.drawText(LCD_W/6, 0, "SELECT PLAYLIST", BLINK,SMLSIZE) 
 		lcd.drawText(LCD_W/2-string.len(title)*4, 20, title, MIDSIZE)
@@ -125,10 +127,10 @@ thisPage.run=function(...)
 		model.setTimer(2,{value=0})
 	elseif ... == EVT_PAGE_BREAK then
 		active = true
-	end
+		end
 	
 	thisPage.init()
-	return not (...==EVT_MENU_BREAK)
+	return not (...==EVT_MENU_BREAK or ...==EVT_RIGHT_BREAK)
   end   
 end
 

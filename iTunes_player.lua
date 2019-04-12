@@ -1,41 +1,37 @@
- --[[TaraniTunes
+--[[TaraniTunes
  Version 3.0
  This Advanced version is based off of the Original TaraniTunes
   http://github.com/GilDev/TaraniTunes
- By GilDev
- http://gildev.tk
+ By GilDev http://gildev.tk
+ 
 It was agreed by GilDev and I that both versions of the script (the original
 and this advanced version) would be available for users but hosted separately.
-
-The majority of the new enhancements are due to the work of Exean (https://github.com/exean)
+The majority of the new enhancements in are due to the work of Exean (https://github.com/exean)
 
 --Main Play Music File--
 
 ----Setting up the Transmitter----
-
 !!You NEED to use logical switches to manipulate TaraniTunes!!
-
  WARNING: If you use trims for changing songs (and I recommend you do),
  you need to deactivate the "real" trim functions on the trims switches you plan
  to use for manipulating TaraniTunes.
-
  To do this, go into "FLIGHT MODES" configuration, go to each flight mode
  you use for your model and set the appropriate "Trims" value to "--"
  (Rudder trims are used in the example).
-
+ 
 ----Additional Functions/Information-----
 Since everything in the OpenTX is user programmable
 You need to enter the switch number to "Pause" the song and you need to enter the switch number for a "Random" Song
 The program works using a single 3 position switch if you try and change it to multiple switches the program will not work properly!
-
 Here are the numbers for the switches
-Replace the value in "pause" and "random"(below)with the appropriate number
 
 SA↑=1, SA-=2, SA↓=3, 
 SB↑=4, SB-=5, SB↓=6, 
 SC↑=7, SC-=8, SC↓=9,
 SD↑=10, SD-=11, SD↓=12, 
 SE↑=13, SE-=14, SE↓=15 
+
+Replace the value in "pause" and "random"(below)with the appropriate number
 --]]
 local random =4 --Enter the switch number you will used to "select a random song" SB↑=4 in this example
 
@@ -44,28 +40,24 @@ local pause =6  --[[Enter the switch number you will used to "Pause" the music S
  				  BGMusic|| (pause) will automatically be placed on SF32.
 	
 Here is a sample setup of the logical switches (LS61 thru LS64) you need to setup based on these inputs
-
   SWITCH  Func  V1	V2
   LS61 	   OR	SB-	SB↓ (**Explanation under this example)
-  LS62	   OR	tRr	tRr (LS62 [Rudder trim right] plays next song)
-  LS63	   OR	tRl	tRl (LS63 [Rudder trim left plays previous song)
+  LS62	   OR	tRl	tRl (LS62 [Rudder trim left] plays next song) **XLITE Use Aileron or Elevator Trims
+  LS63	   OR	tRr	tRr (LS63 [Rudder trim right plays previous song)**XLITE Use Aileron or Elevator Trims
   LS64	   OR	SB↑	SB↑ (LS64 selects a random song )
-
+  
 **Using the Example above
 SB↑ will "Select" a "Random" song and reset timer3 when the switch is returned to SB- it will play
 SB- will "Play" the music & timer 3 will advance
 SB↓ will "Pause" the song and Timer3
 
-Make sure that the Logical Switch values match your selection above
+--Change the display items starting on line 248 to your individual liking. --]]
 
--- logical switches --]]
-
-local playSongLogicalSwitch   = 61 -- Logical switch that will play the current song
-local nextSongLogicalSwitch   = 62 -- Logical switch that will set the current song to the next one
-local prevSongLogicalSwitch   = 63 -- Logical switch that will set the current song to the previous one
-local randomSongLogicalSwitch = 64 -- Logical switch that will set the current song to a random one
-
---Change the display items starting on line 246 to your individual liking.
+-- logical switches 
+local playSongLogicalSwitch   = 61 
+local nextSongLogicalSwitch   = 62
+local prevSongLogicalSwitch   = 63
+local randomSongLogicalSwitch = 64
 
 --Locals
 local specialFunctionId = 30 -- This special function will be reserved. SF31 and SF32 are also reserved
@@ -104,12 +96,15 @@ local function init()
 	loadScript(selectedPlaylistFile)() 
 
 	-- Calculate indexes
+	shPresent =getValue("sh")
 	specialFunctionId  = specialFunctionId - 1
 	if LCD_W == 212 then -- if Taranis X9D
 		playSongSwitchId = 50 + playSongLogicalSwitch
 		model.setLogicalSwitch(59,{func=3,v1=230,v2=playlist[playingSong][3]})
-	else -- if Taranis Q X7
-		playSongSwitchId = 38 + playSongLogicalSwitch
+	elseif shPresent== 0 then -- if Taranis Xlite
+		playSongSwitchId = 32 + playSongLogicalSwitch
+		model.setLogicalSwitch(59,{func=3,v1=223,v2=playlist[playingSong][3]})
+	else 	playSongSwitchId = 38 + playSongLogicalSwitch-- if Taranis Q X7 
 		model.setLogicalSwitch(59,{func=3,v1=225,v2=playlist[playingSong][3]})
 	end
 
@@ -209,14 +204,14 @@ end
 local function run(event)
 
 	-- INPUT HANDLING --
-	if (event == EVT_ROT_RIGHT or event == EVT_MINUS_FIRST or event == EVT_MINUS_RPT) then
+	if (event == EVT_ROT_RIGHT or event == EVT_MINUS_FIRST or event == EVT_MINUS_RPT or event == EVT_DOWN_BREAK) then
 		if selection == #playlist then
 			selection = 1 else
 			selection = selection + 1
 				end
 
 		screenUpdate = true
-	elseif (event == EVT_ROT_LEFT or event == EVT_PLUS_FIRST or event == EVT_PLUS_RPT) then
+	elseif (event == EVT_ROT_LEFT or event == EVT_PLUS_FIRST or event == EVT_PLUS_RPT or event == EVT_UP_BREAK) then
 		if selection == 1 then
 			selection = #playlist else
 			selection = selection - 1
@@ -232,7 +227,7 @@ local function run(event)
 		selection = playingSong
 		nextScreenUpdate = false
 		model.setTimer(2,{value=0})
-		end
+	end
 
 -- DRAWING --
 	if screenUpdate or event == 191 then
@@ -260,9 +255,9 @@ lcd.clear();
 		lcd.drawText(1,15,"Time= ".. timeText,PREC11)	
 		elseif LCD_W == 128 then
 
--- Smaller text layout for QX7 radios	
+-- Smaller text layout for QX7 and Xlite radios	
 	--Flight Time
-		lcd.drawText(LCD_W/4+3, 1, "Flight =",SMLSIZE)
+		lcd.drawText(LCD_W/4+3, 1, "Flight",SMLSIZE)
 		lcd.drawTimer(LCD_W/2+9, 1, flight,SMLSIZE)
 		
 	--current time
