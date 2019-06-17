@@ -1,18 +1,19 @@
---[[TaraniTunes
- Version 3.0
+--[[
+TaraniTunes
+ Version 3.0.1
  This Advanced version is based off of the Original TaraniTunes
   http://github.com/GilDev/TaraniTunes
  By GilDev http://gildev.tk
  
 It was agreed by GilDev and I that both versions of the script (the original
 and this advanced version) would be available for users but hosted separately.
-The majority of the new enhancements in are due to the work of Exean (https://github.com/exean)
+The majority of the new enhancements to the playlist selection are due to the work of Exean (https://github.com/exean)
 
 --Main Play Music File--
 
 ----Setting up the Transmitter----
 !!You NEED to use logical switches to manipulate TaraniTunes!!
- WARNING: If you use trims for changing songs (and I recommend you do),
+ If you use trims for changing songs (and I recommend you do),
  you need to deactivate the "real" trim functions on the trims switches you plan
  to use for manipulating TaraniTunes.
  To do this, go into "FLIGHT MODES" configuration, go to each flight mode
@@ -21,46 +22,49 @@ The majority of the new enhancements in are due to the work of Exean (https://gi
  
 ----Additional Functions/Information-----
 Since everything in the OpenTX is user programmable
-You need to enter the switch number to "Pause" the song and you need to enter the switch number for a "Random" Song
-The program works using a single 3 position switch if you try and change it to multiple switches the program will not work properly!
+You need to enter the switch number to "Pause" the song
+The program works using a single 3 position switch it will not function as designed using multiple switches!
+
 Here are the numbers for the switches
 
-SA↑=1, SA-=2, SA↓=3, 
-SB↑=4, SB-=5, SB↓=6, 
-SC↑=7, SC-=8, SC↓=9,
-SD↑=10, SD-=11, SD↓=12, 
-SE↑=13, SE-=14, SE↓=15 
+SA↑ 1, SA- 2, SA↓ 3, 
+SB↑ 4, SB- 5, SB↓ 6, 
+SC↑ 7, SC- 8, SC↓ 9,
+SD↑ 10, SD- 11, SD↓ 12, 
+SG↑ 19, SG- 20, SG↓ 21 
 
-Replace the value in "pause" and "random"(below)with the appropriate number
---]]
-local random =4 --Enter the switch number you will used to "select a random song" SB↑=4 in this example
+Replace the value in "pause" (below)with the appropriate number --]]
 
-local pause =6  --[[Enter the switch number you will used to "Pause" the music SB↓=6
-				  Set the trigger for timer3 in your Model Setup to match this switch
- 				  BGMusic|| (pause) will automatically be placed on SF32.
-	
+local pause = 5
+ 
+--[[Enter the switch number you will used to "Pause" the music 
+Set the trigger for timer3 in your Model Setup to invert this switch position (pause = SB↓ then set timer = !SB↓)
+The timer will continue to run in either the play or random switch position.
+ 				  
 Here is a sample setup of the logical switches (LS61 thru LS64) you need to setup based on these inputs
-  SWITCH  Func  V1	V2
-  LS61 	   OR	SB-	SB↓ (**Explanation under this example)
-  LS62	   OR	tRl	tRl (LS62 [Rudder trim left] plays next song) **XLITE Use Aileron or Elevator Trims
-  LS63	   OR	tRr	tRr (LS63 [Rudder trim right plays previous song)**XLITE Use Aileron or Elevator Trims
-  LS64	   OR	SB↑	SB↑ (LS64 selects a random song )
+  SWITCH  Func  V1	  V2
+  LS60 	   OR	LS61  LS64 Plays the Music If The SB switch is in any Position but SB-
+  LS61 	   OR	SB↓	  SB-  Plays the music and keeps song selected if paused 
+  LS62	   OR	tRl	  tRl  Rudder trim left] plays previous song **XLITE Use Aileron or Elevator Trims
+  LS63	   OR	tRr	  tRr  Rudder trim right plays next song**XLITE Use Aileron or Elevator Trims
+  LS64	   OR	SB↑	  SB↑  Selects a random song mix from your playlist
   
 **Using the Example above
-SB↑ will "Select" a "Random" song and reset timer3 when the switch is returned to SB- it will play
-SB- will "Play" the music & timer 3 will advance
-SB↓ will "Pause" the song and Timer3
+SB↑  Selects a "Random" song plays it and then pick another "Random" song from your playlist when the song is over.
+SB-  "Pauses" the current song and timer3
+SB↓  "Plays" the selected /current song after it is over the next song in the playlist will play
 
---Change the display items starting on line 248 to your individual liking. --]]
+--Change the display items starting on line 265 to your individual liking. --]]
 
 -- logical switches 
-local playSongLogicalSwitch   = 61 
-local nextSongLogicalSwitch   = 62
-local prevSongLogicalSwitch   = 63
+
+local playSongLogicalSwitch   = 60 
+local prevSongLogicalSwitch   = 62
+local nextSongLogicalSwitch   = 63
 local randomSongLogicalSwitch = 64
 
 --Locals
-local specialFunctionId = 30 -- This special function will be reserved. SF31 and SF32 are also reserved
+local specialFunctionId = 30 -- This special function will be reserved. SF31 is also reserved
 local errorOccured = false
 local screenUpdate = true
 local nextScreenUpdate = false
@@ -92,22 +96,20 @@ randomSongSwitchPressed = false;
 
 --Initiate
 local function init()
-
 	loadScript(selectedPlaylistFile)() 
 
-	-- Calculate indexes
+	-- Calculate indexes Special funtion play value for LS positions
 	shPresent =getValue("sh")
 	specialFunctionId  = specialFunctionId - 1
 	if LCD_W == 212 then -- if Taranis X9D
 		playSongSwitchId = 50 + playSongLogicalSwitch
-		model.setLogicalSwitch(59,{func=3,v1=230,v2=playlist[playingSong][3]})
+		model.setLogicalSwitch(58,{func=3,v1=230,v2=playlist[playingSong][3]})
 	elseif shPresent== 0 then -- if Taranis Xlite
 		playSongSwitchId = 32 + playSongLogicalSwitch
-		model.setLogicalSwitch(59,{func=3,v1=223,v2=playlist[playingSong][3]})
+		model.setLogicalSwitch(58,{func=3,v1=223,v2=playlist[playingSong][3]})
 	else 	playSongSwitchId = 38 + playSongLogicalSwitch-- if Taranis Q X7 
-		model.setLogicalSwitch(59,{func=3,v1=225,v2=playlist[playingSong][3]})
+		model.setLogicalSwitch(58,{func=3,v1=225,v2=playlist[playingSong][3]})
 	end
-
 	nextSongSwitchId   = getFieldInfo("ls" .. nextSongLogicalSwitch).id
 	prevSongSwitchId   = getFieldInfo("ls" .. prevSongLogicalSwitch).id
 	randomSongSwitchId = getFieldInfo("ls" .. randomSongLogicalSwitch).id
@@ -119,8 +121,17 @@ end
 
 --background
 local function background()
+--Pause function
 	model.setCustomFunction(30,{switch=pause,func = 17})
-	model.setCustomFunction(31,{switch=random,func=3,value=2,active=1})
+--Timer3 function after 1st song
+	if LCD_W == 212 then -- if Taranis X9D
+		model.setLogicalSwitch(58,{func=3,v1=230,v2=playlist[playingSong][3]})
+	elseif shPresent== 0 then -- if Taranis Xlite
+			model.setLogicalSwitch(58,{func=3,v1=223,v2=playlist[playingSong][3]})
+	else 
+		model.setLogicalSwitch(58,{func=3,v1=225,v2=playlist[playingSong][3]})
+	end
+	
 	if resetDone then
 		playSong()
 		resetDone = false
@@ -135,20 +146,28 @@ local function background()
 
 -- Song Over
 	if model.getTimer(2).value >= playlist[playingSong][3] then
-		if not nextSongSwitchPressed then
+	   if not nextSongSwitchPressed then
+		 if getValue(randomSongSwitchId) > 0 then
+			playingSong = math.random (1, #playlist)
+			model.setTimer(2,{value=0})
+			songChanged = true
+			screenUpdate = true
+			nextScreenUpdate = true	
+		 else
 			model.setTimer(2,{value=0})
 			nextSongSwitchPressed = true
 			nextScreenUpdate = true
 			songChanged = true
 			screenUpdate = true
 			if playingSong == #playlist then
-				playingSong = 1	else
-				playingSong = playingSong + 1
-			end	else
-		nextSongSwitchPressed = false
+			   playingSong = 1	
+			else
+			   playingSong = playingSong + 1
+		  end
 		end
+	   end
 	end
-
+	
 -- Next song
 	if getValue(nextSongSwitchId) > 0 then
 		if not nextSongSwitchPressed then
@@ -185,8 +204,8 @@ local function background()
 	else
 		prevSongSwitchPressed = false
 	end
-
--- Random song
+	
+	-- Random song
 	if getValue(randomSongSwitchId) > 0 then
 		if not randomSongSwitchPressed then
 			randomSongSwitchPressed = true
@@ -194,7 +213,7 @@ local function background()
 			songChanged = true
 			screenUpdate = true
 			nextScreenUpdate = true
-			end
+			end																	   
 	else
 		randomSongSwitchPressed = false
 	end
@@ -208,15 +227,13 @@ local function run(event)
 		if selection == #playlist then
 			selection = 1 else
 			selection = selection + 1
-				end
-
+		end
 		screenUpdate = true
-	elseif (event == EVT_ROT_LEFT or event == EVT_PLUS_FIRST or event == EVT_PLUS_RPT or event == EVT_UP_BREAK) then
-		if selection == 1 then
+		elseif (event == EVT_ROT_LEFT or event == EVT_PLUS_FIRST or event == EVT_PLUS_RPT or event == EVT_UP_BREAK) then
+			if selection == 1 then
 			selection = #playlist else
 			selection = selection - 1
 		end
-
 		screenUpdate = true
 	elseif event == EVT_ROT_BREAK or event == EVT_ENTER_BREAK then
 		playingSong = selection
@@ -234,16 +251,16 @@ local function run(event)
 		screenUpdate = true
 
 lcd.clear();
-		function round(num, decimals)
-		  local mult = 10^(decimals or 0)
-		  return math.floor(num * mult + 0.5) / mult
-		end
+	function round(num, decimals)
+	  local mult = 10^(decimals or 0)
+	  return math.floor(num * mult + .5) / mult end
+	  
 	local long=playlist[playingSong][3]--do not change this value it is the length of the current song playing
 	local flight=model.getTimer(1).value--flight duration timer: 0=timer1, 1=timer2
 	local upTime=model.getTimer(2).value--do not change this value it is how long the current song has played
 	local datenow = getDateTime()		
-	local timeText = datenow.hour .. ":" .. datenow.min
- 	local batt=getValue("tx-voltage")
+	local timeText = (string.format("%02d:%02d",datenow.hour,datenow.min))
+ 	local batt = getValue("tx-voltage")
 	
 -- Calculate indexes for screen display
 	if LCD_W == 212 then -- Taranis X9D Radio Larger text layout for 9X radios
@@ -280,7 +297,7 @@ lcd.clear();
 		lcd.drawText(LCD_W/2, 15,"/",SMLSIZE)
 		lcd.drawNumber(LCD_W/2+7, 15,altM,SMLSIZE)	
 			
-		--Receiver battery
+		--Transmitter battery
 		lcd.drawFilledRectangle(3, 1, 4, 1)
 		lcd.drawFilledRectangle(2, 2, 6, 11)				
 		lcd.drawText(11, 0,round(batt,1), MIDSIZE+PREC1)
