@@ -77,7 +77,7 @@ There you go! Next section will explain how to use TaraniTunes.
 From the main screen, hold “Page” to access TaraniTunes Telementry Screen.
 1. Put the “SB” switch in the lower position to start playing the music.
 2. Put the "SB" switch in the Middle position to pause the song. It will continue from where it left off when the switch is returned to the lower "play" position.
-3. Put “SB” in the up position to select a random song from your playlist. It will play and select another song from your playlist when completed.  To pause the selected song, place SB in the middle position and then to the loweer position to continue the song from where it was paused.  If you put the switch back in the upper position it will select a new song.
+3. Put “SB” in the up position to select a random song from your playlist. It will play and select another song from your playlist when completed.  To pause the selected song, place SB in the middle position and then to the lower position to continue the song from where it was paused.  If you put the switch back in the upper position it will select a new song.
 4. When the song ends, the next song will automatically play and “Timer3” will be reset.
 5. “Timer3” will also automatically reset if you change songs.
 6. Press rudder trim right or rudder trim left to play next or previous song respectively.
