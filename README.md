@@ -4,7 +4,7 @@ TaraniTunes v3.0.1
 *This is a separate Advanced fork from the Original TaraniTunes developed by [GilDev](https://github.com/GilDev)
 It was agreed by GilDev and I that both versions of the script (the original and this advanced version) would be available for users but hosted separately.*
 
-**The majority of the new enhancements are due to the work of [Exean](https://github.com/exean)**
+**The majority of the 3.01 enhancements are due to the work of [Exean](https://github.com/exean)**
 
 Key Enhancements
 ----------------
