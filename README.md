@@ -1,7 +1,7 @@
 TaraniTunes v3.0.2
 ===========
 Logical Swich Mapping Changed to work with OpenTX v2.3
-===========
+---------------
 **Awesome music player for FrSky radios.**  
 *This is a separate Advanced fork from the Original TaraniTunes developed by [GilDev](https://github.com/GilDev)
 It was agreed by GilDev and I that both versions of the script (the original and this advanced version) would be available for users but hosted separately.*
