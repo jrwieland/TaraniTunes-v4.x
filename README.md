@@ -1,4 +1,6 @@
-TaraniTunes v3.0.1
+TaraniTunes v3.0.2
+===========
+Logical Swich Mapping Changed to work with OpenTX v2.3
 ===========
 **Awesome music player for FrSky radios.**  
 *This is a separate Advanced fork from the Original TaraniTunes developed by [GilDev](https://github.com/GilDev)
@@ -23,7 +25,7 @@ Existing Features
 ** Playlists are separated by recognizable names you have chosen (3D Flying, Rock-N-Roll, Classic Rock, My Mix, Relaxing).   
 ** On-screen confirmation of the playlist selected.    
 ** Automatic song advancement.   
-** Compatible with FrSky’s [Taranis Q X7](https://www.frsky-rc.com/product/taranis-q-x7-2), [Taranis Xlite](https://www.frsky-rc.com/product/taranis-x-lite/), [Taranis X9D](https://www.frsky-rc.com/product/taranis-x9d-plus-2) and their variants running at least [OpenTX](http://www.open-tx.org) 2.2.    
+** Compatible with FrSky’s [Taranis Q X7](https://www.frsky-rc.com/product/taranis-q-x7-2), [Taranis Xlite](https://www.frsky-rc.com/product/taranis-x-lite/), [Taranis X9D](https://www.frsky-rc.com/product/taranis-x9d-plus-2) and their variants running at least [OpenTX](http://www.open-tx.org) 2.3.    
 
 * Taranis Q X7 and Xlite  
   ![Taranis QX7](Screenshots/TaraniTunesQX7.PNG)  
