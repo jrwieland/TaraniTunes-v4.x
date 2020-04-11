@@ -1,12 +1,10 @@
 TaraniTunes v3.0.2
 ===========
-Logical Swich Mapping Changed to work with OpenTX v2.3
----------------
 **Awesome music player for FrSky radios.**  
 *This is a separate Advanced fork from the Original TaraniTunes developed by [GilDev](https://github.com/GilDev)
 It was agreed by GilDev and I that both versions of the script (the original and this advanced version) would be available for users but hosted separately.*
 
-**The majority of the 3.01 enhancements are due to the work of [Exean](https://github.com/exean)**
+**Logical Swich Mapping Changed to work with OpenTX v2.3**
 
 Key Enhancements
 ----------------
@@ -35,8 +33,6 @@ Existing Features
   ![Selection Menu](Screenshots/Selection1.PNG)    
   
 ### Installation
-
-A full working version for you to try on companion is available from my dropbox.  It uses your existing radio notifications as the sample music.  [Download SD Card files](https://www.dropbox.com/s/shfowg897nqdq2m/iTunes.zip?dl=0) The Model (9xd, Q7 or Xlite) file contains 1 preset model so you can test drive the program on Companion or the Firmware Simulator.   
 
 1. On your computer:
 	1. Edit both `iTunes_player.lua` and `itunes.lua` to have your desired amount of playlists. Detailed instructions are in the file(s) comments. Place both files in the `/SCRIPT/TELEMETRY` directory on your SD card.  
@@ -98,5 +94,3 @@ Enjoy it as much as I do.
 
 ####  Housekeeping Notes  
 Neither the firmware simulator nor Companion can compile all of the `playlist.lua` scripts to allow you to test drive and tweek it.  This must be done on the radio after you set your directories in the `iTunes.lua` file and have created the playlists. After compiling the playlists you can modify the screen layout in `iTunes_Player.lua` to reflect your personal taste or make futher enhancements.
-
-#### 6/17/19 Installation and Usage YouTube Video Is currently in progress.
