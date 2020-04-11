@@ -1,6 +1,6 @@
 --[[
 TaraniTunes
- Version 3.0.1
+ Version 3.0.2
  This Advanced version is based off of the Original TaraniTunes
   http://github.com/GilDev/TaraniTunes
  By GilDev http://gildev.tk
@@ -102,12 +102,12 @@ local function init()
 	shPresent =getValue("sh")
 	specialFunctionId  = specialFunctionId - 1
 	if LCD_W == 212 then -- if Taranis X9D
-		playSongSwitchId = 50 + playSongLogicalSwitch
+		playSongSwitchId = 53 + playSongLogicalSwitch
 		model.setLogicalSwitch(58,{func=3,v1=230,v2=playlist[playingSong][3]})
 	elseif shPresent== 0 then -- if Taranis Xlite
-		playSongSwitchId = 32 + playSongLogicalSwitch
+		playSongSwitchId = 38 + playSongLogicalSwitch
 		model.setLogicalSwitch(58,{func=3,v1=223,v2=playlist[playingSong][3]})
-	else 	playSongSwitchId = 38 + playSongLogicalSwitch-- if Taranis Q X7 
+	else 	playSongSwitchId = 44 + playSongLogicalSwitch-- if Taranis Q X7 
 		model.setLogicalSwitch(58,{func=3,v1=225,v2=playlist[playingSong][3]})
 	end
 	nextSongSwitchId   = getFieldInfo("ls" .. nextSongLogicalSwitch).id
