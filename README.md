@@ -29,8 +29,11 @@ Existing Features
   ![Taranis QX7](Screenshots/TaraniTunesQX7.PNG)  
 * Taranis X9D  
   ![Taranis X9D](Screenshots/TaraniTunesX9D.PNG)
+* Customizable Screen Layout    
+  ![Customize Scrren Layout](Screenshots/Customize.PNG)  
 * Playlist Selection Menu    
-  ![Selection Menu](Screenshots/Selection1.PNG)    
+  ![Selection Menu](Screenshots/Selection1.PNG)
+
   
 ### Installation
 
