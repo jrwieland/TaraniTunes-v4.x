@@ -15,10 +15,10 @@ Existing Features
 ** Compatible with Most common color screen radios FrSky Horus Radios, Radiomaster and Jumper radios running at least [OpenTX](http://www.open-tx.org) 2.3.    
 
 * Color Screen Layout  
-  ![Color Screen Features](Screenshots/Features.PNG)  
+  ![Color Screen Features](Screenshots3/Features.PNG)  
   
 * Screenshot  
-  ![Screen Preview](Screenshots/Colorscreen.PNG)  
+  ![Screen Preview](Screenshots3/Colorscreen.PNG)  
   
 ### Installation
 1. On your computer:
@@ -44,17 +44,17 @@ Examples >> `/SOUNDS/lists/3dflying`, `/SOUNDS/lists/practice`, `/SOUNDS/lists/h
 
 4. On your Taranis or (in companion) **This is how I setup my radio:
 	1. Set “TIMER3” as follows:      
-	![Timer settings](Screenshots/clrtimer.PNG)  
+	![Timer settings](Screenshots3/clrtimer.PNG)  
 	2. Set active “FLIGHT MODES” model rudder trims as follows:     
-	![Flight modes settings](Screenshots/clrtrims.PNG)  
+	![Flight modes settings](Screenshots3/clrtrims.PNG)  
 	In fact, put every 5 and 6 trims to “`--`” for every flight mode you use.  
 	3. The playlist selector uses GV9 it program should set it if it does not this is the main reason for script failure (it calls a nil value if not set):  
 	![Global Variables](Screenshots/clrgv.PNG)  
 	4. adjust the “LOGICAL SWITCHES” settings to meet your needs mine is set as follows:  
-	![Logical Switch Settings](Screenshots/clrls.PNG)  
+	![Logical Switch Settings](Screenshots3/clrls.PNG)  
 	**L60-L64 will be automatically installed there is no need to enter these values**    
 	5. Under `Special Functions` add the following data at SF61 and SF62: (The music feature would not advance properly if I hard coded them).
-  ![Special Functions](Screenshots/clrsf.PNG)  
+  ![Special Functions](Screenshots3/clrsf.PNG)  
 	
 There you go! Next section will explain how to use TaraniTunes.    
 
@@ -70,7 +70,7 @@ The program is written to utilize the full screen **(no trims or top bar visible
 6. press T5 up / down trim to select the next or previous playlist respectively.   
 
 **Tweek and make any enhancements you need too in order to Enjoy it as much as I do.  
-**If you want the background i am using it is in the `Screenshots` folder
+**If you want the background I am using it is in the `Screenshots3` folder
 
 ####  Housekeeping Notes  
 I am working on a zone scalable play mucic only widget.  
