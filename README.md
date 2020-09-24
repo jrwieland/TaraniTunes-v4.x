@@ -1,30 +1,36 @@
-TaraniTunes v3.0.2
+TaraniTunes v4.0
 ===========
 **Awesome music player for FrSky radios.**  
 *This is a separate Advanced fork from the Original TaraniTunes developed by [GilDev](https://github.com/GilDev)
 It was agreed by GilDev and I that both versions of the script (the original and this advanced version) would be available for users but hosted separately.*
 
-**Logical Swich Mapping Changed to work with OpenTX v2.3**
+**"Widget" creation for Radios running OpenTX on Color Radios
 
 Key Enhancements
 ----------------
-** Automatic selection and playing random songs from your playlist 
-** Xlite Radio's now supported    
-** Streamlined screen layout    
-** Easily point the program to the [Multiple Playlists].    
-** The only limit to the number of playlists is SD Card size.    
-** Eliminated the use S2 to select playlist (Pot freed up).    
-** Number of songs in the playlist is displayed on the selection screen.    
-** More screen room for telementry items.    
+** Added full screen layout for Horus, Jumper, and Radiomaster series radios.  
+** Logical Switches and most of the special function switches added automatically.  
+** Automatic selection and playing random songs from your playlist.  
+** Streamlined screen layout.  
+** Easily point the program to the [Multiple Playlists].  
+** The only limit to the number of playlists is SD Card size.  
+** Number of songs in the playlist is displayed on the selection screen.  
+** More screen room for telementry items.  
 ** Progress Bar for the playing song length.    
+
+Future Enhancements
+----------------
+**Resizable zone widget for "MUSIC ONLY"**  
 
 Existing Features
 -----------------
 ** Playlists are separated by recognizable names you have chosen (3D Flying, Rock-N-Roll, Classic Rock, My Mix, Relaxing).   
 ** On-screen confirmation of the playlist selected.    
 ** Automatic song advancement.   
-** Compatible with FrSky’s [Taranis Q X7](https://www.frsky-rc.com/product/taranis-q-x7-2), [Taranis Xlite](https://www.frsky-rc.com/product/taranis-x-lite/), [Taranis X9D](https://www.frsky-rc.com/product/taranis-x9d-plus-2) and their variants running at least [OpenTX](http://www.open-tx.org) 2.3.    
+** Compatible with Most common radios FrSky Q X7, X lite 9X series, Horus Radios.  As well as the Radiomaster and Jumper radios running at least [OpenTX](http://www.open-tx.org) 2.3.    
 
+* Color Screen Radios  
+  ![Color Screen Layout](Screenshots/Colorscreen.PNG)  
 * Taranis Q X7 and Xlite  
   ![Taranis QX7](Screenshots/TaraniTunesQX7.PNG)  
 * Taranis X9D  
@@ -36,7 +42,7 @@ Existing Features
 
   
 ### Installation
-
+**For color Radios go the to color screen folder for installation and usage!
 1. On your computer:
 	1. Edit both `iTunes_player.lua` and `itunes.lua` to have your desired amount of playlists. Detailed instructions are in the file(s) comments. Place both files in the `/SCRIPT/TELEMETRY` directory on your SD card.  
 
@@ -67,7 +73,7 @@ Examples >> `/SOUNDS/lists/3dflying`, `/SOUNDS/lists/practice`, `/SOUNDS/lists/h
 	XLITE users Use the Aileron or Elevator trims (Rudder requires the use of the shift button).    
 	3. Set “LOGICAL SWITCHES” settings as follows:  
 	![Logical Switch Settings](Screenshots/LogicalSwitch.PNG)  
-	**L59 will be automatically installed there is no need to enter these values**
+	**L60-L64 will be automatically installed there is no need to enter these values**
 	4. Under Telemetry “DISPLAY” Choose to display `Script iTunes`  
 	![Display settings](Screenshots/DisplaySettings.PNG)
 
