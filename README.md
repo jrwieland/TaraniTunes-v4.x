@@ -4,7 +4,8 @@ TaraniTunes v4.0
 *This is a separate Advanced fork from the Original TaraniTunes developed by [GilDev](https://github.com/GilDev)
 It was agreed by GilDev and I that both versions of the script (the original and this advanced version) would be available for users but hosted separately.*
 
-**"Widget" creation for Radios running OpenTX on Color Radios
+**"Widget" creation for Radios running OpenTX on Color Radios    
+no changes were made to the "black and white" radio's program
 
 Key Enhancements
 ----------------
