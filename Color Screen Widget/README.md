@@ -52,11 +52,11 @@ Examples >> `/SOUNDS/lists/3dflying`, `/SOUNDS/lists/practice`, `/SOUNDS/lists/h
 	![Global Variables](Screenshots/clrgv.PNG)  
 	4. adjust the “LOGICAL SWITCHES” settings to meet your needs mine is set as follows:  
 	![Logical Switch Settings](Screenshots/clrls.PNG)  
-	**L60-L64 will be automatically installed there is no need to enter these values**
+	**L60-L64 will be automatically installed there is no need to enter these values**    
 	5. Under `Special Functions` add the following data at SF61 and SF62: (The music feature would not advance properly if I hard coded them).
   ![Special Functions](Screenshots/clrsf.PNG)  
 	
-There you go! Next section will explain how to use TaraniTunes.
+There you go! Next section will explain how to use TaraniTunes.    
 
 ### Usage
 
