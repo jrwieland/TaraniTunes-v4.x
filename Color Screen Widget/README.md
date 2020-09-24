@@ -60,7 +60,7 @@ There you go! Next section will explain how to use TaraniTunes.
 
 ### Usage
 
-The program is written to utilize the full screen **(no trims or top bar visible**
+The program is written to utilize the full screen **(no trims or top bar visible)**
 1. Put the “SB” switch in the lower position to start playing the music.
 2. Put the "SB" switch in the Middle position to pause the song. It will continue from where it left off when the switch is returned to the lower "play" position.
 3. Put “SB” in the up position to select a random song from your playlist. It will play and select another song from your playlist when completed.  To pause the selected song, place SB in the middle position and then to the lower position to continue the song from where it was paused.  If you put the switch back in the upper position it will select a new song.
