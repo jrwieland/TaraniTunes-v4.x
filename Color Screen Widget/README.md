@@ -15,7 +15,7 @@ Existing Features
 ** Compatible with Most common color screen radios FrSky Horus Radios, Radiomaster and Jumper radios running at least [OpenTX](http://www.open-tx.org) 2.3.    
 
 * Color Screen Layout  
-  ![Color Screen Features](Screenshots3/Features.PNG)  
+  ![Color Screen Features](Screenshots3/clrfeat.PNG)  
   
 * Screenshot  
   ![Screen Preview](Screenshots3/Colorscreen.PNG)  
