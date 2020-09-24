@@ -14,8 +14,8 @@ Existing Features
 ** Ramdon song selection.  
 ** Compatible with Most common color screen radios FrSky Horus Radios, Radiomaster and Jumper radios running at least [OpenTX](http://www.open-tx.org) 2.3.    
 
-* Color Screen Layout  
-  ![Color Screen Features](Screenshots3/clrfeat.PNG)  
+* Great Features  
+  ![Features](Screenshots3/clrfeat.png)    
   
 * Screenshot  
   ![Screen Preview](Screenshots3/Colorscreen.PNG)  
@@ -44,17 +44,17 @@ Examples >> `/SOUNDS/lists/3dflying`, `/SOUNDS/lists/practice`, `/SOUNDS/lists/h
 
 4. On your Taranis or (in companion) **This is how I setup my radio:
 	1. Set “TIMER3” as follows:      
-	![Timer settings](Screenshots3/clrtimer.PNG)  
+	![Timer settings](Screenshots3/clrtimer.png)  
 	2. Set active “FLIGHT MODES” model rudder trims as follows:     
-	![Flight modes settings](Screenshots3/clrtrims.PNG)  
+	![Flight modes settings](Screenshots3/clrtrims.png)  
 	In fact, put every 5 and 6 trims to “`--`” for every flight mode you use.  
-	3. The playlist selector uses GV9 it program should set it if it does not this is the main reason for script failure (it calls a nil value if not set):  
-	![Global Variables](Screenshots/clrgv.PNG)  
-	4. adjust the “LOGICAL SWITCHES” settings to meet your needs mine is set as follows:  
-	![Logical Switch Settings](Screenshots3/clrls.PNG)  
+	3. The playlist selector uses GV9 it program should set it if it does not this is the main reason for script failure (it calls a nil value if not set):     
+	![Global Variables](Screenshots3/clrgv.png)    
+	4. adjust the “LOGICAL SWITCHES” settings to meet your needs mine is set as follows:    
+	![Logical Switch Settings](Screenshots3/clrls.png)    
 	**L60-L64 will be automatically installed there is no need to enter these values**    
-	5. Under `Special Functions` add the following data at SF61 and SF62: (The music feature would not advance properly if I hard coded them).
-  ![Special Functions](Screenshots3/clrsf.PNG)  
+	5. Under `Special Functions` add the following data at SF61 and SF62: (The music feature would not advance properly if I hard coded them).      
+  	![Special Functions](Screenshots3/clrsf.png)  
 	
 There you go! Next section will explain how to use TaraniTunes.    
 
