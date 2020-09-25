@@ -22,7 +22,7 @@ SD↑ 10, SD- 11, SD↓ 12,
 SG↑ 19, SG- 20, SG↓ 21 
 Replace the value in "pause" (below)with the appropriate number --]]
 local pause = 5 --switch that controls the pause (center switch position) 
-local specialFunctionId = 61 -- This special function will be reserved to play the music.
+local specialFunctionId = 62 -- This special function will be reserved to play the music.
 local errorOccured = false
 local screenUpdate = true
 local nextScreenUpdate = false
@@ -99,7 +99,7 @@ function refresh(tunes)
 	
 -- set Special Functions and Logical Switches
   	model.setCustomFunction(specialFunctionId,{switch = 132,func = 16,name = playlist[playingSong][2]})
-	model.setCustomFunction(62,{switch = pause,func = 17})
+	model.setCustomFunction(63,{switch = pause,func = 17})
     model.setLogicalSwitch(59,{func=9,v1=133, v2=136})
     model.setLogicalSwitch(60,{func=9,v1=4, v2=5})
     model.setLogicalSwitch(61,{func=9,v1=71, v2=71})
