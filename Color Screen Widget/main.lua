@@ -14,7 +14,14 @@
 ---- #########################################################################
 --Locals
 local playingSong = 1
-local pause = 5 --SF swicth where the Pause will be located
+--[[Here are the numbers for the switches
+SA↑ 1, SA- 2, SA↓ 3, 
+SB↑ 4, SB- 5, SB↓ 6, 
+SC↑ 7, SC- 8, SC↓ 9,
+SD↑ 10, SD- 11, SD↓ 12, 
+SG↑ 19, SG- 20, SG↓ 21 
+Replace the value in "pause" (below)with the appropriate number --]]
+local pause = 5 --switch that controls the pause (center switch position) 
 local specialFunctionId = 61 -- This special function will be reserved to play the music.
 local errorOccured = false
 local screenUpdate = true
@@ -24,10 +31,10 @@ local resetDone = false
 local mqTitle = 0
 
 
---Playlists folder names
+--Playlists folder names i.e. /SONGS/lists/foldername list the folder name below 
 local songList=
 {"3dflying",
-"demo" ,
+"demo",
 "cruising",
 "garage",
 } 
@@ -35,7 +42,7 @@ local songList=
 
 --logical switches used for play controls
 local playSongLogicalSwitch   = 60 
-local prevSongLogicalSwitch   = 62
+local prevSongLogicalSwitch   = 62 --change the numbers on lines 103-107 to suit your switch preferences 
 local nextSongLogicalSwitch   = 63
 local randomSongLogicalSwitch = 64
 
