@@ -31,7 +31,7 @@ Existing Features
 ** Compatible with Most common radios FrSky Q X7, X lite 9X series, Horus Radios.  As well as the Radiomaster and Jumper radios running at least [OpenTX](http://www.open-tx.org) 2.3.    
 
 * Color Screen Radios  
-  ![Color Screen Layout](Screenshots/Colorscreen.PNG)  
+  ![Color Screen Layout](Color%20Screen%20Widget/Screenshots3/Colorscreen.PNG)  
 * Taranis Q X7 and Xlite  
   ![Taranis QX7](Screenshots/TaraniTunesQX7.PNG)  
 * Taranis X9D  
