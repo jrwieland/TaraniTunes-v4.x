@@ -65,9 +65,15 @@ The program is written to utilize the full screen **(no trims or top bar visible
 2. Put the "SB" switch in the Middle position to pause the song. It will continue from where it left off when the switch is returned to the lower "play" position.
 3. Put “SB” in the up position to select a random song from your playlist. It will play and select another song from your playlist when completed.  To pause the selected song, place SB in the middle position and then to the lower position to continue the song from where it was paused.  If you put the switch back in the upper position it will select a new song.
 4. When the song ends, the next song will automatically play and “Timer3” will be reset.
-5. “Timer3” will also automatically reset if you change songs.
-7. Press t6 up / down trim to select and play next or previous song respectively.
-6. press T5 up / down trim to select the next or previous playlist respectively.   
+5. Press t6 up / down trim to select and play next or previous song respectively.    
+6. “Timer3” will also automatically reset if you change songs.     
+
+### Change Playlists     
+1. Pause the Music (put the Put the "SB" switch in the Middle position)
+2. Press T5 up / down trim to select the next or previous playlist respectively.   
+3. Put the “SB” switch in the lower position to start playing the music.
+**The SB switch acts as an enter button.**   
+If the music is not paused, the currently playing song will continue to play until it is over, then the current playlist will start playing.  
 
 **Tweek and make any enhancements you need too in order to Enjoy it as much as I do.  
 **If you want the background I am using it is in the `Screenshots3` folder
