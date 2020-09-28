@@ -1,6 +1,6 @@
 ---- #########################################################################
 -----# TaraniTunes v.4.0                                                     #
----- # License GPLv3: http://www.gnu.org/licenses/gpl-3.0.html				 #
+---- # License GPLv3: http://www.gnu.org/licenses/gpl-3.0.html		     #
 ---- #                                                                       #
 ---- # This program is free software; you can redistribute it and/or modify  #
 ---- # it under the terms of the GNU General Public License version 3 as     #
@@ -81,7 +81,7 @@ local function background(tunes)
  
 function refresh(tunes) 
 --load Playlist selection
-	if model.getGlobalVariable(8,0) == #songList then
+	if model.getGlobalVariable(8,0) == #songList +1 then
 		set2 = songList[1] 
 		model.setGlobalVariable(8,0,1)
 	else
