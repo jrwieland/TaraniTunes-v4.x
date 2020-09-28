@@ -36,7 +36,7 @@ local songList=
 {"3dflying",
 "demo",
 "cruising",
-"garage",
+"garage"
 } 
 
 
@@ -77,13 +77,11 @@ local function update(tunes, options)
  end
 
 local function background(tunes)
-local set1=getValue(nextSectionSwitchId)
-	
  end
  
 function refresh(tunes) 
 --load Playlist selection
-	if model.getGlobalVariable(8,0) == #songList+1 then
+	if model.getGlobalVariable(8,0) == #songList then
 		set2 = songList[1] 
 		model.setGlobalVariable(8,0,1)
 	else
