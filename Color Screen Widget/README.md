@@ -23,7 +23,7 @@ Existing Features
   ![Screen Preview](Screenshots3/Colorscreen.PNG)  
   
  * Screenshot 1/4 size
-  ![1/4 size Widget](Screenshots3/1-4size.PNG)  
+  ![1/4 size Widget](Screenshots3/1-4size.png)  
   
 ### Installation
 1. On your computer:
