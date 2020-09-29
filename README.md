@@ -1,14 +1,18 @@
-TaraniTunes v4.0
+TaraniTunes v4.1
 ===========
 **Awesome music player for FrSky radios.**  
 *This is a separate Advanced fork from the Original TaraniTunes developed by [GilDev](https://github.com/GilDev)
 It was agreed by GilDev and I that both versions of the script (the original and this advanced version) would be available for users but hosted separately.*
 
-**"Widget" creation for Radios running OpenTX on Color Radios    
-no changes were made to the "black and white" radio's program
+**Resizable zone widget works in all zones including the top bar!!!     
+"Widget" creation for Radios running OpenTX on Color Radios     
+     
+## No changes were made to the "xlite, 9x or Q7"" radio's program
 
 Key Enhancements
 ----------------
+** Resizable zone widget works in all zones    
+** Added index numbers for trims to eaily change it to your switch/trim preferences.    
 ** Added full screen layout for Horus, Jumper, and Radiomaster series radios.  
 ** Logical Switches and most of the special function switches added automatically.  
 ** Automatic selection and playing random songs from your playlist.  
@@ -18,10 +22,6 @@ Key Enhancements
 ** Number of songs in the playlist is displayed on the selection screen.  
 ** More screen room for telementry items.  
 ** Progress Bar for the playing song length.    
-
-Future Enhancements
-----------------
-**Resizable zone widget for "MUSIC ONLY"**  
 
 Existing Features
 -----------------
