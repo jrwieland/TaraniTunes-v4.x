@@ -1,13 +1,15 @@
-TaraniTunes v4.0
+TaraniTunes v4.1
 ===========
 **Awesome music player for FrSky radios.**  
-
-Future Enhancements
-----------------
-**Resizable zone widget for "MUSIC ONLY"**  
-
+     
+Key Enhancements
+----------------    
+** Resizable zone widget works in all zones Including the Top Bar      
+** Added index numbers for trims to eaily change it to your switch/trim preferences.    
+** Includes full screen layout for Horus, Jumper, and Radiomaster series radios.  
+    
 Existing Features
------------------
+-----------------   
 ** Playlists are separated by recognizable names you have chosen (3D Flying, Rock-N-Roll, Classic Rock, My Mix, Relaxing).   
 ** On-screen confirmation of the playlist selected.    
 ** Automatic song advancement.  
@@ -17,8 +19,11 @@ Existing Features
 * Great Features  
   ![Features](Screenshots3/clrfeat.png)    
   
-* Screenshot  
+* Screenshot Full size
   ![Screen Preview](Screenshots3/Colorscreen.PNG)  
+  
+ * Screenshot 1/4 size
+  ![Screen Preview](Screenshots3/1-4size.PNG)  
   
 ### Installation
 1. On your computer:
@@ -60,7 +65,7 @@ There you go! Next section will explain how to use TaraniTunes.
 
 ### Usage
 
-The program is written to utilize the full screen **(no trims or top bar visible)**
+The program is written to work within the widget space it is provided from just the small top bar to full screen withno trims or top bar visible.     
 1. Put the “SB” switch in the lower position to start playing the music.
 2. Put the "SB" switch in the Middle position to pause the song. It will continue from where it left off when the switch is returned to the lower "play" position.
 3. Put “SB” in the up position to select a random song from your playlist. It will play and select another song from your playlist when completed.  To pause the selected song, place SB in the middle position and then to the lower position to continue the song from where it was paused.  If you put the switch back in the upper position it will select a new song.
@@ -79,6 +84,5 @@ If the music is not paused, the currently playing song will continue to play unt
 **If you want the background I am using it is in the `Screenshots3` folder
 
 ####  Housekeeping Notes  
-I am working on a zone scalable play mucic only widget.  
 If you have enhancements to the code you think others would enjoy either contact me or place an issue to get my attention.
 
