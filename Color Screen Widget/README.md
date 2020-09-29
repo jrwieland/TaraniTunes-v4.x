@@ -16,14 +16,13 @@ Existing Features
 ** Ramdon song selection.  
 ** Compatible with Most common color screen radios FrSky Horus Radios, Radiomaster and Jumper radios running at least [OpenTX](http://www.open-tx.org) 2.3.    
 
-* Great Features  
-  ![Features](Screenshots3/clrfeat.png)    
+Great Features  
+![Features](Screenshots3/clrfeat.png)  
+         
+![Screen Preview](Screenshots3/Colorscreen.PNG)     
   
-* Screenshot Full size
-  ![Screen Preview](Screenshots3/Colorscreen.PNG)  
+![1/4 size Widget](Screenshots3/1-4size.png)      
   
- * Screenshot 1/4 size
-  ![1/4 size Widget](Screenshots3/1-4size.png)  
   
 ### Installation
 1. On your computer:
