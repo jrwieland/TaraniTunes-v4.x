@@ -36,7 +36,7 @@ local songList=
 {"3dflying",
 "demo",
 "cruising",
-"garage"
+"garage",
 } 
 
 --logical switches used for play controls
@@ -348,12 +348,12 @@ local long=playlist[playingSong][3]
 
 function refresh(tunes) 
 --load Playlist selection
-	if model.getGlobalVariable(8,0) == #songList+1 then
+	if model.getGlobalVariable(8,0) >= #songList+1 then
 		set2 = songList[1] 
 		model.setGlobalVariable(8,0,1)
-	elseif model.getGlobalVariable(8,0) == 0 then
+	elseif model.getGlobalVariable(8,0) <= 0 then
 		model.setGlobalVariable(8,0,#songList)
-		set2 = #songList 
+		set2 = songList[#songList] 
 	else
 		set2 = songList[model.getGlobalVariable(8,0)]
 	end
