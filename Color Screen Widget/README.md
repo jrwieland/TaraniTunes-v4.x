@@ -1,11 +1,11 @@
-TaraniTunes v4.1
+TaraniTunes v4.2
 ===========
 **Awesome music player for FrSky radios.**  
      
 Key Enhancements
 ----------------    
 ** Resizable zone widget works in all zones Including the Top Bar      
-** Added index numbers for trims to eaily change it to your switch/trim preferences.    
+** changed the code to allow changes to the switches outside of lua
 ** Includes full screen layout for Horus, Jumper, and Radiomaster series radios.  
     
 Existing Features
@@ -13,7 +13,6 @@ Existing Features
 ** Playlists are separated by recognizable names you have chosen (3D Flying, Rock-N-Roll, Classic Rock, My Mix, Relaxing).   
 ** On-screen confirmation of the playlist selected.    
 ** Automatic song advancement.  
-** Ramdon song selection.  
 ** Compatible with Most common color screen radios FrSky Horus Radios, Radiomaster and Jumper radios running at least [OpenTX](http://www.open-tx.org) 2.3.    
 
 Great Features  
@@ -48,40 +47,43 @@ Examples >> `/SOUNDS/lists/3dflying`, `/SOUNDS/lists/practice`, `/SOUNDS/lists/h
 
 4. On your Taranis or (in companion) **This is how I setup my radio:
 	1. Set “TIMER3” as follows:      
-	![Timer settings](Screenshots3/clrtimer.png)  
-	2. Set active “FLIGHT MODES” model rudder trims as follows:     
+	![Timer settings](Screenshots3/clrtimer.png)    
+ 	The inverse middle position of your chosen "3" position switch is the best practice for running the widget.        
+                 
+	2. Set active “FLIGHT MODES” model 5 and 6 trims as follows:     
 	![Flight modes settings](Screenshots3/clrtrims.png)  
-	In fact, put every 5 and 6 trims to “`--`” for every flight mode you use.  
-	3. The playlist selector uses GV9 it program should set it if it does not this is the main reason for script failure (it calls a nil value if not set):     
+	In fact, put every 5 and 6 trims to “`--`” for every flight mode you use.      
+	                
+	3. The playlist selector uses GV9 .... The program will set this item:     
 	![Global Variables](Screenshots3/clrgv.png)    
-	4. adjust the “LOGICAL SWITCHES” settings to meet your needs mine is set as follows:    
-	![Logical Switch Settings](Screenshots3/clrls.png)    
-	**L60-L64 will be automatically installed there is no need to enter these values**    
-	5. Under `Special Functions` add the following data at SF61 and SF62: (The music feature would not advance properly if I hard coded them).      
+	                     
+	4. Set the the “LOGICAL SWITCHES” settings as follows:    
+	![Logical Switch Settings](Screenshots3/clrls.png)   
+	L60 and 64 need to changed to the desired 3 position switch you will be using for playing and pausing the music.     
+	Here are the logical switch settings for setting up the program in companion    
+	![Logical Switch Settings](Screenshots3/compls.png)      
+	                                    
+	5.Set the the “SPECIAL FUNCTION” settings as follows:      
   	![Special Functions](Screenshots3/clrsf.png)  
-	
+	Here are the special function settings for setting up the program in companion    
+	![Special Functions](Screenshots3/compsf.png)    
+	         
 There you go! Next section will explain how to use TaraniTunes.    
 
 ### Usage
 
-The program is written to work within the widget space it is provided from just the small top bar to full screen withno trims or top bar visible.     
+The program is written to work within the widget space it is provided (from just the small top bar to full screen with no trims or top bar visible).        
+          
 1. Put the “SB” switch in the lower position to start playing the music.
-2. Put the "SB" switch in the Middle position to pause the song. It will continue from where it left off when the switch is returned to the lower "play" position.
-3. Put “SB” in the up position to select a random song from your playlist. It will play and select another song from your playlist when completed.  To pause the selected song, place SB in the middle position and then to the lower position to continue the song from where it was paused.  If you put the switch back in the upper position it will select a new song.
-4. When the song ends, the next song will automatically play and “Timer3” will be reset.
-5. Press t6 up / down trim to select and play next or previous song respectively.    
-6. “Timer3” will also automatically reset if you change songs.     
+2. Put the "SB" switch in the Middle position to pause the song. It will continue from where it left off when the switch is returned to the lower "play" position.  When the song ends, the next song will automatically play and “Timer3” will be reset.
+3. Press T5 down / up trim to select and play next or previous song respectively.     
+4.  Put the “SB” switch in the upper (away) position. **The SB switch acts as an enter button.**   Return the "SB" to the lower position and the newly selected song will begin to play.    
+###  If the SB switch is not put in the away position, the current song and timer is not cleared from the lua memory and the currently playing song will continue to play until the timer it is over.  The timer and the music will be out of sync with the screen for a couple of songs, but it will normalize eventually  To correct the out of sync condition, move  the sb to away (enter) and return to the play position.    
 
 ### Change Playlists     
-1. Pause the Music (put the Put the "SB" switch in the Middle position)
-2. Press T5 up / down trim to select the next or previous playlist respectively.   
-3. Put the “SB” switch in the lower position to start playing the music.
-**The SB switch acts as an enter button.**   
-If the music is not paused, the currently playing song will continue to play until it is over, then the current playlist will start playing.  
+1. Press T6 down / up trim to select the next or previous playlist respectively.  (the program will fail if the 6u is the first command, the
+2. Put the “SB” switch in the upper (away) position.  Again **The SB+ switch acts as an enter button.**   
+3. Return the "SB" to the lower position and the newly selected playlist will begin to play
 
 **Tweek and make any enhancements you need too in order to Enjoy it as much as I do.  
 **If you want the background I am using it is in the `Screenshots3` folder
-
-####  Housekeeping Notes  
-If you have enhancements to the code you think others would enjoy either contact me or place an issue to get my attention.
-
