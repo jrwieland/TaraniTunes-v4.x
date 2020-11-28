@@ -61,12 +61,12 @@ Examples >> `/SOUNDS/lists/3dflying`, `/SOUNDS/lists/practice`, `/SOUNDS/lists/h
 	![Logical Switch Settings](Screenshots3/clrls.png)   
 	L61 and 64 need to changed to the desired 3 position switch you will be using for playing and pausing the music.     
 	Here are the logical switch settings for setting up the program in companion    
-	![Logical Switch Settings](Screenshots3/compls.png)      
+	![Logical Switch Settings](Screenshots3/compls.PNG)      
 	                                    
 	5.Set the the “SPECIAL FUNCTION” settings as follows:      
   	![Special Functions](Screenshots3/clrsf.png)  
 	Here are the special function settings for setting up the program in companion    
-	![Special Functions](Screenshots3/compsf.png)    
+	![Special Functions](Screenshots3/compsf.PNG)    
 	         
 There you go! Next section will explain how to use TaraniTunes.    
 
