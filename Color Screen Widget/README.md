@@ -59,7 +59,7 @@ Examples >> `/SOUNDS/lists/3dflying`, `/SOUNDS/lists/practice`, `/SOUNDS/lists/h
 	                     
 	4. Set the the “LOGICAL SWITCHES” settings as follows:    
 	![Logical Switch Settings](Screenshots3/clrls.png)   
-	L60 and 64 need to changed to the desired 3 position switch you will be using for playing and pausing the music.     
+	L61 and 64 need to changed to the desired 3 position switch you will be using for playing and pausing the music.     
 	Here are the logical switch settings for setting up the program in companion    
 	![Logical Switch Settings](Screenshots3/compls.png)      
 	                                    
