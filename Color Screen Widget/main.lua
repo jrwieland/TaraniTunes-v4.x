@@ -363,8 +363,9 @@ local function NChangeList(tunes)
 end
 	--load Previous Playlist selection
 local function PChangeList(tunes)
-	if model.getGlobalVariable(8,0) == 0 then	
+	if model.getGlobalVariable(8,0) <= 0 then	
 		model.setGlobalVariable(8,0,#songList)
+		set2 = songList[model.getGlobalVariable(8,0)]
 	else
 		set2 = songList[model.getGlobalVariable(8,0)]
 	end
