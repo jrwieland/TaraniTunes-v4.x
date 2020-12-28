@@ -171,6 +171,13 @@ local function background()
 -- Next song
 	if getValue(nextSongSwitchId) > 0 then
 		if not nextSongSwitchPressed then
+		if getValue(randomSongSwitchId) > 0 then
+			playingSong = math.random (1, #playlist)
+			model.setTimer(2,{value=0})
+			songChanged = true
+			screenUpdate = true
+			nextScreenUpdate = true	
+		 else
 			nextSongSwitchPressed = true
 			nextScreenUpdate = true
 			songChanged = true
@@ -182,7 +189,8 @@ local function background()
 				playingSong = playingSong + 1
 				model.setTimer(2,{value=0})
 			end
-		end
+		end 
+			end
 	else
 		nextSongSwitchPressed = false
 	end
@@ -190,6 +198,13 @@ local function background()
 -- Previous song
 	if getValue(prevSongSwitchId) > 0 then
 		if not prevSongSwitchPressed then
+		if getValue(randomSongSwitchId) > 0 then
+			playingSong = math.random (1, #playlist)
+			model.setTimer(2,{value=0})
+			songChanged = true
+			screenUpdate = true
+			nextScreenUpdate = true	
+		 else
 			model.setTimer(2,{value=0})
 			prevSongSwitchPressed = true
 			nextScreenUpdate = true
@@ -200,24 +215,13 @@ local function background()
 			else
 				playingSong = playingSong - 1
 			end
+		end 
 		end
 	else
 		prevSongSwitchPressed = false
 	end
 	
-	-- Random song
-	if getValue(randomSongSwitchId) > 0 then
-		if not randomSongSwitchPressed then
-			randomSongSwitchPressed = true
-			playingSong = math.random (1, #playlist)
-			songChanged = true
-			screenUpdate = true
-			nextScreenUpdate = true
-			end																	   
-	else
-		randomSongSwitchPressed = false
-	end
-end
+	
 
 --event controls
 local function run(event)
