@@ -1,6 +1,6 @@
 --[[
 TaraniTunes
- Version 3.0.2
+ Version 3.0.3
  This Advanced version is based off of the Original TaraniTunes
   http://github.com/GilDev/TaraniTunes
  By GilDev http://gildev.tk
@@ -38,7 +38,7 @@ Replace the value in "pause" (below)with the appropriate number --]]
 local pause = 5
  
 --[[Enter the switch number you will used to "Pause" the music 
-Set the trigger for timer3 in your Model Setup to invert this switch position (pause = SB↓ then set timer = !SB↓)
+Set the trigger for timer3 in your Model Setup to invert this switch position (pause = SB- then set timer = !SB-)
 The timer will continue to run in either the play or random switch position.
  				  
 Here is a sample setup of the logical switches (LS61 thru LS64) you need to setup based on these inputs
@@ -101,37 +101,26 @@ local function init()
 	-- Calculate indexes Special funtion play value for LS positions
 	shPresent =getValue("sh")
 	specialFunctionId  = specialFunctionId - 1
-	if LCD_W == 212 then -- if Taranis X9D
 		playSongSwitchId = 53 + playSongLogicalSwitch
 		model.setLogicalSwitch(58,{func=3,v1=230,v2=playlist[playingSong][3]})
-	elseif shPresent== 0 then -- if Taranis Xlite
-		playSongSwitchId = 38 + playSongLogicalSwitch
-		model.setLogicalSwitch(58,{func=3,v1=223,v2=playlist[playingSong][3]})
-	else 	playSongSwitchId = 44 + playSongLogicalSwitch-- if Taranis Q X7 
-		model.setLogicalSwitch(58,{func=3,v1=225,v2=playlist[playingSong][3]})
 	end
-	nextSongSwitchId   = getFieldInfo("ls" .. nextSongLogicalSwitch).id
-	prevSongSwitchId   = getFieldInfo("ls" .. prevSongLogicalSwitch).id
-	randomSongSwitchId = getFieldInfo("ls" .. randomSongLogicalSwitch).id
+	
+nextSongSwitchId   = getFieldInfo("ls" .. nextSongLogicalSwitch).id
+prevSongSwitchId   = getFieldInfo("ls" .. prevSongLogicalSwitch).id
+randomSongSwitchId = getFieldInfo("ls" .. randomSongLogicalSwitch).id
 
-	nextScreenUpdate = true
-	screenUpdate = true
-	songChanged = true
-end
+nextScreenUpdate = true
+screenUpdate = true
+songChanged = true
 
 --background
 local function background()
 --Pause function
 	model.setCustomFunction(30,{switch=pause,func = 17})
---Timer3 function after 1st song
-	if LCD_W == 212 then -- if Taranis X9D
-		model.setLogicalSwitch(58,{func=3,v1=230,v2=playlist[playingSong][3]})
-	elseif shPresent== 0 then -- if Taranis Xlite
-			model.setLogicalSwitch(58,{func=3,v1=223,v2=playlist[playingSong][3]})
-	else 
-		model.setLogicalSwitch(58,{func=3,v1=225,v2=playlist[playingSong][3]})
-	end
 	
+--Timer3 function after 1st song
+	model.setLogicalSwitch(58,{func=3,v1=230,v2=playlist[playingSong][3]})
+		
 	if resetDone then
 		playSong()
 		resetDone = false
@@ -177,7 +166,7 @@ local function background()
 			songChanged = true
 			screenUpdate = true
 			nextScreenUpdate = true	
-		 else
+			else
 			nextSongSwitchPressed = true
 			nextScreenUpdate = true
 			songChanged = true
@@ -188,9 +177,9 @@ local function background()
 			else
 				playingSong = playingSong + 1
 				model.setTimer(2,{value=0})
+			end 
 			end
-		end 
-			end
+		end
 	else
 		nextSongSwitchPressed = false
 	end
@@ -204,7 +193,7 @@ local function background()
 			songChanged = true
 			screenUpdate = true
 			nextScreenUpdate = true	
-		 else
+			else
 			model.setTimer(2,{value=0})
 			prevSongSwitchPressed = true
 			nextScreenUpdate = true
@@ -220,20 +209,19 @@ local function background()
 	else
 		prevSongSwitchPressed = false
 	end
-	
-	
+	end
 
 --event controls
 local function run(event)
 
 	-- INPUT HANDLING --
-	if (event == EVT_ROT_RIGHT or event == EVT_MINUS_FIRST or event == EVT_MINUS_RPT or event == EVT_DOWN_BREAK) then
+	if (event == EVT_MINUS_FIRST) then
 		if selection == #playlist then
 			selection = 1 else
 			selection = selection + 1
 		end
 		screenUpdate = true
-		elseif (event == EVT_ROT_LEFT or event == EVT_PLUS_FIRST or event == EVT_PLUS_RPT or event == EVT_UP_BREAK) then
+		elseif (event == EVT_PLUS_FIRST or event == EVT_PLUS_RPT or event == EVT_UP_BREAK) then
 			if selection == 1 then
 			selection = #playlist else
 			selection = selection - 1
@@ -260,88 +248,79 @@ lcd.clear();
 	  return math.floor(num * mult + .5) / mult end
 	  
 	local long=playlist[playingSong][3]--do not change this value it is the length of the current song playing
-	local flight=model.getTimer(1).value--flight duration timer: 0=timer1, 1=timer2
+	local fly=model.getTimer(1).value--flight duration timer: 0=timer1, 1=timer2
 	local upTime=model.getTimer(2).value--do not change this value it is how long the current song has played
 	local datenow = getDateTime()		
-	local timeText = (string.format("%02d:%02d",datenow.hour,datenow.min))
+	local timemins = (string.format("%02d",datenow.min))
  	local batt = getValue("tx-voltage")
 	
--- Calculate indexes for screen display
-	if LCD_W == 212 then -- Taranis X9D Radio Larger text layout for 9X radios
-	--Flight Time
-		lcd.drawText(LCD_W/4+5, 1, "Flight =",MIDSIZE)
-		lcd.drawTimer(LCD_W/4+69, 1, flight,MIDSIZE)
-		
-	--current time
-		lcd.drawText(1,15,"Time= ".. timeText,PREC11)	
-		elseif LCD_W == 128 then
-
--- Smaller text layout for QX7 and Xlite radios	
-	--Flight Time
-		lcd.drawText(LCD_W/4+3, 1, "Flight",SMLSIZE)
-		lcd.drawTimer(LCD_W/2+9, 1, flight,SMLSIZE)
-		
-	--current time
-		lcd.drawText(1,15, timeText,PREC1)	
-	end
-		
 --[[ Change the layout of this portion to your desired screen look
 	 Comment out any items that you do not want--]]
-	
-		-- Cell Voltage
-	local Cell1=getValue("LCEL")--displays a custom telementry sensor (lowest cell)calculated from "cels" sensor
-		lcd.drawNumber(LCD_W - 33, 10,Cell1*100, MIDSIZE+PREC2)
-		lcd.drawText(LCD_W -8, 10,"v",MIDSIZE)
 
-		-- Altitude
+	--Transmitter battery
+		lcd.drawText(2, 2,"TX "..round(batt,1).."v",SMLSIZE)
+		
+   --Switch position
+	 local battsw = getValue('se')
+	 if battsw == -1024 then 
+	 	lcd.drawText(65,2,"REG",4)
+	 	lcd.drawSwitch(LCD_W/3-25,2,13)elseif
+	 	battsw == 0 then
+	 	lcd.drawSwitch(LCD_W/3-25,2,14)
+	 	lcd.drawText(65,2,"MID",4)else
+	 	lcd.drawSwitch(LCD_W/3-25,2,15)
+	 	lcd.drawText(65,2,"XXL",4)
+	 	end
+		lcd.drawText(LCD_W/3+15, 2, "FLIGHT BATTERY",4)
+		
+	--Flight Time
+		
+		lcd.drawTimer(LCD_W-33, 0, fly, 2+MIDSIZE)
+	
+	-- Altitude
 	local altN=getValue("Alt")--current altitude from telementry
 	local altM=getValue("Alt+")--max altitude from telementry
-		lcd.drawText(LCD_W/2-36, 15,"Alt= ",SMLSIZE)
-		lcd.drawNumber(LCD_W/2-16, 15,altN,SMLSIZE)
-		lcd.drawText(LCD_W/2, 15,"/",SMLSIZE)
-		lcd.drawNumber(LCD_W/2+7, 15,altM,SMLSIZE)	
-			
-		--Transmitter battery
-		lcd.drawFilledRectangle(3, 1, 4, 1)
-		lcd.drawFilledRectangle(2, 2, 6, 11)				
-		lcd.drawText(11, 0,round(batt,1), MIDSIZE+PREC1)
-			
-		--rssi
-		lcd.drawText(LCD_W-8-(string.len(""..getValue("RSSI"))*7),1, getValue("RSSI"))
-		lcd.drawFilledRectangle(LCD_W-2, 10, 2, 0)
-		lcd.drawLine(LCD_W-3,8,LCD_W,8, SOLID, FORCE)
-		lcd.drawLine(LCD_W-4,6,LCD_W,6, SOLID, FORCE)
-		lcd.drawLine(LCD_W-5,4,LCD_W,4, SOLID, FORCE)
-		lcd.drawLine(LCD_W-6,2,LCD_W,2, SOLID, FORCE)
-		lcd.drawLine(LCD_W-8,0,LCD_W,0, SOLID, FORCE)
+		lcd.drawText(22,12,"HEIGHT= ",SMLSIZE)
+		lcd.drawChannel(58,12,"Alt",SMLSIZE)
+		lcd.drawText(LCD_W/3+23, 12,"// Max",SMLSIZE)
+		lcd.drawChannel(LCD_W/2+18,12,"Alt+",SMLSIZE+2)
 				
-		local y = 23;
+	--current time
+		lcd.drawText(1,21,"TIME= "..datenow.hour12..":"..timemins.." "..datenow.suffix,SMLSIZE)		    
+			
+	--rssi
+		lcd.drawText(LCD_W/2-5,21,"RX SIGNAL "..getValue("RSSI"),SMLSIZE)
+		
+	-- Cell Voltage
+	local Cell1=getValue("LCEL")--displays a custom telementry sensor (lowest cell)calculated from "cels" sensor
+		lcd.drawNumber(LCD_W -35, 16,Cell1*100, MIDSIZE+PREC2)
+		lcd.drawText(LCD_W -10, 16,"v",MIDSIZE)
+					
+	local y = 23;
 		
 		--title background
-		lcd.drawFilledRectangle(0,y-1,LCD_W,8)
+		lcd.drawFilledRectangle(0,y+6,LCD_W,8,GREY_DEFAULT)
 		
 		--Playlist title
-		lcd.drawText((LCD_W / 2)-((string.len(title)/2)*5), y, title, SMLSIZE+INVERS)
+		lcd.drawText((LCD_W / 2)-((string.len(title)/2)*5), y+7, title, SMLSIZE+INVERS)
 		
 		--Timer
-		lcd.drawTimer(1, y, upTime, SMLSIZE+INVERS)
-		lcd.drawTimer(LCD_W-22, y, long, SMLSIZE+INVERS)
+		lcd.drawTimer(1, y+7, upTime, SMLSIZE+INVERS)
+		lcd.drawTimer(LCD_W-25, y+7, long, SMLSIZE+INVERS)
 		
 		-- Progressbar
-		lcd.drawRectangle(0, y+8, LCD_W, 3, SOLID, FORCE)
-		lcd.drawLine(0, y+9, (LCD_W - 1)*(upTime/long), y+9, SOLID, FORCE)
+		lcd.drawRectangle(0, y+14, LCD_W, 3, SOLID, FORCE)
+		lcd.drawLine(0, y+15, (LCD_W - 1)*(upTime/long), y+16, SOLID, FORCE)
 
 		-- Song selector
 		if selection == 1 then
-			if playlist[selection] then lcd.drawText(1, y+13, string.char(126) .. playlist[selection][1], SMLSIZE+INVERS) end
-			if playlist[selection + 1] then lcd.drawText(6, y+20, playlist[selection + 1][1], SMLSIZE) end
-			if playlist[selection + 2] then lcd.drawText(6, y+27, playlist[selection + 2][1], SMLSIZE) end
-			if playlist[selection + 3] then lcd.drawText(6, y+34, playlist[selection + 3][1], SMLSIZE) end
+			if playlist[selection] then lcd.drawText(1, y+18, string.char(126) .. playlist[selection][1], SMLSIZE+INVERS) end
+			if playlist[selection + 1] then lcd.drawText(6, y+25, playlist[selection + 1][1], SMLSIZE) end
+			if playlist[selection + 2] then lcd.drawText(6, y+33, playlist[selection + 2][1], SMLSIZE) end
 		else		
-			if playlist[selection - 1] then lcd.drawText(6, y+13, playlist[selection - 1][1], SMLSIZE) end
-			if playlist[selection] then lcd.drawText(1, y+20, string.char(126) .. playlist[selection][1], SMLSIZE+INVERS) end
-			if playlist[selection + 1] then lcd.drawText(6, y+27, playlist[selection + 1][1], SMLSIZE) end
-			if playlist[selection + 2] then lcd.drawText(6, y+34, playlist[selection + 2][1], SMLSIZE) end
+			if playlist[selection - 1] then lcd.drawText(6, y+18, playlist[selection - 1][1], SMLSIZE) end
+			if playlist[selection] then lcd.drawText(1, y+25, string.char(126) .. playlist[selection][1], SMLSIZE+INVERS) end
+			if playlist[selection + 1] then lcd.drawText(6, y+33, playlist[selection + 1][1], SMLSIZE) end
 		end
 		
 		-- Print error
