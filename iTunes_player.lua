@@ -33,7 +33,7 @@ Replace the value in "pause" (below)with the appropriate number --]]
 local pause = 5
  
 --[[Enter the switch number you will used to "Pause" the music 
-Set the trigger for timer3 in your Model Setup to invert this switch position (pause = SB↓ then set timer = !SB↓)
+Set the trigger for timer3 in your Model Setup to invert this switch position (pause = SB- then set timer = !SB-)
 The timer will continue to run in either the play or random switch position.
  				  
 Here is a sample setup of the logical switches (LS61 thru LS64) you need to setup based on these inputs
@@ -80,7 +80,7 @@ function playSong()
 end
 
 function resetSong()
-	model.setCustomFunction(specialFunctionId,{switch = -playSongSwitchId})
+	model.setCustomFunction(specialFunctionId,{switch = playSongSwitchId})
 end
 
 -- set initial variables
@@ -97,13 +97,11 @@ local function init()
 	specialFunctionId  = specialFunctionId - 1
 	if LCD_W == 212 then -- if Taranis X9D
 		playSongSwitchId = 53 + playSongLogicalSwitch
-		model.setLogicalSwitch(58,{func=3,v1=230,v2=playlist[playingSong][3]})
 	else 
 	if shPresent== 0 then -- if Taranis Xlite
 		playSongSwitchId = 38 + playSongLogicalSwitch
-		model.setLogicalSwitch(58,{func=3,v1=223,v2=playlist[playingSong][3]})
 	else 	playSongSwitchId = 44 + playSongLogicalSwitch-- if Taranis Q X7 
-		model.setLogicalSwitch(58,{func=3,v1=225,v2=playlist[playingSong][3]})
+
 	end
 	end
 	end
@@ -119,17 +117,8 @@ local function init()
 local function background()
 --Pause function
 	model.setCustomFunction(30,{switch=pause,func = 17})
---Timer3 function after 1st song
-	if LCD_W == 212 then -- if Taranis X9D
-		model.setLogicalSwitch(58,{func=3,v1=230,v2=playlist[playingSong][3]})
-	else 
-	if shPresent== 0 then -- if Taranis Xlite
-			model.setLogicalSwitch(58,{func=3,v1=223,v2=playlist[playingSong][3]})
-	else 
-		model.setLogicalSwitch(58,{func=3,v1=225,v2=playlist[playingSong][3]})
-	end
-	
-	if resetDone then
+
+		if resetDone then
 		playSong()
 		resetDone = false
 	end
@@ -216,21 +205,7 @@ local function background()
 	else
 		prevSongSwitchPressed = false
 	end
-	end
-	end
---	-- Random song
---	if getValue(randomSongSwitchId) > 0 then
---		if not randomSongSwitchPressed then
---			randomSongSwitchPressed = true
---			playingSong = math.random (1, #playlist)
---			songChanged = true
---			screenUpdate = true
---			nextScreenUpdate = true
---			end																	   
---	else
---		randomSongSwitchPressed = false
---	end
---end
+end
 
 --event controls
 local function run(event)
@@ -242,27 +217,32 @@ local function run(event)
 			selection = selection + 1
 		end
 		screenUpdate = true
-		elseif (event == EVT_ROT_LEFT or event == EVT_PLUS_FIRST or event == EVT_PLUS_RPT or event == EVT_UP_BREAK) then
+		else
+		if (event == EVT_ROT_LEFT or event == EVT_PLUS_FIRST or event == EVT_PLUS_RPT or event == EVT_UP_BREAK) then
 			if selection == 1 then
 			selection = #playlist else
 			selection = selection - 1
 		end
 		screenUpdate = true
-	elseif event == EVT_ROT_BREAK or event == EVT_ENTER_BREAK then
+	else
+	if event == EVT_ROT_BREAK or event == EVT_ENTER_BREAK then
 		playingSong = selection
 		songChanged = true
 		screenUpdate = true
 		model.setTimer(2,{value=0})
-	elseif nextScreenUpdate then
+	else
+	if nextScreenUpdate then
 		selection = playingSong
 		nextScreenUpdate = false
 		model.setTimer(2,{value=0})
+	end
+	end end
 	end
 
 -- DRAWING --
 	if screenUpdate or event == 191 then
 		screenUpdate = true
-
+end
 lcd.clear();
 	function round(num, decimals)
 	  local mult = 10^(decimals or 0)
@@ -361,7 +341,5 @@ lcd.clear();
 			end
 			return
 		end
-		
-	end
-end
+		end
 return {run = run, background = background, init = init}
