@@ -1,18 +1,20 @@
-TaraniTunes v4.1
+TaraniTunes v4.1 (color radios) and v3.01 (non-color radios)
 ===========
 **Awesome music player for FrSky radios.**  
-*This is a separate Advanced fork from the Original TaraniTunes developed by [GilDev](https://github.com/GilDev)
-It was agreed by GilDev and I that both versions of the script (the original and this advanced version) would be available for users but hosted separately.*
+*This is a separate advanced fork from the Original TaraniTunes developed by [GilDev](https://github.com/GilDev).     
+GilDev and I agreed that both versions of the script (the original and this advanced version) would be available for users but hosted separately.*
 
 **Resizable zone widget works in all zones including the top bar!!!     
 "Widget" creation for Radios running OpenTX on Color Radios     
      
-## No changes were made to the "xlite, 9x or Q7"" radio's program
+### No changes were made to the "xlite, 9x or Q7"" radio's program.    
+### There is a "Random Mode" version available for the "xlite, 9x or Q7" radios.  
+It is available here >>> https://github.com/jrwieland/TaraniTunes_v4.1/tree/random-mode
 
 Key Enhancements
 ----------------
 ** Resizable zone widget works in all zones    
-** Added index numbers for trims to eaily change it to your switch/trim preferences.    
+** Added index numbers for trims to easily change it to your switch/trim preferences.    
 ** Added full screen layout for Horus, Jumper, and Radiomaster series radios.  
 ** Logical Switches and most of the special function switches added automatically.  
 ** Automatic selection and playing random songs from your playlist.  
@@ -20,7 +22,7 @@ Key Enhancements
 ** Easily point the program to the [Multiple Playlists].  
 ** The only limit to the number of playlists is SD Card size.  
 ** Number of songs in the playlist is displayed on the selection screen.  
-** More screen room for telementry items.  
+** More screen room for telemetry items.  
 ** Progress Bar for the playing song length.    
 
 Existing Features
@@ -37,13 +39,13 @@ Existing Features
 * Taranis X9D  
   ![Taranis X9D](Screenshots/TaraniTunesX9D.PNG)
 * Customizable Screen Layout    
-  ![Customize Scrren Layout](Screenshots/Customize.PNG)  
+  ![Customize Screen Layout](Screenshots/Customize.PNG)  
 * Playlist Selection Menu    
   ![Selection Menu](Screenshots/Selection1.PNG)
 
   
 ### Installation
-**For color Radios go the to color screen folder for installation and usage!
+**For color Radios go the to the color screen folder for installation and usage!
 1. On your computer:
 	1. Edit both `iTunes_player.lua` and `itunes.lua` to have your desired amount of playlists. Detailed instructions are in the file(s) comments. Place both files in the `/SCRIPT/TELEMETRY` directory on your SD card.  
 
@@ -53,17 +55,17 @@ Existing Features
 Examples >> `/SOUNDS/lists/3dflying`, `/SOUNDS/lists/practice`, `/SOUNDS/lists/hardrock`, `/SOUNDS/lists/competition`
 
 2. Create a "playlist.lua" file in each of those directories.
-	1. I recommend using [`Mp3tag`](https://www.mp3tag.de/en/index.html) to create your playlists. It will automatically add the required informations in TaraniTunes’ format. *Please look at the instructions in [`Auto_Playlist`](/Auto_Playlist)*.
+	1. I recommend using [`Mp3tag`](https://www.mp3tag.de/en/index.html) to create your playlists. It will automatically add the required information in TaraniTunes’ format. *Please look at the instructions in [`Auto_Playlist`](/Auto_Playlist)*.
 
 	2.  If you prefer to manually create the playlist files. Each line must be formatted like this:   
 	`{"Song name", "SONG_FILENAME", duration},`
 		1. `Song name` is the full name, with artist if you want.
 		2. `SONG_FILENAME` must be 6 characters or less.
-		3. `duration` is your song’s duration in seconds. *EXAMPLE - Your song is 3:45 long you would enter 225. For a 4:52 song enter 292. Simply calculate `minutes × 60 + seconds` to get your song’s duration. Song length can usually be found in the file’s properties.*  
+		3. `duration` is your song’s duration in seconds. *EXAMPLE - Your song is 3:45 long you would enter 225. For a 4:52 song you would enter 292. Simply calculate `minute’s × 60 + seconds` to get your song’s duration. Song length can usually be found in the file’s properties.*  
 
  Look at [playlist.lua](playlist.lua) for an example of the required structure of the file.
 
-3. Put your corresponding songs `SONG_FILENAME.wav` in `/SOUNDS/en` if your radio is in English (otherwise replace `en` with your language). They must be converted to mono, preferably normalized, and encoded in Microsoft WAV 16-bits signed PCM at a 32 kHz sampling rate, you can use [Audacity](http://www.audacityteam.org) to do that, it works great. Remember the filename must be 6 characters or less or else it will not play.
+3. Put your corresponding songs `SONG_FILENAME.wav` in `/SOUNDS/en` if your radio is in English (otherwise replace `en` with your language). They must be converted to mono, preferably normalized, and encoded in Microsoft WAV 16-bits signed PCM at a 32 kHz sampling rate, you can use [Audacity](http://www.audacityteam.org) to do that, it works great. Remember the filename must be 6 characters or less or else it will not play.
 
 4. On your Taranis or (in companion) **This is how I setup my radio:
 	1. Set “TIMER3” as follows:      
@@ -82,7 +84,7 @@ There you go! Next section will explain how to use TaraniTunes.
 
 ### Usage
 
-From the main screen, hold “Page” to access TaraniTunes Telementry Screen.
+From the main screen, hold “Page” to access TaraniTunes Telemetry Screen.
 1. Put the “SB” switch in the lower position to start playing the music.
 2. Put the "SB" switch in the Middle position to pause the song. It will continue from where it left off when the switch is returned to the lower "play" position.
 3. Put “SB” in the up position to select a random song from your playlist. It will play and select another song from your playlist when completed.  To pause the selected song, place SB in the middle position and then to the lower position to continue the song from where it was paused.  If you put the switch back in the upper position it will select a new song.
@@ -103,4 +105,5 @@ If you move the "`SB`" switch or trims the music will respond accordingly.  The 
 Enjoy it as much as I do.    
 
 ####  Housekeeping Notes  
-Neither the firmware simulator nor Companion can compile all of the `playlist.lua` scripts to allow you to test drive and tweek it.  This must be done on the radio after you set your directories in the `iTunes.lua` file and have created the playlists. After compiling the playlists you can modify the screen layout in `iTunes_Player.lua` to reflect your personal taste or make futher enhancements.
+Neither the firmware simulator nor Companion can compile all of the `playlist.lua` scripts to allow you to test drive and tweak it.  This must be done on the radio after you set your directories in the `iTunes.lua` file and have created the playlists. After compiling the playlists you can modify the screen layout in `iTunes_Player.lua` to reflect your personal taste or make further enhancements.
+
