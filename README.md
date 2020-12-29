@@ -1,26 +1,19 @@
-TaraniTunes v4.1
+TaraniTunes v3.0.2 (for non-color radios)
 ===========
 **Awesome music player for FrSky radios.**  
-*This is a separate Advanced fork from the Original TaraniTunes developed by [GilDev](https://github.com/GilDev)
-It was agreed by GilDev and I that both versions of the script (the original and this advanced version) would be available for users but hosted separately.*
-
-**Resizable zone widget works in all zones including the top bar!!!     
-"Widget" creation for Radios running OpenTX on Color Radios     
-     
-## No changes were made to the "xlite, 9x or Q7"" radio's program
+*This is a separate advanced fork from the Original TaraniTunes developed by [GilDev](https://github.com/GilDev)
+We agreed that both versions of the script (the original and this advanced version) would be available for users but hosted separately.*
 
 Key Enhancements
 ----------------
-** Resizable zone widget works in all zones    
-** Added index numbers for trims to eaily change it to your switch/trim preferences.    
-** Added full screen layout for Horus, Jumper, and Radiomaster series radios.  
-** Logical Switches and most of the special function switches added automatically.  
-** Automatic selection and playing random songs from your playlist.  
+** Random Switch now keeps your selected song and plays random songs from the playlist.
+** Next and previous switches choose a random song (while switch is in the random play position).
+** Next and previous switches work sequentially when not in Random play positon.
 ** Streamlined screen layout.  
 ** Easily point the program to the [Multiple Playlists].  
 ** The only limit to the number of playlists is SD Card size.  
 ** Number of songs in the playlist is displayed on the selection screen.  
-** More screen room for telementry items.  
+** More screen room for telemetry items.  
 ** Progress Bar for the playing song length.    
 
 Existing Features
@@ -28,22 +21,20 @@ Existing Features
 ** Playlists are separated by recognizable names you have chosen (3D Flying, Rock-N-Roll, Classic Rock, My Mix, Relaxing).   
 ** On-screen confirmation of the playlist selected.    
 ** Automatic song advancement.   
-** Compatible with Most common radios FrSky Q X7, X lite 9X series, Horus Radios.  As well as the Radiomaster and Jumper radios running at least [OpenTX](http://www.open-tx.org) 2.3.    
+** Compatible with Most common radios FrSky Q X7, X lite 9X series Radios running at least [OpenTX](http://www.open-tx.org) 2.3.    
 
-* Color Screen Radios  
-  ![Color Screen Layout](Color%20Screen%20Widget/Screenshots3/Colorscreen.PNG)  
+
 * Taranis Q X7 and Xlite  
   ![Taranis QX7](Screenshots/TaraniTunesQX7.PNG)  
 * Taranis X9D  
   ![Taranis X9D](Screenshots/TaraniTunesX9D.PNG)
 * Customizable Screen Layout    
-  ![Customize Scrren Layout](Screenshots/Customize.PNG)  
+  ![Customize Screen Layout](Screenshots/Customize.PNG)  
 * Playlist Selection Menu    
   ![Selection Menu](Screenshots/Selection1.PNG)
 
   
 ### Installation
-**For color Radios go the to color screen folder for installation and usage!
 1. On your computer:
 	1. Edit both `iTunes_player.lua` and `itunes.lua` to have your desired amount of playlists. Detailed instructions are in the file(s) comments. Place both files in the `/SCRIPT/TELEMETRY` directory on your SD card.  
 
@@ -53,17 +44,17 @@ Existing Features
 Examples >> `/SOUNDS/lists/3dflying`, `/SOUNDS/lists/practice`, `/SOUNDS/lists/hardrock`, `/SOUNDS/lists/competition`
 
 2. Create a "playlist.lua" file in each of those directories.
-	1. I recommend using [`Mp3tag`](https://www.mp3tag.de/en/index.html) to create your playlists. It will automatically add the required informations in TaraniTunes’ format. *Please look at the instructions in [`Auto_Playlist`](/Auto_Playlist)*.
+	1. I recommend using [`Mp3tag`](https://www.mp3tag.de/en/index.html) to create your playlists. It will automatically add the required information in TaraniTunes’ format. *Please look at the instructions in [`Auto_Playlist`](/Auto_Playlist)*.
 
 	2.  If you prefer to manually create the playlist files. Each line must be formatted like this:   
 	`{"Song name", "SONG_FILENAME", duration},`
 		1. `Song name` is the full name, with artist if you want.
 		2. `SONG_FILENAME` must be 6 characters or less.
-		3. `duration` is your song’s duration in seconds. *EXAMPLE - Your song is 3:45 long you would enter 225. For a 4:52 song enter 292. Simply calculate `minutes × 60 + seconds` to get your song’s duration. Song length can usually be found in the file’s properties.*  
+		3. `duration` is your song’s duration in seconds. *EXAMPLE - Your song is 3:45 long you would enter 225. For a 4:52 song you would  enter 292. Simply calculate `minute’s × 60 + seconds` to get your song’s duration. Song length can usually be found in the file’s properties.*  
 
  Look at [playlist.lua](playlist.lua) for an example of the required structure of the file.
 
-3. Put your corresponding songs `SONG_FILENAME.wav` in `/SOUNDS/en` if your radio is in English (otherwise replace `en` with your language). They must be converted to mono, preferably normalized, and encoded in Microsoft WAV 16-bits signed PCM at a 32 kHz sampling rate, you can use [Audacity](http://www.audacityteam.org) to do that, it works great. Remember the filename must be 6 characters or less or else it will not play.
+3. Put your corresponding songs `SONG_FILENAME.wav` in `/SOUNDS/en` if your radio is in English (otherwise replace `en` with your language). They must be converted to mono, preferably normalized, and encoded in Microsoft WAV 16-bits signed PCM at a 32 kHz sampling rate, you can use [Audacity](http://www.audacityteam.org) to do that, it works great. Remember the filename must be 6 characters or less or else it will not play.
 
 4. On your Taranis or (in companion) **This is how I setup my radio:
 	1. Set “TIMER3” as follows:      
@@ -82,13 +73,13 @@ There you go! Next section will explain how to use TaraniTunes.
 
 ### Usage
 
-From the main screen, hold “Page” to access TaraniTunes Telementry Screen.
+From the main screen, hold “Page” to access TaraniTunes Telemetry Screen.
 1. Put the “SB” switch in the lower position to start playing the music.
 2. Put the "SB" switch in the Middle position to pause the song. It will continue from where it left off when the switch is returned to the lower "play" position.
-3. Put “SB” in the up position to select a random song from your playlist. It will play and select another song from your playlist when completed.  To pause the selected song, place SB in the middle position and then to the lower position to continue the song from where it was paused.  If you put the switch back in the upper position it will select a new song.
+3. Put “SB” in the up position to select a random song from your playlist. It will play and select another song from your playlist when completed.  To pause the selected song, place SB in the middle position. placing it back into the random position will continue to play the song from where you left off.
 4. When the song ends, the next song will automatically play and “Timer3” will be reset.
 5. “Timer3” will also automatically reset if you change songs.
-6. Press rudder trim right or rudder trim left to play next or previous song respectively.
+6. Press rudder trim right or rudder trim left to play next or previous song respectively. While in random song next and previous will select another random song.
 7.  The screen does not have to be displayed for it to work.  You can have the music playing and use the telemetry screen of your choice. 
 If you move the "`SB`" switch or trims the music will respond accordingly.  The only function that will not work on a different screen is selecting a new playlist (described below).
 
@@ -103,4 +94,5 @@ If you move the "`SB`" switch or trims the music will respond accordingly.  The 
 Enjoy it as much as I do.    
 
 ####  Housekeeping Notes  
-Neither the firmware simulator nor Companion can compile all of the `playlist.lua` scripts to allow you to test drive and tweek it.  This must be done on the radio after you set your directories in the `iTunes.lua` file and have created the playlists. After compiling the playlists you can modify the screen layout in `iTunes_Player.lua` to reflect your personal taste or make futher enhancements.
+Neither the firmware simulator nor Companion can compile all of the `playlist.lua` scripts to allow you to test drive and tweak it.  This must be done on the radio after you set your directories in the `iTunes.lua` file and have created the playlists. After compiling the playlists you can modify the screen layout in `iTunes_Player.lua` to reflect your personal taste or make further enhancements.
+
