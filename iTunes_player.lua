@@ -183,24 +183,31 @@ local function background()
 -- Previous song
 	if getValue(prevSongSwitchId) > 0 then
 		if not prevSongSwitchPressed then
-		if getValue(randomSongSwitchId) > 0 then
-			playingSong = math.random (1, #playlist)
-			model.setTimer(2,{value=0})
-			songChanged = true
-			screenUpdate = true
-			nextScreenUpdate = true	
-		 else
-		 	model.setTimer(2,{value=0})
-			prevSongSwitchPressed = true
-			nextScreenUpdate = true
-			songChanged = true
-			screenUpdate = true
-			if playingSong == 1 then
-				playingSong = #playlist
+			if getValue(randomSongSwitchId) > 0 then
+				model.setTimer(2,{value=0})
+				songChanged = true
+				screenUpdate = true
+				nextScreenUpdate = true	
 			else
-				playingSong = playingSong - 1
+				if model.getTimer(2).value < 1 then
+					model.setTimer(2,{value=0})
+					prevSongSwitchPressed = true
+					nextScreenUpdate = true
+					songChanged = true
+					screenUpdate = true
+					if playingSong == 1 then
+						playingSong = #playlist
+					else
+						playingSong = playingSong - 1
+					end
+				else 
+					model.setTimer(2,{value=0})
+					prevSongSwitchPressed = true
+					nextScreenUpdate = true
+					songChanged = true
+					screenUpdate = true
+				end
 			end
-		end
 		end
 	else
 		prevSongSwitchPressed = false
@@ -262,7 +269,7 @@ lcd.clear();
 		lcd.drawTimer(LCD_W/4+69, 1, flight,MIDSIZE)
 		
 	--current time
-		lcd.drawText(1,15,"Time= ".. timeText,PREC11)	
+		lcd.drawText(1,14,datenow.hour12..":"..timemins.." "..datenow.suffix,INVERS)	
 		elseif LCD_W == 128 then
 
 -- Smaller text layout for QX7 and Xlite radios	
@@ -271,7 +278,7 @@ lcd.clear();
 		lcd.drawTimer(LCD_W/2+9, 1, flight,SMLSIZE)
 		
 	--current time
-		lcd.drawText(1,15, timeText,PREC1)	
+		lcd.drawText(1,14,datenow.hour12..":"..timemins.." "..datenow.suffix,INVERS)	
 	end
 		
 --[[ Change the layout of this portion to your desired screen look
