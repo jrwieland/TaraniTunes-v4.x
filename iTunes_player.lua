@@ -259,7 +259,7 @@ lcd.clear();
 	local flight=model.getTimer(1).value--flight duration timer: 0=timer1, 1=timer2
 	local upTime=model.getTimer(2).value--do not change this value it is how long the current song has played
 	local datenow = getDateTime()		
-	local timeText = (string.format("%02d:%02d",datenow.hour,datenow.min))
+	local timemins = (string.format("%02d",datenow.min))
  	local batt = getValue("tx-voltage")
 	
 -- Calculate indexes for screen display
