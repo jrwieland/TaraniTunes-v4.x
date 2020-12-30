@@ -259,7 +259,7 @@ lcd.clear();
 	local flight=model.getTimer(1).value--flight duration timer: 0=timer1, 1=timer2
 	local upTime=model.getTimer(2).value--do not change this value it is how long the current song has played
 	local datenow = getDateTime()		
-	local timeText = (string.format("%02d:%02d",datenow.hour,datenow.min))
+	local timemins = (string.format("%02d",datenow.min))
  	local batt = getValue("tx-voltage")
 	
 -- Calculate indexes for screen display
@@ -269,7 +269,7 @@ lcd.clear();
 		lcd.drawTimer(LCD_W/4+69, 1, flight,MIDSIZE)
 		
 	--current time
-		lcd.drawText(1,15,"Time= ".. timeText,PREC11)	
+		lcd.drawText(1,14,datenow.hour12..":"..timemins.." "..datenow.suffix,INVERS)	
 		elseif LCD_W == 128 then
 
 -- Smaller text layout for QX7 and Xlite radios	
@@ -278,7 +278,7 @@ lcd.clear();
 		lcd.drawTimer(LCD_W/2+9, 1, flight,SMLSIZE)
 		
 	--current time
-		lcd.drawText(1,15, timeText,PREC1)	
+		lcd.drawText(1,14,datenow.hour12..":"..timemins.." "..datenow.suffix,INVERS)	
 	end
 		
 --[[ Change the layout of this portion to your desired screen look
