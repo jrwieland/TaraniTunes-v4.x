@@ -17,31 +17,31 @@
 local playingSong = 1
 local errorOccured = false
 
-loadScript("/SOUNDS/lists/bubba_mix/playlist.lua")() --1st playlist in songList (see sample list below)
+loadScript("/SOUNDS/lists/funrock/playlist.lua")() --1st playlist in songList (see sample list below)
 
 --Playlists folders names i.e. /SONGS/lists/"foldername"  below are sample names
 local songList=
-{"bubba_mix",
-"garage",
+{"funrock",
+"bubba_mix",
 "classic_country",
 "country_rock",
 "easy",
 "fun_country",
-"funrock",
+"todays",
 "hard",
 "laid_back",
 "modern",
 "rock",
 "soundtracks",
-"todays",
+"garage",
 "upbeat",
 } 
- 
+
 --Options
 local options = {
   { "Use dflt clrs", BOOL, 1 },
   { "Shadow", BOOL, 0 }
-}
+  }
 
 -- create zones
 local function create(zone, options)
@@ -60,23 +60,12 @@ end
 --Update zones and options	
 local function update(tunes, options)
  tunes.options = options
-  end
+     end
  
---BackGround change of the music if the screen is not active
-local function background(tunes)--change the music if the screen is not active
-local long=playlist[playingSong][3]
-	if model.getTimer(2).value >= long then
-		if playingSong == #playlist then
-			playingSong = 1	
-			model.setCustomFunction(62,{switch = 134,func = 16,name = playlist[playingSong][2]})
-			model.setTimer(2,{value=0})
-		else
-			playingSong = playingSong + 1
-			model.setCustomFunction(62,{switch = 134,func = 16,name = playlist[playingSong][2]})
-			model.setTimer(2,{value=0})
-		end
-	end
+--BackGround 
+local function background(tunes)
  end
+ 
 -- Following is the various widgets zones from top bar to full screen (make changes as desired)
 -- Zone size: top bar widgets
 local function refreshZoneTiny(tunes)
@@ -179,7 +168,7 @@ local long=playlist[playingSong][3]
  --[[ I use different capacity batteries the timers are
  	  adjusted using SF depending on the battery I'm flying ]]--
 	lcd.drawFilledRectangle(40,73,100,2)
- 	local battsw = getValue('se')
+ 	local battsw = getValue('sb')
  	lcd.drawText(40, 90, "Battery Loaded",SMLSIZE)
 	lcd.drawFilledRectangle(40,105,100,2)
  	if battsw == -1024 then 
@@ -236,9 +225,10 @@ local long=playlist[playingSong][3]
 		lcd.drawText(40, y+56, playlist[selection + 1][1])
   	 end 
 	 end
+
 end
 	  
- --- Zone size: 460x252 1/1 (no sliders/trim/topbar)
+	  --- Zone size: 460x252 1/1 (no sliders/trim/topbar)
 local function refreshZoneFull(tunes)
 local upTime=model.getTimer(2).value--do not change this value it is how long the current song has played
 local long=playlist[playingSong][3]
@@ -270,14 +260,14 @@ local long=playlist[playingSong][3]
 	lcd.drawFilledRectangle(8,73,130,2)
 	lcd.drawText(10, 95, "Battery Loaded")
 	lcd.drawFilledRectangle(8,116,130,2)
- 	local battsw = getValue('se')
+ 	local battsw = getValue('sb')
  	if battsw == -1024 then 
  		lcd.drawText(65,75,"REG")
- 		lcd.drawSwitch(8,75,13)else
+ 		lcd.drawSwitch(30,75,4)else
  	if battsw == 0 then
- 		lcd.drawSwitch(30,75,14)
+ 		lcd.drawSwitch(30,75,5)
  		lcd.drawText(65,75,"MED") else
- 		lcd.drawSwitch(8,75,15)
+ 		lcd.drawSwitch(30,75,6)
  		lcd.drawText(65,75,"XXL")
  	end 
  	end
@@ -344,37 +334,12 @@ local long=playlist[playingSong][3]
  	 end 
  	 end	
  end
- 
-local function songChanged(tunes)
-model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
-end
 
---load next Playlist selection
-local function NChangeList(tunes)
-	if model.getGlobalVariable(8,0) >= #songList then
-		set2 = songList[1] 
-		model.setGlobalVariable(8,0,1)
-	else
-		set2 = songList[model.getGlobalVariable(8,0)]
-	end
-	loadScript("/SOUNDS/lists/"..set2.."/playlist.lua")()
-	songChanged(tunes)
-	
-end
-	--load Previous Playlist selection
-local function PChangeList(tunes)
-	if model.getGlobalVariable(8,0) <= 0 then	
-		model.setGlobalVariable(8,0,#songList)
-		set2 = songList[model.getGlobalVariable(8,0)]
-	else
-		set2 = songList[model.getGlobalVariable(8,0)]
-	end
-	loadScript("/SOUNDS/lists/"..set2.."/playlist.lua")()
-	songChanged(tunes)
-end	
-	
-function refresh(tunes) 
-
+function refresh(tunes)
+listP = getValue("ls63")
+listN = getValue("ls64")
+prevS = getValue("ls61")
+nextS = getValue("ls62")
 --song over
 	local long=playlist[playingSong][3]
 	if model.getTimer(2).value >= long then
@@ -388,37 +353,74 @@ function refresh(tunes)
 			model.setTimer(2,{value=0})
 		end
 	end
--- previous song
-	if getValue("ls61") >= 1 then
-		if playingSong == 1 then
-			playingSong = #playlist	
-			songChanged(tunes)
-		else
-			playingSong = playingSong - 1
-			songChanged(tunes)
-		end
-	end	
-	
--- Next song
-	if getValue("ls62") >= 1 then
+	-- Next song
+	if nextS > -1 then
+		if not nextSongSwitchPressed then
 		if playingSong == #playlist then
 			playingSong = 1	
-			songChanged(tunes)
+			model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
 		else
 			playingSong = playingSong + 1
-			songChanged(tunes)
+			model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
 		end
+		else
+		nextSongSwitchPressed = false
 	end	
+	end
 	
 --Change Previous Playlist
-	if getValue("ls63") >= 1 then
-		PChangeList(tunes)
+	if listP > -1 then
+		if not prevListSwitchPressed then
+		if model.getGlobalVariable(8,0)<= 0 then	
+		model.setGlobalVariable(8,0,#songList)
+		playingSong = 1	
+		set2 = songList[model.getGlobalVariable(8,0)]
+		else
+		playingSong = 1	
+		set2 = songList[model.getGlobalVariable(8,0)]
+	end
+	loadScript("/SOUNDS/lists/"..set2.."/playlist.lua")()
+	model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
+	model.setTimer(2,{value=0})
+	else
+	prevListSwitchPressed = false
+	end
 	end
 	
 	--Change next Playlist
-	if getValue("ls64") >= 1 then
-		NChangeList(tunes)
+	if listN > -1 then
+	if not nextListSwitchPressed then
+		if model.getGlobalVariable(8,0) >= #songList then
+		set2 = songList[1] 
+		playingSong = 1	
+		model.setGlobalVariable(8,0,1)
+	else
+		playingSong = 1	
+		set2 = songList[model.getGlobalVariable(8,0)]
 	end
+	loadScript("/SOUNDS/lists/"..set2.."/playlist.lua")()
+	model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
+	model.setTimer(2,{value=0})
+		else
+		nextListSwitchPressed = false
+	end
+	end
+	-- previous song
+	if prevS > -1 then
+	if not prevSongSwitchPressed then
+		if playingSong == 1 then
+			playingSong = #playlist	
+			model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
+			model.setTimer(2,{value=0})
+		else
+			playingSong = playingSong - 1
+			model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
+			model.setTimer(2,{value=0})
+		end
+		else
+		prevSongSwitchPressed = false
+	end	
+	end	
 	
 --Widget Display by Size
 	if tunes.zone.w  > 450 and tunes.zone.h > 240 then refreshZoneFull(tunes)
