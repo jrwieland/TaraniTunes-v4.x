@@ -50,9 +50,9 @@ Examples >> `/SOUNDS/lists/3dflying`, `/SOUNDS/lists/practice`, `/SOUNDS/lists/h
 	![Timer settings](Screenshots3/clrtimer.png)    
  	The inverse middle position of your chosen "3" position switch is the best practice for running the widget.        
                  
-	2. Set active “FLIGHT MODES” model 5 and 6 trims as follows:     
+	2. Set active “FLIGHT MODES” model rudder and alieron trims as follows :     
 	![Flight modes settings](Screenshots3/clrtrims.png)  
-	In fact, put every 5 and 6 trims to “`--`” for every flight mode you use.      
+	 (Change to your desired control trims)           
 	                
 	3. The playlist selector uses GV9 .... The program will set this item:     
 	![Global Variables](Screenshots3/clrgv.png)    
@@ -74,16 +74,16 @@ There you go! Next section will explain how to use TaraniTunes.
 
 The program is written to work within the widget space it is provided (from just the small top bar to full screen with no trims or top bar visible).        
           
-1. Put the “SB” switch in the lower position to start playing the music.
-2. Put the "SB" switch in the Middle position to pause the song. It will continue from where it left off when the switch is returned to the lower "play" position.  When the song ends, the next song will automatically play and “Timer3” will be reset.
-3. Press T5 down / up trim to select and play next or previous song respectively.     
-4.  Put the “SB” switch in the upper (away) position. **The SB switch acts as an enter button.**   Return the "SB" to the lower position and the newly selected song will begin to play.    
-###  If the SB switch is not put in the away position, the current song and timer is not cleared from the lua memory and the currently playing song will continue to play until the timer it is over.  The timer and the music will be out of sync with the screen for a couple of songs, but it will normalize eventually  To correct the out of sync condition, move  the sb to away (enter) and return to the play position.    
+1. Put the “SC” switch in the lower position to start playing the music.
+2. Put the "SC" switch in the Middle position to pause the song. It will continue from where it left off when the switch is returned to the lower "play" position.  When the song ends, the next song will automatically play and “Timer3” will be reset.
+3. Press Rudder right / left trim to select and play next or previous song respectively.     
+4.  Put the “SC” switch in the upper (away) position. **The SC switch acts as an enter button.**   Return the "SC" to the lower position and the newly selected song will begin to play.    
+###  If the SC switch is not put in the away position, the current song and timer is not cleared from the lua memory and the currently playing song will continue to play until the timer it is over.  The timer and the music will be out of sync with the screen for a couple of songs, but it will normalize eventually  To correct the out of sync condition, move  the SC to the away position (enter) and return it to the play position.    
 
 ### Change Playlists     
-1. Press T6 down / up trim to select the next or previous playlist respectively.  (the program will fail if the 6u is the first command, the
-2. Put the “SB” switch in the upper (away) position.  Again **The SB+ switch acts as an enter button.**   
-3. Return the "SB" to the lower position and the newly selected playlist will begin to play
+1. Press Aileron right / left trim to select the next or previous playlist respectively.  
+2. Put the “SC” switch in the upper (away) position.  Again **The SC+ switch acts as an enter button.**   
+3. Return the "SC" to the lower position and the newly selected playlist will begin to play
 
 **Tweek and make any enhancements you need too in order to Enjoy it as much as I do.  
 **If you want the background I am using it is in the `Screenshots3` folder
