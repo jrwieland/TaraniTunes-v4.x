@@ -9,7 +9,7 @@ GilDev and I agreed that both versions of the script (the original and this adva
      
 ### No changes were made to the "xlite, 9x or Q7"" radio's program.    
 ### There is a "Random Mode" version available for the "xlite, 9x or Q7" radios.  
-It is available here >>> https://github.com/jrwieland/Grayscale_Radios/TaraniTunes-v4x/tree/random-mode
+It is available here >>> https://github.com/jrwieland/TaraniTunes-v4.x/tree/random-mode
 
 Key Enhancements
 ----------------
