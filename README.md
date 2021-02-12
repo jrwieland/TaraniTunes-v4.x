@@ -42,7 +42,7 @@ Existing Features
 
   
 ### Installation
-**For color Radios go to the color screen folder on Github for installation and usage or  [Click here](https://github.com/jrwieland/TaraniTunes-v4.x/files/5974030/Color.Installation.zip)to download the current Color release.
+**For color Radios go to the color screen folder on Github for installation and usage or  [Click here](https://github.com/jrwieland/TaraniTunes-v4.x/files/5974030/Color.Installation.zip) to download the current Color release.
 
 **For Grayscale radios (9XD, QX7, Xlite etc.) go to the Grayscale Radios for installation and usage, or [Click here](https://github.com/jrwieland/TaraniTunes-v4.x/files/5973891/Grayscale.zip) to download the current release.
 
