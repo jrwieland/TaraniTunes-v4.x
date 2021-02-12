@@ -42,8 +42,8 @@ Existing Features
 
   
 ### Installation
-**For color Radios go the to the color screen folder for installation and usage!
+**For color Radios go to the color screen folder on Github for installation and usage or  [Click here](https://github.com/jrwieland/TaraniTunes-v4.x/files/5974030/Color.Installation.zip)to download the current Color release.
 
-**For Grayscale radios (9XD, QX7, Xlite etc.) got to the Grayscale Radios For installation and usage.
+**For Grayscale radios (9XD, QX7, Xlite etc.) go to the Grayscale Radios for installation and usage, or [Click here](https://github.com/jrwieland/TaraniTunes-v4.x/files/5973891/Grayscale.zip) to download the current release.
 
-**The Auto playlist folder contains a the instructtions for setting up playlists automatically to the correct format.
+**The Auto playlist folder contains the instructions for setting up playlists automatically to the correct format.  It makes it easy to create new lists.
