@@ -340,6 +340,7 @@ listP = getValue("ls63")
 listN = getValue("ls64")
 prevS = getValue("ls61")
 nextS = getValue("ls62")
+
 --song over
 	local long=playlist[playingSong][3]
 	if model.getTimer(2).value >= long then
@@ -356,13 +357,20 @@ nextS = getValue("ls62")
 	-- Next song
 	if nextS > -1 then
 		if not nextSongSwitchPressed then
-		if playingSong == #playlist then
+      if model.getTimer(2).value == 0 then
+      model.setTimer(2,{value=1})else
+      if model.getTimer(2).value >= 1 and playingSong == #playlist then
 			playingSong = 1	
 			model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
-		else
-			playingSong = playingSong + 1
+      model.setTimer(2,{value=0})
+      else
+			if model.getTimer(2).value >= 1 then
+      playingSong = playingSong + 1
 			model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
+      model.setTimer(2,{value=0})
+    end      
 		end
+    end
 		else
 		nextSongSwitchPressed = false
 	end	
@@ -371,7 +379,9 @@ nextS = getValue("ls62")
 --Change Previous Playlist
 	if listP > -1 then
 		if not prevListSwitchPressed then
-		if model.getGlobalVariable(8,0)<= 0 then	
+		if model.getTimer(2).value == 0 then
+      model.setTimer(2,{value=1})else
+		if model.getTimer(2).value >= 1 and  model.getGlobalVariable(8,0)<= 0 then	
 		model.setGlobalVariable(8,0,#songList)
 		playingSong = 1	
 		set2 = songList[model.getGlobalVariable(8,0)]
@@ -379,9 +389,10 @@ nextS = getValue("ls62")
 		playingSong = 1	
 		set2 = songList[model.getGlobalVariable(8,0)]
 	end
-	loadScript("/SOUNDS/lists/"..set2.."/playlist.lua")()
+  	loadScript("/SOUNDS/lists/"..set2.."/playlist.lua")()
 	model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
 	model.setTimer(2,{value=0})
+  end
 	else
 	prevListSwitchPressed = false
 	end
@@ -390,17 +401,20 @@ nextS = getValue("ls62")
 	--Change next Playlist
 	if listN > -1 then
 	if not nextListSwitchPressed then
-		if model.getGlobalVariable(8,0) >= #songList then
+    if model.getTimer(2).value == 0 then
+      model.setTimer(2,{value=1})else
+		if model.getTimer(2).value >= 1 and model.getGlobalVariable(8,0) >= #songList then
 		set2 = songList[1] 
 		playingSong = 1	
 		model.setGlobalVariable(8,0,1)
 	else
 		playingSong = 1	
 		set2 = songList[model.getGlobalVariable(8,0)]
-	end
-	loadScript("/SOUNDS/lists/"..set2.."/playlist.lua")()
+		loadScript("/SOUNDS/lists/"..set2.."/playlist.lua")()
 	model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
 	model.setTimer(2,{value=0})
+end
+end
 		else
 		nextListSwitchPressed = false
 	end
@@ -408,7 +422,9 @@ nextS = getValue("ls62")
 	-- previous song
 	if prevS > -1 then
 	if not prevSongSwitchPressed then
-		if playingSong == 1 then
+    if model.getTimer(2).value == 0 then
+      model.setTimer(2,{value=1})else
+		if model.getTimer(2).value >= 1 and playingSong == 1 then
 			playingSong = #playlist	
 			model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
 			model.setTimer(2,{value=0})
@@ -417,6 +433,7 @@ nextS = getValue("ls62")
 			model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
 			model.setTimer(2,{value=0})
 		end
+    end
 		else
 		prevSongSwitchPressed = false
 	end	
