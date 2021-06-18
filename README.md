@@ -4,6 +4,9 @@ TaraniTunes v4.1 (color radios) and v3.01 (non-color radios)
 *Originally this started as a separate advanced fork from the Original TaraniTunes developed by [GilDev](https://github.com/GilDev).     
 GilDev and I agreed that both versions of the script (the original and this advanced version) would be available for users but hosted separately.*
 
+6/17/2021 Tested on EdgeTX (full screen mode) IT WORKS!!     
+---------------     
+
 **Resizable zone widget works in all zones including the top bar!!!     
 "Widget" creation for Radios running OpenTX on Color Radios     
      
