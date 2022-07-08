@@ -227,10 +227,11 @@ local long=playlist[playingSong][3]
 	 end
 
 end
-	  
-	  --- Zone size: 460x252 1/1 (no sliders/trim/topbar)
+  elogo = Bitmap.open("/THEMES/Darkblue/edge.png") 
+
+--- Zone size: 460x252 1/1 (no sliders/trim/topbar)
 local function refreshZoneFull(tunes)
-local upTime=model.getTimer(2).value--do not change this value it is how long the current song has played
+local upTime=model.getTimer(2).value --do not change this value it is how long the current song has played
 local long=playlist[playingSong][3]
 
  function round(num, decimals)
@@ -306,7 +307,7 @@ lcd.drawText(8, 48,"TX Batt "..round(batt,1).."v")
 
 --Music
 -- Progressbar 
-	local upTime=model.getTimer(2).value--do not change this value it is how long the current song has played
+	local upTime=model.getTimer(2).value --do not change this value it is how long the current song has played
 	local k = math.floor((upTime/long)*40)*10
 	lcd.drawTimer(7, y-10, upTime, SMLSIZE+INVERS)
 	lcd.drawTimer(434,y-10, long, SMLSIZE+INVERS)
