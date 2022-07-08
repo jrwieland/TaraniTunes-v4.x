@@ -241,18 +241,16 @@ local long=playlist[playingSong][3]
 --Current time, OpenTX Version & Model Information
 	local datenow = getDateTime()		
 	local timemins = (string.format("%02d",datenow.min))
-	lcd.drawText(8,30,datenow.hour12..":"..timemins.." "..datenow.suffix,INVERS)	
+	lcd.drawText(73,22,"Time "..datenow.hour12..":"..timemins.." "..datenow.suffix, INVERS)	
 	local ver = getVersion() --OpenTX Version
-	local logo = Bitmap.open("/THEMES/Darkblue/topmenu_opentx.bmp")
-	lcd.drawBitmap(logo,8,5,75)
-	lcd.drawText(35,7,ver)
-	local aircraft = Bitmap.open("/IMAGES/" .. model.getInfo().bitmap)
-	lcd.drawText(190,30, model.getInfo().name)--adjust as needed
-	lcd.drawBitmap(aircraft,165,55)--adjust as needed
+  lcd.drawBitmap(elogo,5,8,90)
+ 	lcd.drawText(73,4,"V. "..ver)
+	lcd.drawText(185,23, model.getInfo().name,DBLSIZE)--adjust as needed
+	lcd.drawBitmap(aircraft,175,55)--adjust as needed
 	
 --Transmitter battery
-	local batt = getValue("tx-voltage")
-	lcd.drawText(8, 51,"TX Batt "..round(batt,1).."v")
+local batt = getValue("tx-voltage")
+lcd.drawText(8, 48,"TX Batt "..round(batt,1).."v")
  
  -- Flight Battery Loaded
  --[[ I use different capacity batteries, the timers are
@@ -260,15 +258,15 @@ local long=playlist[playingSong][3]
 	lcd.drawFilledRectangle(8,73,130,2)
 	lcd.drawText(10, 95, "Battery Loaded")
 	lcd.drawFilledRectangle(8,116,130,2)
- 	local battsw = getValue('sb')
+ 	local battsw = getValue('se')
  	if battsw == -1024 then 
- 		lcd.drawText(65,75,"REG")
- 		lcd.drawSwitch(30,75,4)else
+ 		lcd.drawText(65,75,"REG", INVERS)
+ 		lcd.drawSwitch(30,75,13)else
  	if battsw == 0 then
- 		lcd.drawSwitch(30,75,5)
- 		lcd.drawText(65,75,"MED") else
- 		lcd.drawSwitch(30,75,6)
- 		lcd.drawText(65,75,"XXL")
+ 		lcd.drawSwitch(30,75,14)
+ 		lcd.drawText(65,75,"MED", INVERS) else
+ 		lcd.drawSwitch(30,75,15)
+ 		lcd.drawText(65,75,"XXL", INVERS)
  	end 
  	end
  	
@@ -294,7 +292,7 @@ local long=playlist[playingSong][3]
 
 --rssi
 	lcd.drawText(8,122,"RSSI Sig  "..getValue("RSSI").." / ")
-	lcd.drawText(125,122,getValue("RSSI-").." MIN")
+	lcd.drawText(125,122,getValue("RSSI-").." MIN", INVERS)
 	
 -- Altitude
 	lcd.drawText(8,143,"HEIGHT= ")
@@ -342,111 +340,97 @@ prevS = getValue("ls61")
 nextS = getValue("ls62")
 
 --song over
-	local long=playlist[playingSong][3]
-	if model.getTimer(2).value >= long then
-		if playingSong == #playlist then
-			playingSong = 1	
-			model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
-			model.setTimer(2,{value=0})
-		else
-			playingSong = playingSong + 1
-			model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
-			model.setTimer(2,{value=0})
-		end
-	end
-	-- Next song
-	if nextS > -1 then
-		if not nextSongSwitchPressed then
-      if model.getTimer(2).value == 0 then
-      model.setTimer(2,{value=1})else
-      if model.getTimer(2).value >= 1 and playingSong == #playlist then
-			playingSong = 1	
-			model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
-      model.setTimer(2,{value=0})
-      else
-			if model.getTimer(2).value >= 1 then
-      playingSong = playingSong + 1
-			model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
-      model.setTimer(2,{value=0})
-    end      
-		end
-    end
-		else
-		nextSongSwitchPressed = false
-	end	
-	end
-	
---Change Previous Playlist
-	if listP > -1 then
-		if not prevListSwitchPressed then
-		if model.getTimer(2).value == 0 then
-      model.setTimer(2,{value=1})else
-		if model.getTimer(2).value >= 1 and  model.getGlobalVariable(8,0)<= 0 then	
-		model.setGlobalVariable(8,0,#songList)
-		playingSong = 1	
-		set2 = songList[model.getGlobalVariable(8,0)]
-		else
-		playingSong = 1	
-		set2 = songList[model.getGlobalVariable(8,0)]
-	end
-  	loadScript("/SOUNDS/lists/"..set2.."/playlist.lua")()
-	model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
-	model.setTimer(2,{value=0})
+local long=playlist[playingSong][3]
+if model.getTimer(2).value >= long then
+  if playingSong == #playlist then
+    model.setGlobalVariable(7,0,1)
+    playingSong = model.getGlobalVariable(7,0)
+    flushAudio()
+    model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
+    model.setTimer(2,{value=0})
+  else
+    flushAudio()
+    playingSong = playingSong +1
+    model.setGlobalVariable(7,0,playingSong)
+    model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
+    model.setTimer(2,{value=0})
   end
-	else
-	prevListSwitchPressed = false
-	end
-	end
-	
-	--Change next Playlist
-	if listN > -1 then
-	if not nextListSwitchPressed then
-    if model.getTimer(2).value == 0 then
-      model.setTimer(2,{value=1})else
-		if model.getTimer(2).value >= 1 and model.getGlobalVariable(8,0) >= #songList then
-		set2 = songList[1] 
-		playingSong = 1	
-		model.setGlobalVariable(8,0,1)
-	else
-		playingSong = 1	
-		set2 = songList[model.getGlobalVariable(8,0)]
-		loadScript("/SOUNDS/lists/"..set2.."/playlist.lua")()
-	model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
-	model.setTimer(2,{value=0})
+
 end
-end
-		else
-		nextListSwitchPressed = false
-	end
-	end
-	-- previous song
-	if prevS > -1 then
-	if not prevSongSwitchPressed then
-    if model.getTimer(2).value == 0 then
-      model.setTimer(2,{value=1})else
-		if model.getTimer(2).value >= 1 and playingSong == 1 then
-			playingSong = #playlist	
-			model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
-			model.setTimer(2,{value=0})
-		else
-			playingSong = playingSong - 1
-			model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
-			model.setTimer(2,{value=0})
-		end
+-- Next song
+if nextS > -1 then
+  if not nextSongSwitchPressed then
+      if playingSong == #playlist then
+      model.setGlobalVariable(7,0,1)
+      playingSong = model.getGlobalVariable(7,0)	
+    else
+      playingSong = model.getGlobalVariable(7,0)
     end
-		else
-		prevSongSwitchPressed = false
-	end	
-	end	
-	
---Widget Display by Size
-	if tunes.zone.w  > 450 and tunes.zone.h > 240 then refreshZoneFull(tunes)
-  	  elseif tunes.zone.w  > 200 and tunes.zone.h > 165 then refreshZoneXLarge(tunes)
-	  elseif tunes.zone.w  > 180 and tunes.zone.h > 145 then refreshZoneLarge(tunes)
-	  elseif tunes.zone.w  > 170 and tunes.zone.h >  65 then refreshZoneMedium(tunes)
-	  elseif tunes.zone.w  > 150 and tunes.zone.h >  28 then refreshZoneSmall(tunes)
-	  elseif tunes.zone.w  >  65 and tunes.zone.h >  35 then refreshZoneTiny(tunes)
-  	end
+    flushAudio()
+    model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
+    model.setTimer(2,{value=0})
+  else
+    nextSongSwitchPressed = false
+  end	
 end
+
+--Change Previous Playlist
+if listP > -1 then
+  if not prevListSwitchPressed then
+     if model.getGlobalVariable(8,0)<= 0 then	
+      model.setGlobalVariable(8,0,#songList)
+      set2 = songList[model.getGlobalVariable(8,0)]
+      playingSong = 1
+    else
+      set2 = songList[model.getGlobalVariable(8,0)]
+      playingSong = 1
+    end
+    loadScript("/SOUNDS/lists/"..set2.."/playlist.lua")()
+    model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
+    model.setGlobalVariable(7,0,1)
+    flushAudio()
+    model.setTimer(2,{value=0})
+  else
+    prevListSwitchPressed = false
+  end
+end
+
+--Change next Playlist
+if listN > -1 then
+  if not nextListSwitchPressed then
+     if model.getGlobalVariable(8,0) >= #songList then
+      set2 = songList[1] 
+      model.setGlobalVariable(8,0,1)
+      playingSong = 1
+      else
+      set2 = songList[model.getGlobalVariable(8,0)]
+      playingSong = 1
+    end
+   
+    loadScript("/SOUNDS/lists/"..set2.."/playlist.lua")()
+    model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
+    model.setGlobalVariable(7,0,1)
+    flushAudio()
+    model.setTimer(2,{value=0})
+  else
+    nextListSwitchPressed = false
+  end
+end
+-- previous song
+if prevS > -1 then
+  if not prevSongSwitchPressed then
+    if playingSong == 1 then
+      model.setGlobalVariable(7,0,#playlist)
+      playingSong = model.getGlobalVariable(7,0)
+    else
+      playingSong = model.getGlobalVariable(7,0)
+    end
+    flushAudio()
+    model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
+    model.setTimer(2,{value=0})
+  end
+else
+  prevSongSwitchPressed = false
+end	
  
 return { name="iTunes", options=options, create=create, update=update, refresh=refresh, background=background }
