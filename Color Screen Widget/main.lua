@@ -1,5 +1,5 @@
 ---- #########################################################################
------# TaraniTunes v.4.2                                                     #
+-----# TaraniTunes v.4.3                                                     #
 ---- # License GPLv3: http://www.gnu.org/licenses/gpl-3.0.html		           #
 ---- #                                                                       #
 ---- # This program is free software; you can redistribute it and/or modify  #
