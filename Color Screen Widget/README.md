@@ -1,15 +1,18 @@
-TaraniTunes v4.2
+TaraniTunes v4.3
 ===========
-**Awesome music player for FrSky radios.**  
+**Awesome music player for OpenTX & EdgeTX radios.**  
      
 Key Enhancements
 ----------------    
-** Resizable zone widget works in all zones Including the Top Bar      
-** changed the code to allow changes to the switches outside of lua
-** Includes full screen layout for Horus, Jumper, and Radiomaster series radios.  
+** Imediate play of song or playlist when selected.  
+** FlushAudio Added to clear song playing when a new song/playlist is selected.
+** Model Global Variable 8 is also used to control the music (gv9 was already used) 
     
 Existing Features
 -----------------   
+** ** Resizable zone widget works in all zones Including the Top Bar      
+** changed the code to allow changes to the switches outside of lua
+** Includes full screen layout for Horus, Jumper, and Radiomaster series radios. 
 ** Playlists are separated by recognizable names you have chosen (3D Flying, Rock-N-Roll, Classic Rock, My Mix, Relaxing).   
 ** On-screen confirmation of the playlist selected.    
 ** Automatic song advancement.  
@@ -54,7 +57,8 @@ Examples >> `/SOUNDS/lists/3dflying`, `/SOUNDS/lists/practice`, `/SOUNDS/lists/h
 	![Flight modes settings](Screenshots3/clrtrims.png)  
 	 (Change to your desired control trims)           
 	                
-	3. The playlist selector uses GV9 .... The program will set this item:     
+	3. The playlist selector uses GV8 & GV9 .... The program will set these items: 
+	Set additional FM used in these items to FM0 
 	![Global Variables](Screenshots3/clrgv.png)    
 	                     
 	4. Set the the “LOGICAL SWITCHES” settings as follows:    
@@ -63,7 +67,7 @@ Examples >> `/SOUNDS/lists/3dflying`, `/SOUNDS/lists/practice`, `/SOUNDS/lists/h
 	Here are the logical switch settings for setting up the program in companion    
 	![Logical Switch Settings](Screenshots3/compls.PNG)      
 	                                    
-	5.Set the the “SPECIAL FUNCTION” settings as follows:      
+	5.Set the the “SPECIAL FUNCTION” SF 58-64 (SF 63 will be added/updated by the program):      
   	![Special Functions](Screenshots3/clrsf.png)  
 	Here are the special function settings for setting up the program in companion    
 	![Special Functions](Screenshots3/compsf.PNG)    
@@ -77,13 +81,13 @@ The program is written to work within the widget space it is provided (from just
 1. Put the “SC” switch in the lower position to start playing the music.
 2. Put the "SC" switch in the Middle position to pause the song. It will continue from where it left off when the switch is returned to the lower "play" position.  When the song ends, the next song will automatically play and “Timer3” will be reset.
 3. Press Rudder right / left trim to select and play next or previous song respectively.     
-4.  Put the “SC” switch in the upper (away) position. **The SC switch acts as an enter button.**   Return the "SC" to the lower position and the newly selected song will begin to play.    
-###  If the SC switch is not put in the away position, the current song and timer is not cleared from the lua memory and the currently playing song will continue to play until the timer it is over.  The timer and the music will be out of sync with the screen for a couple of songs, but it will normalize eventually  To correct the out of sync condition, move  the SC to the away position (enter) and return it to the play position.    
+4.  Put the “SC” switch in the upper (away) position to reset the song.  Return the "SC" to the lower position and the newly selected song will begin to play.    
+ 
+ ### Change Song    
+ Press Rudder right / left trim to select the next or previous song respectively
 
 ### Change Playlists     
-1. Press Aileron right / left trim to select the next or previous playlist respectively.  
-2. Put the “SC” switch in the upper (away) position.  Again **The SC+ switch acts as an enter button.**   
-3. Return the "SC" to the lower position and the newly selected playlist will begin to play
+Press Aileron right / left trim to select the next or previous playlist respectively.  
 
 **Tweek and make any enhancements you need too in order to Enjoy it as much as I do.  
 **If you want the background I am using it is in the `Screenshots3` folder
