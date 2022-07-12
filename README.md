@@ -1,10 +1,10 @@
-TaraniTunes v4.1 (color radios) and v3.01 (non-color radios)
+TaraniTunes v4.3 (color radios) and v3.01 (non-color radios)
 ===========
 **Awesome music player for OpenTX based radios. or any radio capable of running a lua script**  
 *Originally this started as a separate advanced fork from the Original TaraniTunes developed by [GilDev](https://github.com/GilDev).     
 GilDev and I agreed that both versions of the script (the original and this advanced version) would be available for users but hosted separately.*
 
-6/17/2021 Tested on EdgeTX (full screen mode) IT WORKS!!     
+6/17/2021 Tested on EdgeTX (full screen mode) IT WORKS!! Touch Funtion not integrated yet    
 ---------------     
 
 **Resizable zone widget works in all zones including the top bar!!!     
@@ -14,8 +14,13 @@ GilDev and I agreed that both versions of the script (the original and this adva
 ### There is a "Random Mode" version available for the "xlite, 9x or Q7" radios.  
 It is available here >>> https://github.com/jrwieland/TaraniTunes-v4.x/tree/random-mode
 
-Key Enhancements
+Key Enhancements in 4.3
 ----------------
+** Additional use of a second Model Global Variable in correlation with FlushAudio allows music and playlists to change without having to use a switch reset    
+** Added Flush Audio for imediate play of a song or playlist as it is selected   
+
+4.1 Enhancements    
+-------------------
 ** Resizable zone widget works in all zones    
 ** Added index numbers for trims to easily change it to your switch/trim preferences.    
 ** Added full screen layout for Horus, Jumper, and Radiomaster series radios.  
