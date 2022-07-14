@@ -1,17 +1,27 @@
-### Installation
+### TaraniTunes v4.0    
+Awesome music player for OpenTX & EdgeTX radios.
 
-1. On your computer:
-	1. Edit `iTunes.lua` to have your desired amount of playlists. Place the file in the `/SCRIPT/TELEMETRY` directory on your SD card.  
+Key Enhancements   
+** Steamlined code to match the Color Widget version in both look and feel.    
+** FlushAudio Added to clear song playing when a new song/playlist is selected.   
+** Song or playlist immediatelly play when selected.  No need to move switches as an "Enter Key".    
+** Model Global Variable 8 and 9 used is also used to keep track of the music and playlists.      
+** Removed the seperate player file all interaction is contained within the code.   
 
-	2. Create a folder "lists" under /SOUNDS
 
-	3. Create separate folders under "lists" for each desired playlist on your SD card. The folder names should pertain to the music played. **Do not add spaces to the directory names**
+### Installation  
+1. On your computer:   
+	a. Edit `iTunes.lua` to have your desired amount of playlists. Place the file in the `/SCRIPT/TELEMETRY` directory on your SD card.  
+
+	b. Create a folder "lists" under /SOUNDS
+
+	c. Create separate folders under "lists" for each desired playlist on your SD card. The folder names should pertain to the music played. **Do not add spaces to the directory names**
 Examples >> `/SOUNDS/lists/3dflying`, `/SOUNDS/lists/practice`, `/SOUNDS/lists/hardrock`, `/SOUNDS/lists/competition`
 
 2. Create a "playlist.lua" file in each of those directories.
-	1. I recommend using [`Mp3tag`](https://www.mp3tag.de/en/index.html) to create your playlists. It will automatically add the required information in TaraniTunes’ format. *Please look at the instructions in [`Auto_Playlist`](/Auto_Playlist)*.
+	a. I recommend using [`Mp3tag`](https://www.mp3tag.de/en/index.html) to create your playlists. It will automatically add the required information in TaraniTunes’ format. *Please look at the instructions in [`Auto_Playlist`](/Auto_Playlist)*.
 
-	2.  If you prefer to manually create the playlist files. Each line must be formatted like this:   
+	b.  If you prefer to manually create the playlist files. Each line must be formatted like this:   
 	`{"Song name", "SONG_FILENAME", duration},`
 		1. `Song name` is the full name, with artist if you want.
 		2. `SONG_FILENAME` must be 6 characters or less.
@@ -22,20 +32,25 @@ Examples >> `/SOUNDS/lists/3dflying`, `/SOUNDS/lists/practice`, `/SOUNDS/lists/h
 3. Put your corresponding songs `SONG_FILENAME.wav` in `/SOUNDS/en` if your radio is in English (otherwise replace `en` with your language). They must be converted to mono, preferably normalized, and encoded in Microsoft WAV 16-bits signed PCM at a 32 kHz sampling rate, you can use [Audacity](http://www.audacityteam.org) to do that, it works great. Remember the filename must be 6 characters or less or else it will not play.
 
 4. On your Taranis or (in companion) **This is how I setup my radio:
-	1. Set “TIMER3” as follows:      
+	a. Set “TIMER3” as follows:      
 	![Timer settings](/Screenshots/timer.PNG)  
-	2. Set active “FLIGHT MODES” model rudder trims as follows:     
+	
+	b. Set active “FLIGHT MODES” model rudder trims as follows:     
 	![Flight modes settings](/Screenshots/trims.PNG)  
 	Set the rudder and Aileron trims to “`--`” for every flight mode you use.  
 	XLITE users Use the Aileron or Elevator trims (Rudder requires the use of the shift button).  
-	3. Set each FM in Model Global Variable 8 and 9 to refer back to FM0  These two are used to select the song and the playlist respectively.  
+	
+	c. Set each FM in Model Global Variable 8 and 9 to refer back to FM0  These two are used to select the song and the playlist respectively.  
 	![Flight modes settings](/Screenshots/Global.PNG)  
-	4. Set “LOGICAL SWITCHES” settings as follows:  
+	
+	d. Set “LOGICAL SWITCHES” settings as follows:  
 	![Logical Switch Settings](/Screenshots/LogicalSwitch.PNG)  
-	5.  Set the Special Functions SF 58-64 as follows:  
+	
+	e.  Set the Special Functions SF 58-64 as follows:  
 	**SF63 will automatically be installed and updated by the program.  
 	![Special Function Settings](/Screenshots/SpecialFunction.PNG)  
-	7. Under Telemetry “DISPLAY” Choose to display `Script iTunes`  
+	
+	f. Under Telemetry “DISPLAY” Choose to display `Script iTunes`  
 	![Display settings](/Screenshots/DisplaySettings.PNG)
 
 There you go! Next section will explain how to use TaraniTunes.
