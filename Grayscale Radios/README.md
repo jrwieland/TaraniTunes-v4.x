@@ -1,4 +1,4 @@
-## TaraniTunes v4.0    
+## TaraniTunes v4.0 Non Color Radios   
 Awesome music player for OpenTX & EdgeTX radios.
 
 Key Enhancements   
