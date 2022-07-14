@@ -1,12 +1,12 @@
-### TaraniTunes v4.0    
+## TaraniTunes v4.0    
 Awesome music player for OpenTX & EdgeTX radios.
 
 Key Enhancements   
-** Steamlined code to match the Color Widget version in both look and feel.    
+** Streamlined code to match the Color Widget version in both look and feel.    
 ** FlushAudio Added to clear song playing when a new song/playlist is selected.   
-** Song or playlist immediatelly play when selected.  No need to move switches as an "Enter Key".    
+** Song or playlist immediately play when selected.  No need to move switches as an "Enter Key".    
 ** Model Global Variable 8 and 9 used is also used to keep track of the music and playlists.      
-** Removed the seperate player file all interaction is contained within the code.   
+** Removed the separate player file all interaction is contained within the code.   
 
 
 ### Installation  
@@ -67,5 +67,5 @@ From the main screen, hold “Page” to access TaraniTunes Telemetry Screen.
 #### Changing Playlists
 
 1. Press Aileron trim right or left to play next or previous playlist respectively.  
-2. The song will automaticlly play.  
-## This allows you to change playlists or music without having to look at the radio heeping you model in sight.   
+2. The song will automatically play.  
+This allows you to change playlists or music without having to look at the radio keeping you model in sight.   
