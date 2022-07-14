@@ -1,7 +1,7 @@
 ### Installation
 
 1. On your computer:
-	1. Edit both `iTunes_player.lua` and `itunes.lua` to have your desired amount of playlists. Detailed instructions are in the file(s) comments. Place both files in the `/SCRIPT/TELEMETRY` directory on your SD card.  
+	1. Edit `iTunes.lua` to have your desired amount of playlists. Place the file in the `/SCRIPT/TELEMETRY` directory on your SD card.  
 
 	2. Create a folder "lists" under /SOUNDS
 
@@ -26,38 +26,31 @@ Examples >> `/SOUNDS/lists/3dflying`, `/SOUNDS/lists/practice`, `/SOUNDS/lists/h
 	![Timer settings](/Screenshots/timer.PNG)  
 	2. Set active “FLIGHT MODES” model rudder trims as follows:     
 	![Flight modes settings](/Screenshots/trims.PNG)  
-	In fact, put every rudder trim to “`--`” for every flight mode you use.  
-	XLITE users Use the Aileron or Elevator trims (Rudder requires the use of the shift button).    
-	3. Set “LOGICAL SWITCHES” settings as follows:  
+	Set the rudder and Aileron trims to “`--`” for every flight mode you use.  
+	XLITE users Use the Aileron or Elevator trims (Rudder requires the use of the shift button).  
+	3. Set each FM in Model Global Variable 8 and 9 to refer back to FM0  These two are used to select the song and the playlist respectively.  
+	![Flight modes settings](/Screenshots/Global.PNG)  
+	4. Set “LOGICAL SWITCHES” settings as follows:  
 	![Logical Switch Settings](/Screenshots/LogicalSwitch.PNG)  
-	**L60-L64 will be automatically installed there is no need to enter these values**
-	4. Under Telemetry “DISPLAY” Choose to display `Script iTunes`  
+	5.  Set the Special Functions SF 58-64 as follows:  
+	**SF63 will automatically be installed and updated by the program.  
+	![Special Function Settings](/Screenshots/SpecialFunction.PNG)  
+	7. Under Telemetry “DISPLAY” Choose to display `Script iTunes`  
 	![Display settings](/Screenshots/DisplaySettings.PNG)
 
 There you go! Next section will explain how to use TaraniTunes.
 
 ### Usage
 
-From the main screen, hold “Page” to access TaraniTunes Telemetry Screen.
-1. Put the “SB” switch in the lower position to start playing the music.
-2. Put the "SB" switch in the Middle position to pause the song. It will continue from where it left off when the switch is returned to the lower "play" position.
-3. Put “SB” in the up position to select a random song from your playlist. It will play and select another song from your playlist when completed.  To pause the selected song, place SB in the middle position and then to the lower position to continue the song from where it was paused.  If you put the switch back in the upper position it will select a new song.
-4. When the song ends, the next song will automatically play and “Timer3” will be reset.
-5. “Timer3” will also automatically reset if you change songs.
-6. Press rudder trim right or rudder trim left to play next or previous song respectively.
-7.  The screen does not have to be displayed for it to work.  You can have the music playing and use the telemetry screen of your choice. 
-If you move the "`SB`" switch or trims the music will respond accordingly.  The only function that will not work on a different screen is selecting a new playlist (described below).
-
+From the main screen, hold “Page” to access TaraniTunes Telemetry Screen.  
+1. Put the “SB” switch in the lower position to start playing the music.  
+2. Put the "SB" switch in the Middle position to pause the song. It will continue from where it left off when the switch is returned to the lower "play" position.  
+3. Put “SB” in the up position reset the song (restart). It will play once it is returned to the lower "play" position.   
+4. When the song ends, the next song will automatically play.  
+5. Press rudder trim right or left to play next or previous song respectively.  
+ 
 #### Changing Playlists
 
-1. To change playlists press “MENU”.   
-2. A “Change Playlist Screen” will appear:  
-![Selection Menu](/Screenshots/Selection.PNG)     
-3. Using  the **Wheel**, *Q X7* or the **[+/-] Buttons** *X9D* or the **[Up/Down] Joystick** to select the playlist you want to play.    
-4. Press “ENTER”, your new playlist is loaded and begins playing.   
-
-Enjoy it as much as I do.    
-
-####  Housekeeping Notes  
-Neither the firmware simulator nor Companion can compile all of the `playlist.lua` scripts to allow you to test drive and tweak it.  This must be done on the radio after you set your directories in the `iTunes.lua` file and have created the playlists. After compiling the playlists you can modify the screen layout in `iTunes_Player.lua` to reflect your personal taste or make further enhancements.
-
+1. Press Aileron trim right or left to play next or previous playlist respectively.  
+2. The song will automaticlly play.  
+## This allows you to change playlists or music without having to look at the radio heeping you model in sight.   
