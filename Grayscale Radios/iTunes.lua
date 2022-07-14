@@ -1,7 +1,7 @@
 --[[  #########################################################################
       # TaraniTunes v.4.0                                                     #
       # B&W Radios                                                            #
-      # License GPLv3: http://www.gnu.org/licenses/gpl-3.0.html		            #
+      # License GPLv3: http://www.gnu.org/licenses/gpl-3.0.html		      #
       #                                                                       #
       # This program is free software; you can redistribute it and/or modify  #
       # it under the terms of the GNU General Public License version 3 as     #
