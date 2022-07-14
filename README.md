@@ -8,11 +8,11 @@ GilDev and I agreed that both versions of the script (the original and this adva
      
 ## TaraniTunes v4.0  (Non Color Radios)  ##
 Key Enhancements   
-* Steamlined code to match the Color Widget version in both look and feel.    
+* Streamlined code to match the Color Widget version in both look and feel.    
 * FlushAudio Added to clear song playing when a new song/playlist is selected.   
-* Song or playlist immediatelly play when selected.  No need to move switches as an "Enter Key".    
+* Song or playlist immediately play when selected.  No need to move switches as an "Enter Key".    
 * Model Global Variable 8 and 9 used is also used to keep track of the music and playlists.      
-* Removed the seperate player file all interaction is contained within the code.   
+* Removed the separate player file all interaction is contained within the code.   
   
   There is a "Random Mode" version available for the "xlite, 9x or Q7" radios.  
   It is available here >>> https://github.com/jrwieland/TaraniTunes-v4.x/tree/random-mode
@@ -20,8 +20,8 @@ Key Enhancements
 
 ## TaraniTunes v4.3  (Widget for Color Radios)
 Key Enhancements 
-* Model Glboal Variables allow the music and playlists to change without having to use a switch reset    
-* Added Flush Audio for imediate play of a song or playlist as it is selected   
+* Model Global Variables allow the music and playlists to change without having to use a switch reset    
+* Added Flush Audio for immediate play of a song or playlist as it is selected   
 
 Previous Enhancements    
 * Resizable zone widget works in all zones (including top bar). 
