@@ -13,6 +13,8 @@
 ---- #                                                                       #
 ---- #########################################################################
 
+---OpenTX sources used to control the music
+
 --Locals
 local playingSong = 1
 local errorOccured = false
