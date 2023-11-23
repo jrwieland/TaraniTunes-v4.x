@@ -315,7 +315,7 @@ local function refreshZoneFull(tunes)
 
 --music display
   local selection=playingSong
-  lcd.drawText(90, y+4, "Selected Playlist >>".. getFieldInfo("ls60").id, SMLSIZE)
+  lcd.drawText(90, y+4, "Selected Playlist >>".. title, SMLSIZE)
   if selection == #playlist then
     lcd.drawText(12, y+20, playlist[selection - 2][1])
     lcd.drawText(12, y+40, playlist[selection - 1][1])
