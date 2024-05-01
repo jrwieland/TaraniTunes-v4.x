@@ -1,4 +1,4 @@
-## TaraniTunes v4.3 (color radios) and v4.0 (non-color radios)
+## TaraniTunes v4.4 Edge(color radios) v4.3(color OptenTX) and v4.0 (non-color radios)
   
 **Awesome music player for OpenTX based radios. or any radio capable of running a lua script**  
 *Originally this started as a separate advanced fork from the Original TaraniTunes developed by [GilDev](https://github.com/GilDev).     
@@ -18,12 +18,18 @@ Key Enhancements
   It is available here >>> https://github.com/jrwieland/TaraniTunes-v4.x/tree/random-mode
 ----------------
 
-## TaraniTunes v4.3  (Widget for Color Radios)
+## TaraniTunes v4.4  (Widget for Edge Color Radios)
 Key Enhancements 
+* Updated the Screen Preview to what I use.
+* Added Edge Logo used in the Widget Preview.
+* Dark theme and background added (JW_Dark) with Carbon background.
+* Repaired music skipping over the last playlist.
+* Codes added for Edge TX versions 2.8 through 2.10 for compatibility.
+* Changed the hard coded (number) for background music to a Special Function Constant Variable.
+
+Previous Enhancements 
 * Model Global Variables allow the music and playlists to change without having to use a switch reset    
 * Added Flush Audio for immediate play of a song or playlist as it is selected   
-
-Previous Enhancements    
 * Resizable zone widget works in all zones (including top bar). 
 * Added index numbers for trims to easily change it to your switch/trim preferences.  
 * Added full screen layout for Horus, Jumper, and Radiomaster series radios.  
@@ -49,9 +55,9 @@ Existing Features for all radios
   ![Taranis X9D](Screenshots/TaraniTunesX9D.PNG)   
 
   
-## Installation
-For color Radios go to the color screen folder on Github for installation and usage or  [Click here](https://github.com/jrwieland/TaraniTunes-v4.x/files/5974030/Color.Installation.zip) to download the current Color release.
-
-For Grayscale radios (9XD, QX7, Xlite etc.) go to the Grayscale Radios for installation and usage, or [Click here](https://github.com/jrwieland/TaraniTunes-v4.x/files/5973891/Grayscale.zip) to download the current release.
+## Assets
+EdgeTX color Radios [Click here](https://github.com/jrwieland/TaraniTunes-v4.x/files/5974030/Color.Installation.zip) 
+OpenTX Radios  [Click here](https://github.com/jrwieland/TaraniTunes-v4.x/files/5974030/Color.Installation.zip) 
+Grayscale radios (9XD, QX7, Xlite etc.) [Click here](https://github.com/jrwieland/TaraniTunes-v4.x/files/5973891/Grayscale.zip)
 
 The Auto playlist folder contains the instructions for setting up playlists automatically to the correct format.  It makes it easy to create new lists.
