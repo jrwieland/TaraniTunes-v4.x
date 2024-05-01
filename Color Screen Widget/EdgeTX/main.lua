@@ -36,7 +36,7 @@ Edge 2.8 switch = 132
 Edge 2.9 switch = 144
 Edge 2.10 switch = 228
 Change the song Controls below at the refresh section
-]]
+]]--
 
 -- Create Zones
 local function create(zone, options)
@@ -359,7 +359,7 @@ function refresh(tunes)
 	Edge 2.8 switch = 132
 	Edge 2.9 switch = 144
 	Edge 2.10 switch = 228 
-	]]
+	]]--
 	
 listP = getValue("ls63")
 listN = getValue("ls64")
