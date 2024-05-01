@@ -1,5 +1,5 @@
 ---- #########################################################################
------# TaraniTunes v.4.3                                                     #
+-----# TaraniTunes v.4.4                                                     #
 ---- # License GPLv3: http://www.gnu.org/licenses/gpl-3.0.html	             #
 ---- #                                                                       #
 ---- # This program is free software; you can redistribute it and/or modify  #
@@ -13,81 +13,84 @@
 ---- #                                                                       #
 ---- #########################################################################
 
---Locals
+-- Locals
 local playingSong = 1
 local errorOccured = false
+elogo = Bitmap.open("/THEMES/edge.png") 
 loadScript("/SOUNDS/lists/bubba_mix/playlist.lua")() --1st playlist in songList (see sample list below)
 
---Playlists folders names i.e. /SONGS/lists/"foldername"  below are sample names
+-- Playlists folders names i.e. /SONGS/lists/"foldername"  below are sample names
 local songList=
 {"bubba_mix",
-"classic_country",
-"country_rock",
-"easy",
-"fun_country",
-"todays",
-"funrock",
-"hard",
-"laid_back",
-"modern",
 "rock",
-"soundtracks",
 "garage",
-"upbeat",
 } 
 
 --Options
 local options = {
 }
 
---SF commands for songs to play based on Version Installed
--- Edge 2.8 switch = 132,func = 16,playlist[playingSong][2]
--- Edge 2.9 switch = 144, func =16,playlist[playingSong][2]
--- Edge 2.10 switch = 228,func =14,playlist[playingSong][2],active=1 
---  Change the song Controls below at the refresh section
+--[[ 
+Custom Function Switch numbers based on Edge Version Installed
+Edge 2.8 switch = 132
+Edge 2.9 switch = 144
+Edge 2.10 switch = 228
+Change the song Controls below at the refresh section
+]]
 
--- create zones
+-- Create Zones
 local function create(zone, options)
   local tunes = { zone=zone, options=options}
   model.setGlobalVariable(7,0,1)
   model.setGlobalVariable(8,0,1)
-  model.setCustomFunction(62,{switch = 228,func =14,name = playlist[1][2],active=1})--resets playing song on  to the 1st song on startup
+  model.setCustomFunction(62,{switch = 228,func = FUNC_BACKGND_MUSIC,name=playlist[playingSong][2],active=1})--resets playing song on  to the 1st song on startup
   aircraft = Bitmap.open("/IMAGES/" .. model.getInfo().bitmap) 
   return tunes
 end
 
--- control functions
-local function error(strings)
-  errorStrings = strings
-  errorOccured = true
-end
-
---Update zones and options	
+-- Update zones and options	
 local function update(tunes, options)
-  tunes.options = options
+tunes.options = options
 end
 
---BackGround 
+-- BackGround 
 local function background(tunes)
+  local long=playlist[playingSong][3]
+  if model.getTimer(2).value >= long then
+    if playingSong == #playlist then
+      model.setGlobalVariable(7,0,1)
+      playingSong = model.getGlobalVariable(7,0)
+      flushAudio()
+      model.setCustomFunction(62,{switch=228,func=FUNC_BACKGND_MUSIC,name=playlist[playingSong][2],active=1})
+      model.setTimer(2,{value=0})
+    else
+      flushAudio()
+      playingSong = playingSong +1
+      model.setGlobalVariable(7,0,playingSong)
+      model.setCustomFunction(62,{switch=228,func=FUNC_BACKGND_MUSIC,name=playlist[playingSong][2],active=1})
+      model.setTimer(2,{value=0})
+    end
+  end
 end
 
 -- Following is the various widgets zones from top bar to full screen (make changes as desired)
--- Zone size: top bar widgets
+
+-- Zone: Top Bar Widget Only
 local function refreshZoneTiny(tunes)
   local selection=playingSong
   lcd.drawText(tunes.zone.x, tunes.zone.y,songList[1], SMLSIZE)
   lcd.drawText(tunes.zone.x, tunes.zone.y+15,"> ".. playlist[selection][2],SMLSIZE)
 end
 
---- Zone size: 160x32 1/8th
+-- Zone size: 160x32 1/8th
 local function refreshZoneSmall(tunes)
   local selection=playingSong
   lcd.drawText(tunes.zone.x, tunes.zone.y+2,title, SMLSIZE)
   lcd.drawText(tunes.zone.x, tunes.zone.y+17, playlist[selection][1], INVERS+SMLSIZE)
 end 
 
---- Zone size: 180x70 1/4th  (with sliders/trim)
---- Zone size: 225x98 1/4th  (no sliders/trim)
+-- Zone size: 180x70 1/4th  (with sliders/trim)
+-- Zone size: 225x98 1/4th  (no sliders/trim)
 local function refreshZoneMedium(tunes)
   local upTime=model.getTimer(2).value--do not change this value it is how long the current song has played
   local long=playlist[playingSong][3]
@@ -115,10 +118,10 @@ local function refreshZoneMedium(tunes)
   end	
 end
 
---- Zone size: 192x152 1/2
+-- Zone size: 192x152 1/2
 local function refreshZoneLarge(tunes)
   lcd.drawText(tunes.zone.x+2, tunes.zone.y,"  iTunes Music", MIDSIZE)
-  local upTime=model.getTimer(2).value--do not change this value it is how long the current song has played
+  local upTime=model.getTimer(2).value --do not change this value it is how long the current song has played
   local long=playlist[playingSong][3]
   local k = math.floor((upTime/long)*12)*10
   lcd.drawTimer(tunes.zone.x,tunes.zone.y+40, upTime, SMLSIZE+INVERS)
@@ -144,73 +147,71 @@ local function refreshZoneLarge(tunes)
   end	
 end
 
---- Zone size: 390x172 1/1 (with sliders and trims)
+-- Zone size: 390x172 1/1 (with sliders and trims)
 local function refreshZoneXLarge(tunes)
-  local upTime=model.getTimer(2).value--do not change this value it is how long the current song has played
+  local upTime=model.getTimer(2).value --do not change this value it is how long the current song has played
   local long=playlist[playingSong][3]
-
   function round(num, decimals)
     local mult = 10^(decimals or 0)
     return math.floor(num * mult + .5) / mult 
   end
 
---Current Model Information
+-- Current Model Information
+  lcd.drawText(150,60, model.getInfo().name, MIDSIZE) --adjust for right look
+  lcd.drawBitmap(aircraft,180,70,75) --adjust location and % for right look
 
-  lcd.drawText(150,60, model.getInfo().name, MIDSIZE)--adjust for right look
-  lcd.drawBitmap(aircraft,180,70,75)--adjust location and % for right look
-
---Transmitter battery
+-- Transmitter battery
   local batt = getValue("tx-voltage")
   lcd.drawText(40, 51,"TX Batt "..round(batt,1).."v")
 
---Flight Time
+-- Flight Time
   local fly=model.getTimer(1).value  --flight duration timer: 0=timer1, 1=timer2
   lcd.drawText(355, 51, "Flight Time")
   lcd.drawTimer(380, 72, fly, 2)	
 
   -- Flight Battery Loaded
-  --[[ I use different capacity batteries the timers are
- 	  adjusted using SF depending on the battery I'm flying ]]--
+  -- I use different capacity batteries the timers are adjusted using SF depending on the battery I'm flying
   lcd.drawFilledRectangle(40,73,100,2)
   local battsw = getValue('se')
   lcd.drawText(40, 90, "Flight Battery",SMLSIZE)
   lcd.drawFilledRectangle(40,105,100,2)
   if battsw == -1024 then 
     lcd.drawText(90,75,"SHORT 4.2",SMLSIZE)
-    lcd.drawSwitch(60,75,13)else
+    lcd.drawSwitch(60,75,13)
+  else
     if battsw == 0 then
       lcd.drawSwitch(40,75,14)
-      lcd.drawText(90,75,"REG 4.2", SMLSIZE) else
+      lcd.drawText(90,75,"REG 4.2", SMLSIZE) 
+    else
       lcd.drawSwitch(60,75,15)
-      lcd.drawText(90,75,"4.35 PACK", SMLSIZE)
+      lcd.drawText(90,75,"4.35", SMLSIZE)
     end 
   end
 
 -- Cell Voltage
   lcd.drawFilledRectangle(365,96,78,2)
-  lcd.drawText(375, 98, "Lipo Cell")
-  lcd.drawChannel(390, 119,"LCEL", PREC2+INVERS) --displays a custom telementry sensor (lowest cell)calculated from "cels" sensor
+  lcd.drawText(370, 98, "Lipo")
+  lcd.drawChannel(380, 119,"Cel", PREC2+INVERS) 
 
--- Altitude
+-- Altitude from Altimeter ("Alt" or GPS Sensor "GAlt")
   lcd.drawText(40,110,"HEIGHT= ", SMLSIZE)
-  lcd.drawChannel(100,110,"Alt",SMLSIZE)
+  lcd.drawChannel(100,110,"GAlt",SMLSIZE)
   lcd.drawText(42, 125,"Max", SMLSIZE)
-  lcd.drawChannel(82,125,"Alt+",2+SMLSIZE)	
+  lcd.drawChannel(82,125,"GAlt+",2+SMLSIZE)	
 
---Tementry separator bar
+-- Tementry separator bar
   local y = 160
   lcd.drawFilledRectangle(40,y-18,400,6,GREY_DEFAULT)
 
---Music
--- Progressbar 
-  local upTime=model.getTimer(2).value--do not change this value it is how long the current song has played
+-- Music Progress bar 
+  local upTime=model.getTimer(2).value --do not change this value it is how long the current song has played
   local k = math.floor((upTime/long)*33)*10
   lcd.drawTimer(44, y-10, upTime, SMLSIZE+INVERS)
   lcd.drawTimer(400,y-10, long, SMLSIZE+INVERS)
   lcd.setColor(CUSTOM_COLOR,lcd.RGB(0,100,0))
   lcd.drawFilledRectangle(80,y-10,k,18,CUSTOM_COLOR)
 
---music display
+-- Music Dispay
   local selection=playingSong
   lcd.drawText(90, y+5, "Selected Playlist >>",SMLSIZE)
   lcd.drawText(220, y+5, title, SMLSIZE)
@@ -231,10 +232,9 @@ local function refreshZoneXLarge(tunes)
   end
 end
 
-elogo = Bitmap.open("/THEMES/edge.png")
---- Zone size: 460x252 1/1 (no sliders/trim/topbar)
+-- Zone size: 460x252 1/1 (no sliders/trim/topbar)
 local function refreshZoneFull(tunes)
-  local upTime=model.getTimer(2).value--do not change this value it is how long the current song has played
+  local upTime=model.getTimer(2).value --do not change this value it is how long the current song has played
   local long=playlist[playingSong][3]
 
   function round(num, decimals)
@@ -242,34 +242,32 @@ local function refreshZoneFull(tunes)
     return math.floor(num * mult + .5) / mult 
   end
 
---Current time, OpenTX Version & Model Information
+--Current time, EdgeTX Version & Model Information
   local datenow = getDateTime()		
   local timemins = (string.format("%02d",datenow.min))
   lcd.drawText(63,24,"Time "..datenow.hour12..":"..timemins.." "..datenow.suffix)	
-  local ver = getVersion() --OpenTX Version
+  local ver = getVersion() --EdgeTX Version
   lcd.drawBitmap(elogo,3,0,53)
   lcd.drawText(63,4,"V. "..ver)
-  lcd.drawText(185,5, model.getInfo().name,DBLSIZE)--adjust as needed
-  lcd.drawBitmap(aircraft,170,45,90)--adjust as needed
+  lcd.drawText(185,5, model.getInfo().name,DBLSIZE) --adjust as needed
+  lcd.drawBitmap(aircraft,170,45,90) --adjust as needed
 
 --Transmitter battery
   local batt = getValue("tx-voltage")
   lcd.drawText(8, 50,"TX Batt "..round(batt,1).."v")
   
   --Receiver Voltage battery
-  
-  lcd.drawText(100, 50,"RX Batt ")
+    lcd.drawText(100, 50,"RX Batt ")
   lcd.drawChannel(160,50,"RxBt")
 
   -- Flight Battery Loaded
-  --[[ I use different capacity batteries, the timers are
- 	  adjusted using SF depending on the battery capactity ]]--
+  --I use different capacity batteries, the timers are adjusted using SF depending on the battery capactity
   lcd.drawFilledRectangle(8,73,130,2)
   lcd.drawText(10, 95, "Battery Loaded")
   lcd.drawFilledRectangle(8,116,130,2)
   local battsw = getValue('se')
   if battsw == -1024 then 
-    lcd.drawText(65,75,"SHORT 4.2", INVERS)
+    lcd.drawText(65,75,"SHORT 4.2", INVERS)  --older Battery
     lcd.drawSwitch(30,75,13)else
     if battsw == 0 then
       lcd.drawSwitch(30,75,14)
@@ -279,9 +277,11 @@ local function refreshZoneFull(tunes)
     end 
   end
 
-  -- Flight Mode
-  lcd.drawFilledRectangle(380,60,90,2)
-  lcd.drawFilledRectangle(380,105,90,2)
+-- Separators
+  lcd.drawFilledRectangle(341,60,125,2)
+  lcd.drawFilledRectangle(341,105,125,2)
+  
+-- Flight Mode
 --  local fmno, fmname = getFlightMode()
 --  if fmname == "" then
 --    fmname = "FM".. fmno
@@ -291,21 +291,21 @@ local function refreshZoneFull(tunes)
 --  end
 
 -- Speed
-  lcd.drawText(360,63,"Speed= ")
+  lcd.drawText(355,63,"Speed= ")
   lcd.drawChannel(420,63,"GSpd")
-  lcd.drawText(346,83,"Top Spd= ")
+  lcd.drawText(341,83,"Top Spd= ")
   lcd.drawChannel(420,83,"GSpd+",2)
 
---Flight Time
+-- Flight Time
   local fly=model.getTimer(1).value  --flight duration timer: 0=timer1, 1=timer2
   lcd.drawText(384, 4, "Flight Time")
   lcd.drawTimer(380, 28, fly, DBLSIZE+PREC2)	
 
 -- Cell Voltage
-  lcd.drawText(372, 104, "Lipo Cell",MIDSIZE)
-  lcd.drawChannel(380, 130,"LCEL", DBLSIZE+PREC2+INVERS) --displays a custom telementry sensor (lowest cell)calculated from "cels" sensor
-
---rssi
+  lcd.drawText(387, 104, "Lipo",MIDSIZE)
+  lcd.drawChannel(370, 130,"Cels", DBLSIZE+PREC2+INVERS) 
+	
+-- RSSI
   lcd.drawText(8,122,"RSSI Sig  ")
   lcd.drawChannel(80,122,"RSSI")
   lcd.drawText(123,122," //MIN ")
@@ -316,21 +316,24 @@ local function refreshZoneFull(tunes)
   lcd.drawChannel(80,143,"GAlt")
   lcd.drawText(130, 143,"//Max")
   lcd.drawChannel(185,143,"GAlt+",2)
+
+-- GPS
+  lcd.drawText(320,232,"GPS Location")
+  lcd.drawChannel(285,250,"GPS")	
 	
---Tementry separator bar
+-- Tementry Separator Bar
   local y = 185
   lcd.drawFilledRectangle(6,y-18,462,6,GREY_DEFAULT)
 
---Music
--- Progressbar 
-  local upTime=model.getTimer(2).value--do not change this value it is how long the current song has played
+-- Music Progressbar 
+  local upTime=model.getTimer(2).value --do not change this value it is how long the current song has played
   local k = math.floor((upTime/long)*40)*10
   lcd.drawTimer(7, y-10, upTime, SMLSIZE+INVERS)
   lcd.drawTimer(434,y-10, long, SMLSIZE+INVERS)
   lcd.setColor(CUSTOM_COLOR,lcd.RGB(0,100,0))
   lcd.drawFilledRectangle(44,y-10,k,18,CUSTOM_COLOR)
 
---music display
+-- Musci Display
   local selection=playingSong
   lcd.drawText(90, y+4, "Selected Playlist >>".. title, SMLSIZE)
   if selection == #playlist then
@@ -351,36 +354,36 @@ local function refreshZoneFull(tunes)
 end
 
 function refresh(tunes)
---SF commands for songs to play based on Version Installed
--- Edge 2.8 switch = 132,func = 16,playlist[playingSong][2]
--- Edge 2.9 switch = 144, func =16,playlist[playingSong][2]
--- Edge 2.10 switch = 228,func =14,playlist[playingSong][2],active=1 
- 
- listP = getValue("ls63")
-  listN = getValue("ls64")
-  prevS = getValue("ls61")
-  nextS = getValue("ls62")
-  SongSw = getFieldInfo("ls60").id
-
---song over
-
+--[[ 
+	Custom Function Switch numbers based on Edge Version Installed
+	Edge 2.8 switch = 132
+	Edge 2.9 switch = 144
+	Edge 2.10 switch = 228 
+	]]
+	
+listP = getValue("ls63")
+listN = getValue("ls64")
+prevS = getValue("ls61")
+nextS = getValue("ls62")
+  
+-- Song Over
   local long=playlist[playingSong][3]
   if model.getTimer(2).value >= long then
     if playingSong == #playlist then
       model.setGlobalVariable(7,0,1)
       playingSong = model.getGlobalVariable(7,0)
       flushAudio()
-       model.setCustomFunction(62,{switch = 228,func =14,name = playlist[playingSong][2],active=1})
+      model.setCustomFunction(62,{switch = 228,func =FUNC_BACKGND_MUSIC,name = playlist[playingSong][2],active=1})
       model.setTimer(2,{value=0})
     else
       flushAudio()
       playingSong = playingSong +1
       model.setGlobalVariable(7,0,playingSong)
-       model.setCustomFunction(62,{switch = 228,func =14,name = playlist[playingSong][2],active=1})
+      model.setCustomFunction(62,{switch = 228,func =FUNC_BACKGND_MUSIC,name = playlist[playingSong][2],active=1})
       model.setTimer(2,{value=0})
     end
-
   end
+	
 -- Next song
   if nextS > -1 then
     if not nextSongSwitchPressed then
@@ -391,14 +394,14 @@ function refresh(tunes)
         playingSong = model.getGlobalVariable(7,0)
       end
       flushAudio()
-      model.setCustomFunction(62,{switch = 228,func =14,name = playlist[playingSong][2],active=1})
+      model.setCustomFunction(62,{switch = 228,func =FUNC_BACKGND_MUSIC,name = playlist[playingSong][2],active=1})
       model.setTimer(2,{value=0})
     else
       nextSongSwitchPressed = false
     end	
   end
 
---Change Previous Playlist
+-- Change Previous Playlist
   if listP > -1 then
     if not prevListSwitchPressed then
       if model.getGlobalVariable(8,0)<= 0 then	
@@ -410,7 +413,7 @@ function refresh(tunes)
         playingSong = 1
       end
       loadScript("/SOUNDS/lists/"..set2.."/playlist.lua")()
-       model.setCustomFunction(62,{switch = 228,func =14,name = playlist[playingSong][2],active=1})
+      model.setCustomFunction(62,{switch = 228,func =FUNC_BACKGND_MUSIC,name = playlist[playingSong][2],active=1})
       model.setGlobalVariable(7,0,1)
       flushAudio()
       model.setTimer(2,{value=0})
@@ -419,7 +422,7 @@ function refresh(tunes)
     end
   end
 
---Change next Playlist
+-- Change next Playlist
   if listN > -1 then
     if not nextListSwitchPressed then
       if model.getGlobalVariable(8,0) >= #songList then
@@ -430,9 +433,8 @@ function refresh(tunes)
         set2 = songList[model.getGlobalVariable(8,0)]
         playingSong = 1
       end
-
       loadScript("/SOUNDS/lists/"..set2.."/playlist.lua")()
-       model.setCustomFunction(62,{switch = 228,func =14,name = playlist[playingSong][2],active=1})
+      model.setCustomFunction(62,{switch = 228,func =FUNC_BACKGND_MUSIC,name = playlist[playingSong][2],active=1})
       model.setGlobalVariable(7,0,1)
       flushAudio()
       model.setTimer(2,{value=0})
@@ -440,6 +442,7 @@ function refresh(tunes)
       nextListSwitchPressed = false
     end
   end
+        
 -- previous song
   if prevS > -1 then
     if not prevSongSwitchPressed then
@@ -450,14 +453,14 @@ function refresh(tunes)
         playingSong = model.getGlobalVariable(7,0)
       end
       flushAudio()
-       model.setCustomFunction(62,{switch = 228,func =14,name = playlist[playingSong][2],active=1})
+       model.setCustomFunction(62,{switch = 228,func =FUNC_BACKGND_MUSIC,name = playlist[playingSong][2],active=1})
       model.setTimer(2,{value=0})
     end
   else
     prevSongSwitchPressed = false
   end	
 
---Widget Display by Size
+-- Widget Display by Size
   if tunes.zone.w  > 450 and tunes.zone.h > 240 then refreshZoneFull(tunes)
   elseif tunes.zone.w  > 200 and tunes.zone.h > 165 then refreshZoneXLarge(tunes)
   elseif tunes.zone.w  > 180 and tunes.zone.h > 145 then refreshZoneLarge(tunes)
