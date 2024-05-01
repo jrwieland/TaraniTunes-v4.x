@@ -193,7 +193,7 @@ local function refreshZoneXLarge(tunes)
   lcd.drawText(370, 98, "Lipo")
   lcd.drawChannel(380, 119,"Cel", PREC2+INVERS) 
 
--- Altitude from Altimeter ("Alt" or GPS Sensor "GAlt")
+-- Altitude from Altimeter ("Alt") or GPS Sensor ("GAlt")
   lcd.drawText(40,110,"HEIGHT= ", SMLSIZE)
   lcd.drawChannel(100,110,"GAlt",SMLSIZE)
   lcd.drawText(42, 125,"Max", SMLSIZE)
@@ -425,7 +425,7 @@ nextS = getValue("ls62")
 -- Change next Playlist
   if listN > -1 then
     if not nextListSwitchPressed then
-      if model.getGlobalVariable(8,0) >= #songList then
+      if model.getGlobalVariable(8,0) > #songList then
         set2 = songList[1] 
         model.setGlobalVariable(8,0,1)
         playingSong = 1
