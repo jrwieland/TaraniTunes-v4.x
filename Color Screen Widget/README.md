@@ -1,4 +1,4 @@
-TaraniTunes v4.3
+TaraniTunes v4.3 OpenTX and v4.4 EdgeTX
 ===========
 **Awesome music player for OpenTX & EdgeTX radios.**  
      
