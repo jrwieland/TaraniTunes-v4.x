@@ -1,0 +1,17 @@
+---
+summary: 
+   name: "JW Dark Theme"
+   author: "John Wieland"
+   info: "A dark theme with contrast."
+colors: 
+   PRIMARY1: 0xF8FCF8
+   PRIMARY2: 0xF84040
+   PRIMARY3: 0xC0E4B0
+   SECONDARY1: 0x606060
+   SECONDARY2: 0xF8B038
+   SECONDARY3: 0x000000
+   FOCUS: 0xF8B038
+   EDIT: 0xD0D0E0
+   ACTIVE: 0xF8B038
+   WARNING: 0xE83030
+   DISABLED: 0xA07420
