@@ -6,13 +6,14 @@ GilDev and I agreed that both versions of the script (the original and this adva
 
 ---------------        
      
-## TaraniTunes v4.4  (Widget for Edge Color Radios)
+## TaraniTunes v4.4  (Widget for Edge Color Radios)    
+
 Key Enhancements 
 * Updated the Screen Preview to what I use.
-* Added Edge Logo used in the Widget Preview.
+* Added EdgeTX Logo used in the Widget Preview.
 * Dark theme and background added (JW_Dark) with Carbon background.
 * Repaired music skipping over the last playlist.
-* Codes added for Edge TX versions 2.8 through 2.10 for compatibility.
+* Special Function Switch numbers added for Edge TX versions 2.8 through 2.10 for compatibility.
 * Changed the hard coded (number) for background music to a Special Function Constant Variable.
 
 Previous Enhancements 
@@ -57,8 +58,8 @@ Key Enhancements
 
   
 ## Assets
-EdgeTX color Radios [Edge_Color.zip](https://github.com/jrwieland/TaraniTunes-v4.x/files/5974030/Color.Installation.zip)      
-OpenTX Radios  [OpenTX_Color.zip](https://github.com/jrwieland/TaraniTunes-v4.x/files/5974030/Color.Installation.zip)      
-Grayscale radios (9XD, QX7, Xlite etc.) [Grayscale.zip](https://github.com/jrwieland/TaraniTunes-v4.x/files/5973891/Grayscale.zip)     
+EdgeTX color Radios [Edge_Color.zip](https://github.com/jrwieland/TaraniTunes-v4.x/releases/download/v4.4/v4.4-EdgeTX.zip)      
+OpenTX Radios  [OpenTX_Color.zip](https://github.com/jrwieland/TaraniTunes-v4.x/releases/download/v4.3/Color.4.3.zip)      
+Grayscale radios (9XD, QX7, Xlite etc.) [Grayscale.zip](https://github.com/jrwieland/TaraniTunes-v4.x/releases/download/v4.0-BW/4.0.B.W.zip)     
 
 The Auto playlist folder contains the instructions for setting up playlists automatically to the correct format.  It makes it easy to create new lists.
