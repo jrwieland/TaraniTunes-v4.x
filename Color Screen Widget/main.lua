@@ -48,7 +48,7 @@ local function create(zone, options)
   local tunes = { zone=zone, options=options}
   model.setGlobalVariable(7,0,1)
   model.setGlobalVariable(8,0,1)
-  model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[1][2]})--resets playing song on  to the 1st song on startup
+  model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[1][2]})--resets playing song on  to the 1st song on startup 
   aircraft = Bitmap.open("/IMAGES/" .. model.getInfo().bitmap) 
   return tunes
 end
@@ -66,6 +66,22 @@ end
 
 --BackGround 
 local function background(tunes)
+   local long=playlist[playingSong][3]
+  if model.getTimer(2).value >= long then
+    if playingSong == #playlist then
+      model.setGlobalVariable(7,0,1)
+      playingSong = model.getGlobalVariable(7,0)
+      flushAudio()
+      model.setCustomFunction(62,{switch=228,func = 16,name=playlist[playingSong][2],active=1})
+      model.setTimer(2,{value=0})
+    else
+      flushAudio()
+      playingSong = playingSong +1
+      model.setGlobalVariable(7,0,playingSong)
+      model.setCustomFunction(62,{switch=228,func = 16,name=playlist[playingSong][2],active=1})
+      model.setTimer(2,{value=0})
+    end
+    end
 end
 
 -- Following is the various widgets zones from top bar to full screen (make changes as desired)
@@ -87,7 +103,7 @@ end
 --- Zone size: 180x70 1/4th  (with sliders/trim)
 --- Zone size: 225x98 1/4th  (no sliders/trim)
 local function refreshZoneMedium(tunes)
-  local upTime=model.getTimer(2).value--do not change this value it is how long the current song has played
+  local upTime=model.getTimer(2).value --do not change this value it is how long the current song has played
   local long=playlist[playingSong][3]
   local k = math.floor((upTime/long)*12)*10
   lcd.drawTimer(tunes.zone.x,tunes.zone.y, upTime, SMLSIZE+INVERS)
@@ -116,7 +132,7 @@ end
 --- Zone size: 192x152 1/2
 local function refreshZoneLarge(tunes)
   lcd.drawText(tunes.zone.x+2, tunes.zone.y,"  iTunes Music", MIDSIZE)
-  local upTime=model.getTimer(2).value--do not change this value it is how long the current song has played
+  local upTime=model.getTimer(2).value --do not change this value it is how long the current song has played
   local long=playlist[playingSong][3]
   local k = math.floor((upTime/long)*12)*10
   lcd.drawTimer(tunes.zone.x,tunes.zone.y+40, upTime, SMLSIZE+INVERS)
@@ -144,7 +160,7 @@ end
 
 --- Zone size: 390x172 1/1 (with sliders and trims)
 local function refreshZoneXLarge(tunes)
-  local upTime=model.getTimer(2).value--do not change this value it is how long the current song has played
+  local upTime=model.getTimer(2).value --do not change this value it is how long the current song has played
   local long=playlist[playingSong][3]
 
   function round(num, decimals)
@@ -199,7 +215,7 @@ local function refreshZoneXLarge(tunes)
 
 --Music
 -- Progressbar 
-  local upTime=model.getTimer(2).value--do not change this value it is how long the current song has played
+  local upTime=model.getTimer(2).value --do not change this value it is how long the current song has played
   local k = math.floor((upTime/long)*33)*10
   lcd.drawTimer(44, y-10, upTime, SMLSIZE+INVERS)
   lcd.drawTimer(400,y-10, long, SMLSIZE+INVERS)
@@ -229,7 +245,7 @@ end
 
 --- Zone size: 460x252 1/1 (no sliders/trim/topbar)
 local function refreshZoneFull(tunes)
-  local upTime=model.getTimer(2).value--do not change this value it is how long the current song has played
+  local upTime=model.getTimer(2).value --do not change this value it is how long the current song has played
   local long=playlist[playingSong][3]
 
   function round(num, decimals)
@@ -302,9 +318,8 @@ local function refreshZoneFull(tunes)
   local y = 185
   lcd.drawFilledRectangle(6,y-18,462,6,GREY_DEFAULT)
 
---Music
--- Progressbar 
-  --local upTime=model.getTimer(2).value--do not change this value it is how long the current song has played
+--Music Progressbar 
+  local upTime=model.getTimer(2).value --do not change this value it is how long the current song has played
   local k = math.floor((upTime/long)*40)*10
   lcd.drawTimer(7, y-10, upTime, SMLSIZE+INVERS)
   lcd.drawTimer(434,y-10, long, SMLSIZE+INVERS)
@@ -353,8 +368,8 @@ function refresh(tunes)
       model.setCustomFunction(62,{switch = 132,func = 16,name = playlist[playingSong][2]})
       model.setTimer(2,{value=0})
     end
-
   end
+  
 -- Next song
   if nextS > -1 then
     if not nextSongSwitchPressed then
@@ -396,7 +411,7 @@ function refresh(tunes)
 --Change next Playlist
   if listN > -1 then
     if not nextListSwitchPressed then
-      if model.getGlobalVariable(8,0) >= #songList then
+      if model.getGlobalVariable(8,0) > #songList then
         set2 = songList[1] 
         model.setGlobalVariable(8,0,1)
         playingSong = 1
@@ -414,6 +429,7 @@ function refresh(tunes)
       nextListSwitchPressed = false
     end
   end
+  
 -- previous song
   if prevS > -1 then
     if not prevSongSwitchPressed then
@@ -430,7 +446,6 @@ function refresh(tunes)
   else
     prevSongSwitchPressed = false
   end	
-
 
 --Widget Display by Size
   if tunes.zone.w  > 450 and tunes.zone.h > 240 then refreshZoneFull(tunes)
