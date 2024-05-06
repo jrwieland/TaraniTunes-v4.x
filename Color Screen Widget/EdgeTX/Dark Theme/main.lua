@@ -29,13 +29,19 @@ local songList=
 --Options
 local options = {
 }
-
+--[[ 
+Custom Function Switch numbers based on Edge Version Installed
+  Edge 2.8 switch = 132,func = 16,name = playlist[playingSong][2]
+  Edge 2.9 switch = 144,func = 16,name = playlist[playingSong][2]
+  Edge 2.10 switch = 228,func = FUNC_BACKGND_MUSIC,name = playlist[playingSong][2],active=1
+Change the song Controls below at the refresh section
+]]--
 -- create zones
 local function create(zone, options)
   local tunes = { zone=zone, options=options}
     model.setGlobalVariable(7,0,1)
   model.setGlobalVariable(8,0,1)
-  model.setCustomFunction(62,{switch = 144, func=16,name=playlist[playingSong][2],active=1})--resets playing song on  to the 1st song on startup
+  model.setCustomFunction(62,{switch = 144, func=16,name=playlist[playingSong][2]})--resets playing song on  to the 1st song on startup
   aircraft = Bitmap.open("/IMAGES/" .. model.getInfo().bitmap) 
   return tunes
 end
@@ -59,13 +65,13 @@ local function background(tunes)
       model.setGlobalVariable(7,0,1)
       playingSong = model.getGlobalVariable(7,0)
       flushAudio()
-      model.setCustomFunction(62,{switch = 144, func=16,name=playlist[playingSong][2],active=1})
+      model.setCustomFunction(62,{switch = 144, func=16,name=playlist[playingSong][2]})
       model.setTimer(2,{value=0})
     else
       flushAudio()
       playingSong = playingSong +1
       model.setGlobalVariable(7,0,playingSong)
-      model.setCustomFunction(62,{switch = 144, func=16,name=playlist[playingSong][2],active=1})
+      model.setCustomFunction(62,{switch = 144, func=16,name=playlist[playingSong][2]})
       model.setTimer(2,{value=0})
     end
     end
@@ -355,9 +361,13 @@ end
 
 function refresh(tunes)
 --SF commands for songs to play based on Version Installed
--- Edge 2.8 switch = 132,func=16
--- Edge 2.9 switch = 144, func=16
--- Edge 2.10 switch = 228,func=FUNC_BACKGND_MUSIC
+--[[ 
+Custom Function Switch numbers based on Edge Version Installed
+  Edge 2.8 switch = 132,func = 16,name = playlist[playingSong][2]
+  Edge 2.9 switch = 144,func = 16,name = playlist[playingSong][2]
+  Edge 2.10 switch = 228,func = FUNC_BACKGND_MUSIC,name = playlist[playingSong][2],active=1
+Change the song Controls below at the refresh section
+]]--
  
   listP = getValue("ls63")
   listN = getValue("ls64")
@@ -371,13 +381,13 @@ function refresh(tunes)
       model.setGlobalVariable(7,0,1)
       playingSong = model.getGlobalVariable(7,0)
       flushAudio()
-      model.setCustomFunction(62,{switch = 144, func=16,name=playlist[playingSong][2],active=1})
+      model.setCustomFunction(62,{switch = 144, func=16,name=playlist[playingSong][2]})
       model.setTimer(2,{value=0})
     else
       flushAudio()
       playingSong = playingSong +1
       model.setGlobalVariable(7,0,playingSong)
-      model.setCustomFunction(62,{switch = 144, func=16,name=playlist[playingSong][2],active=1})
+      model.setCustomFunction(62,{switch = 144, func=16,name=playlist[playingSong][2]})
       model.setTimer(2,{value=0})
     end
 
@@ -392,7 +402,7 @@ function refresh(tunes)
         playingSong = model.getGlobalVariable(7,0)
       end
       flushAudio()
-      model.setCustomFunction(62,{switch = 144, func=16,name=playlist[playingSong][2],active=1})
+      model.setCustomFunction(62,{switch = 144, func=16,name=playlist[playingSong][2]})
       model.setTimer(2,{value=0})
     else
       nextSongSwitchPressed = false
@@ -411,7 +421,7 @@ function refresh(tunes)
         playingSong = 1
       end
       loadScript("/SOUNDS/lists/"..set2.."/playlist.lua")()
-      model.setCustomFunction(62,{switch = 144, func=16,name=playlist[playingSong][2],active=1})
+      model.setCustomFunction(62,{switch = 144, func=16,name=playlist[playingSong][2]})
       model.setGlobalVariable(7,0,1)
       flushAudio()
       model.setTimer(2,{value=0})
@@ -433,7 +443,7 @@ function refresh(tunes)
       end
 
       loadScript("/SOUNDS/lists/"..set2.."/playlist.lua")()
-      model.setCustomFunction(62,{switch = 144, func=16,name=playlist[playingSong][2],active=1})
+      model.setCustomFunction(62,{switch = 144, func=16,name=playlist[playingSong][2]})
       model.setGlobalVariable(7,0,1)
       flushAudio()
       model.setTimer(2,{value=0})
@@ -451,7 +461,7 @@ function refresh(tunes)
         playingSong = model.getGlobalVariable(7,0)
       end
       flushAudio()
-      model.setCustomFunction(62,{switch = 144, func=16,name=playlist[playingSong][2],active=1})
+      model.setCustomFunction(62,{switch = 144, func=16,name=playlist[playingSong][2]})
       model.setTimer(2,{value=0})
     end
   else
