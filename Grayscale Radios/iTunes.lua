@@ -22,18 +22,7 @@ loadScript("/SOUNDS/lists/bubba_mix/playlist.lua")() --1st playlist in songList 
 --Playlists folders names i.e. /SONGS/lists/"foldername"  below are sample names
 local songList=
 {"bubba_mix",
-"classic_country",
-"country_rock",
-"easy",
-"fun_country",
-"todays",
-"funrock",
-"hard",
-"laid_back",
-"modern",
 "rock",
-"soundtracks",
-"garage",
 "upbeat",
 } 
 
