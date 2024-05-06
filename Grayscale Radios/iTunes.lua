@@ -16,24 +16,13 @@
 --Locals
 local playingSong = 1
 local errorOccured = false
-local ver = getVersion() --OpenTX Version
+local ver = getVersion() --EdgeTX Version
 loadScript("/SOUNDS/lists/bubba_mix/playlist.lua")() --1st playlist in songList (see sample list below)
 
 --Playlists folders names i.e. /SONGS/lists/"foldername"  below are sample names
 local songList=
 {"bubba_mix",
-"classic_country",
-"country_rock",
-"easy",
-"fun_country",
-"todays",
-"funrock",
-"hard",
-"laid_back",
-"modern",
 "rock",
-"soundtracks",
-"garage",
 "upbeat",
 } 
 
@@ -61,14 +50,29 @@ end
 
 --BackGround 
 local function background(tunes)
+if model.getTimer(2).value >= long then
+    if playingSong == #playlist then
+      model.setGlobalVariable(7,0,1)
+      playingSong = model.getGlobalVariable(7,0)
+      flushAudio()
+      model.setCustomFunction(62,{switch = sw1,func = 16,name = playlist[playingSong][2]})
+      model.setTimer(2,{value=0})
+    else
+      flushAudio()
+      playingSong = playingSong +1
+      model.setGlobalVariable(7,0,playingSong)
+      model.setCustomFunction(62,{switch = sw1,func = 16,name = playlist[playingSong][2]})
+      model.setTimer(2,{value=0})
+    end
+  end
 end
 
 local function run(tunes)
 --Update Locals
   lcd.clear()
   local selection=playingSong
-  local long=playlist[playingSong][3]--do not change this value it is the length of the current song playing
-  local upTime=model.getTimer(2).value--do not change this value it is how long the current song has played
+  local long=playlist[playingSong][3] --do not change this value it is the length of the current song playing
+  local upTime=model.getTimer(2).value --do not change this value it is how long the current song has played
   local batt = getValue("tx-voltage")
   local datenow = getDateTime()		
   local timemins = (string.format("%02d",datenow.min))
@@ -123,7 +127,7 @@ local function run(tunes)
   lcd.drawText(LCD_W/2-(string.len(title))/2*5, y+12, title, SMLSIZE)
 
 -- Progressbar
-  --local k = math.floor((upTime/long)*33)*10
+  local k = math.floor((upTime/long)*33)*10
   lcd.drawLine(0, y+18, LCD_W, y+18,SOLID,FORCE)
   lcd.drawFilledRectangle(20, y+11, math.floor((upTime/long)*(LCD_W-43)), 7)
   lcd.drawTimer(1, y+12, upTime, SMLSIZE+INVERS)
