@@ -50,6 +50,7 @@ end
 
 --BackGround 
 local function background(tunes)
+local long=playlist[playingSong][3] --do not change this value it is the length of the current song playing
 if model.getTimer(2).value >= long then
     if playingSong == #playlist then
       model.setGlobalVariable(7,0,1)
@@ -98,7 +99,7 @@ local function run(tunes)
 
 --Current time, OpenTX Version & Model Name
   lcd.drawText(1,10,datenow.hour12..":"..timemins..datenow.suffix,SMLSIZE)	
-  lcd.drawText(1,2,"OTX "..ver,SMLSIZE)
+  lcd.drawText(1,2,"ETX "..ver,SMLSIZE)
   if LCD_W == 212 then
     lcd.drawText(LCD_W/2-(string.len(model.getInfo().name)/2)*6,2,model.getInfo().name)
   else
@@ -193,7 +194,7 @@ local function run(tunes)
 --Change Previous Playlist
   if listP > -1 then
     if not prevListSwitchPressed then
-      if model.getGlobalVariable(8,0)<= 0 then	
+      if model.getGlobalVariable(8,0) <= 0 then	
         model.setGlobalVariable(8,0,#songList)
         set2 = songList[model.getGlobalVariable(8,0)]
         playingSong = 1
@@ -223,7 +224,7 @@ local function run(tunes)
         playingSong = 1
       end
       loadScript("/SOUNDS/lists/"..set2.."/playlist.lua")()
-      model.setCustomFunction(62,{62,{switch = sw1,func = FUNC_BACKGND_MUSIC,name = playlist[playingSong][2],active=1})
+      model.setCustomFunction(62,{switch = sw1,func = FUNC_BACKGND_MUSIC,name = playlist[playingSong][2],active=1})
       model.setGlobalVariable(7,0,1)
       flushAudio()
       model.setTimer(2,{value=0})
